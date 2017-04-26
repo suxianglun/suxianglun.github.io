@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suxianglun.github.io/"/>
-  <updated>2017-04-26T07:44:30.000Z</updated>
+  <updated>2017-04-19T05:58:17.000Z</updated>
   <id>http://suxianglun.github.io/</id>
   
   <author>
@@ -14,33 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://suxianglun.github.io/2017/04/26/hello-world/"/>
-    <id>http://suxianglun.github.io/2017/04/26/hello-world/</id>
-    <published>2017-04-26T07:44:30.000Z</published>
-    <updated>2017-04-26T07:44:30.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>如何利用Hexo、GitHub pages从零开始创建个人博客</title>
@@ -85,6 +58,75 @@
     <summary type="html">
     
       &lt;p&gt;从搭建到成功以及本文的诞生，前后花了两天时间，真是一把辛酸泪，感觉还是挺费事的，中途一度想放弃，可还是咬牙坚持下来了，但看到结果后感觉一切的辛苦都是值得的。过程中一定要有耐心，毕竟需要用到的东西挺多的，比如：node.js、git、 github、hexo其中的知识。废话不
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://suxianglun.github.io/2017/04/05/Android%20studio%E4%B8%8BJNI%E5%92%8CNDK%E5%BC%80%E5%8F%91/"/>
+    <id>http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/</id>
+    <published>2017-04-05T03:11:48.000Z</published>
+    <updated>2017-04-05T03:11:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>##Android studio下JNI与NDK开发:</p>
+<p>###1.下载Ndk并配置    </p>
+<p>点菜单栏的File-&gt;ProjectStructure…-&gt;在打开的窗口中左侧选中SDKLocation-&gt;<br>在右侧Android NDK Location中填入NDK目录所在路径，如下图所示：  </p>
+<p><img src="http://img.blog.csdn.net/20160516224637401?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><img src="http://img.blog.csdn.net/20160516224841000?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>###2. 新建项目JniDemo   </p>
+<h4 id="1-新建类JniUtil-声明所需要的native方法：getJniAdd-int-a-int-b-代码如下"><a href="#1-新建类JniUtil-声明所需要的native方法：getJniAdd-int-a-int-b-代码如下" class="headerlink" title="1. 新建类JniUtil,声明所需要的native方法：getJniAdd(int a,int b),代码如下:"></a>1. 新建类JniUtil,声明所需要的native方法：getJniAdd(int a,int b),代码如下:</h4><pre><code>public class JniUtil {
+        static {
+        System.loadLibrary(&quot;JniUtil&quot;);
+    }
+
+    public static native int getJniAdd(int a, int b);
+}
+</code></pre><h4 id="2-生成Java文件中native方法相对应的jin层c代码接口"><a href="#2-生成Java文件中native方法相对应的jin层c代码接口" class="headerlink" title="2. 生成Java文件中native方法相对应的jin层c代码接口"></a>2. 生成Java文件中native方法相对应的jin层c代码接口</h4><p>在AS界面的Terminal窗口中执行命令：cd app/src/main/java<br>定位至java文件夹，然后再执行命令：javah -jni com.richsoft.jnidemo.JniUtil<br>注意”com.richsoft.jnidemo”是JniUtil所在的包名。<br>此时在app/src/main/java路径下生成了一个.h文件，如图：   </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4260213-b3c868adb09b54b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
+<p>####3.新建jni文件夹<br>app-&gt;new-&gt;Floder-&gt;JNI Folder,如下图： </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4260213-60b3d9612e7a94b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>点击之后弹出选择框：   </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4260213-451c550875c3dd19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
+<p>点击finish之后，main文件夹下生成jni文件夹，如下图：  </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4260213-206d517c3250e22b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
+<p>####4.实现项目中声明的Native方法<br>在jni目录下创建JniUtil.c文件,然后将com_richsoft_jnidemo_JniUtil.h中的方法拷贝至JniUtil.c中，并实现这个方法，如下代码：   </p>
+<pre><code>#include&lt;jni.h&gt;
+JNIEXPORT jint JNICALL Java_com_richsoft_jnidemo_JniUtil_getJniAdd
+        (JNIEnv *env, jclass cls, jint a, jint b) {
+    return a + b;
+}
+</code></pre><p>###3.编译.so文件</p>
+<p>####1.gradle内添加代码：<br>在gradle.properties文件末尾添加上“android.useDeprecatedNdk=true”<br>然后在app文件下build.grade－&gt;defaultConfig括号内添加如下代码：   </p>
+<pre><code>ndk {
+            moduleName &quot;JniUtil&quot;          //生成的so名字
+            abiFilters &quot;armeabi&quot;, &quot;armeabi-v7a&quot;, &quot;arm64-v8a&quot; ,&quot;x86&quot;//输出指定三种abi体系结构下的so库，目前可有可无。
+        }
+</code></pre><p>####2.build 项目<br>点击Build下的Make Project,成功之后打开app-&gt;intermediates-&gt;ndk-&gt;debug发现了四个文件夹,如下图： </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4260213-24939b37659a4c28.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
+<p>到此，生成.so文件的过程结束。<br>在src\main下新建jniLibs文件夹，将上面的四个文件夹拷贝至jniLibs文件夹下，如图：</p>
+<p>将jni文件夹和.h文件删除，如下图：    </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4260213-3fee35f92cf1bb2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
+<p>最后咱们试试生成的.so文件能不能用，贴下MainActivity代码：  </p>
+<pre><code>public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        TextView tv = (TextView) findViewById(R.id.tv);
+        tv.setText(&quot;java调用C语言实现的加法运算:2+1000=&quot; + JniUtil.getJniAdd(2, 10000));
+    }
+}
+</code></pre><p>运行下程序，结果如下：    </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4260213-a9a4e1f1bff2e324.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##Android studio下JNI与NDK开发:&lt;/p&gt;
+&lt;p&gt;###1.下载Ndk并配置    &lt;/p&gt;
+&lt;p&gt;点菜单栏的File-&amp;gt;ProjectStructure…-&amp;gt;在打开的窗口中左侧选中SDKLocation-&amp;gt;&lt;br&gt;在右侧Android
     
     </summary>
     

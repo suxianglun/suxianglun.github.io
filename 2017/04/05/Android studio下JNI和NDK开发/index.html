@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>No title | 苏湘伦的Blog | 多谢大爷赏脸来</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="##Android studio下JNI与NDK开发: ###1.下载Ndk并配置     点菜单栏的File-&amp;gt;ProjectStructure…-&amp;gt;在打开的窗口中左侧选中SDKLocation-&amp;gt;在右侧Android NDK Location中填入NDK目录所在路径，如下图所示：    ###2. 新建项目JniDemo    1. 新建类JniUtil,声明所需要的nati">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="No title">
+<meta property="og:url" content="http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/index.html">
+<meta property="og:site_name" content="苏湘伦的Blog">
+<meta property="og:description" content="##Android studio下JNI与NDK开发: ###1.下载Ndk并配置     点菜单栏的File-&amp;gt;ProjectStructure…-&amp;gt;在打开的窗口中左侧选中SDKLocation-&amp;gt;在右侧Android NDK Location中填入NDK目录所在路径，如下图所示：    ###2. 新建项目JniDemo    1. 新建类JniUtil,声明所需要的nati">
+<meta property="og:image" content="http://img.blog.csdn.net/20160516224637401?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20160516224841000?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4260213-b3c868adb09b54b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4260213-60b3d9612e7a94b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4260213-451c550875c3dd19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4260213-206d517c3250e22b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4260213-24939b37659a4c28.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4260213-3fee35f92cf1bb2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4260213-a9a4e1f1bff2e324.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-04-05T03:11:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="No title">
+<meta name="twitter:description" content="##Android studio下JNI与NDK开发: ###1.下载Ndk并配置     点菜单栏的File-&amp;gt;ProjectStructure…-&amp;gt;在打开的窗口中左侧选中SDKLocation-&amp;gt;在右侧Android NDK Location中填入NDK目录所在路径，如下图所示：    ###2. 新建项目JniDemo    1. 新建类JniUtil,声明所需要的nati">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160516224637401?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+    
+        <link rel="alternate" type="application/atom+xml" title="苏湘伦的Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">苏湘伦</h5>
+          <a href="mailto:suxianglun@163.com" title="suxianglun@163.com" class="mail">suxianglun@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                首页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">No title</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">No title</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-04-05T03:11:48.000Z" itemprop="datePublished" class="page-time">
+  2017-04-05
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-新建类JniUtil-声明所需要的native方法：getJniAdd-int-a-int-b-代码如下"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 新建类JniUtil,声明所需要的native方法：getJniAdd(int a,int b),代码如下:</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-生成Java文件中native方法相对应的jin层c代码接口"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 生成Java文件中native方法相对应的jin层c代码接口</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Android studio下JNI和NDK开发"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">No title</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-04-05 11:11:48" datetime="2017-04-05T03:11:48.000Z"  itemprop="datePublished">2017-04-05</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>##Android studio下JNI与NDK开发:</p>
+<p>###1.下载Ndk并配置    </p>
+<p>点菜单栏的File-&gt;ProjectStructure…-&gt;在打开的窗口中左侧选中SDKLocation-&gt;<br>在右侧Android NDK Location中填入NDK目录所在路径，如下图所示：  </p>
+<p><img src="http://img.blog.csdn.net/20160516224637401?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><img src="http://img.blog.csdn.net/20160516224841000?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>###2. 新建项目JniDemo   </p>
+<h4 id="1-新建类JniUtil-声明所需要的native方法：getJniAdd-int-a-int-b-代码如下"><a href="#1-新建类JniUtil-声明所需要的native方法：getJniAdd-int-a-int-b-代码如下" class="headerlink" title="1. 新建类JniUtil,声明所需要的native方法：getJniAdd(int a,int b),代码如下:"></a>1. 新建类JniUtil,声明所需要的native方法：getJniAdd(int a,int b),代码如下:</h4><pre><code>public class JniUtil {
+        static {
+        System.loadLibrary(&quot;JniUtil&quot;);
+    }
+
+    public static native int getJniAdd(int a, int b);
+}
+</code></pre><h4 id="2-生成Java文件中native方法相对应的jin层c代码接口"><a href="#2-生成Java文件中native方法相对应的jin层c代码接口" class="headerlink" title="2. 生成Java文件中native方法相对应的jin层c代码接口"></a>2. 生成Java文件中native方法相对应的jin层c代码接口</h4><p>在AS界面的Terminal窗口中执行命令：cd app/src/main/java<br>定位至java文件夹，然后再执行命令：javah -jni com.richsoft.jnidemo.JniUtil<br>注意”com.richsoft.jnidemo”是JniUtil所在的包名。<br>此时在app/src/main/java路径下生成了一个.h文件，如图：   </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4260213-b3c868adb09b54b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
+<p>####3.新建jni文件夹<br>app-&gt;new-&gt;Floder-&gt;JNI Folder,如下图： </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4260213-60b3d9612e7a94b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>点击之后弹出选择框：   </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4260213-451c550875c3dd19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
+<p>点击finish之后，main文件夹下生成jni文件夹，如下图：  </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4260213-206d517c3250e22b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
+<p>####4.实现项目中声明的Native方法<br>在jni目录下创建JniUtil.c文件,然后将com_richsoft_jnidemo_JniUtil.h中的方法拷贝至JniUtil.c中，并实现这个方法，如下代码：   </p>
+<pre><code>#include&lt;jni.h&gt;
+JNIEXPORT jint JNICALL Java_com_richsoft_jnidemo_JniUtil_getJniAdd
+        (JNIEnv *env, jclass cls, jint a, jint b) {
+    return a + b;
+}
+</code></pre><p>###3.编译.so文件</p>
+<p>####1.gradle内添加代码：<br>在gradle.properties文件末尾添加上“android.useDeprecatedNdk=true”<br>然后在app文件下build.grade－&gt;defaultConfig括号内添加如下代码：   </p>
+<pre><code>ndk {
+            moduleName &quot;JniUtil&quot;          //生成的so名字
+            abiFilters &quot;armeabi&quot;, &quot;armeabi-v7a&quot;, &quot;arm64-v8a&quot; ,&quot;x86&quot;//输出指定三种abi体系结构下的so库，目前可有可无。
+        }
+</code></pre><p>####2.build 项目<br>点击Build下的Make Project,成功之后打开app-&gt;intermediates-&gt;ndk-&gt;debug发现了四个文件夹,如下图： </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4260213-24939b37659a4c28.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
+<p>到此，生成.so文件的过程结束。<br>在src\main下新建jniLibs文件夹，将上面的四个文件夹拷贝至jniLibs文件夹下，如图：</p>
+<p>将jni文件夹和.h文件删除，如下图：    </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4260213-3fee35f92cf1bb2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
+<p>最后咱们试试生成的.so文件能不能用，贴下MainActivity代码：  </p>
+<pre><code>public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        TextView tv = (TextView) findViewById(R.id.tv);
+        tv.setText(&quot;java调用C语言实现的加法运算:2+1000=&quot; + JniUtil.getJniAdd(2, 10000));
+    }
+}
+</code></pre><p>运行下程序，结果如下：    </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4260213-a9a4e1f1bff2e324.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-04-05T03:11:48.000Z" itemprop="dateUpdated">2017-04-05 11:11:48</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/04/05/Android studio下JNI和NDK开发/" target="_blank" rel="external">http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/</a>
+        
+    </div>
+    <footer>
+        <a href="http://suxianglun.github.io">
+            <img src="/img/avatar.jpg" alt="苏湘伦">
+            苏湘伦
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/&title=《No title》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/&title=《No title》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/04/19/howCreateMyBlog/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">如何利用Hexo、GitHub pages从零开始创建个人博客</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="Android studio下JNI和NDK开发" data-title="No title" data-url="http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>苏湘伦 &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/&title=《No title》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/&title=《No title》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACoUlEQVR42u3aS44bMQwFQN//0pNtFmnNIykaHaB6Zfgnlgy05Ed9PvH189eVPP/0nvOVjPXZuPDw8PAGpSdDTsp6enxm9OrBw8PD2+adhzkPmQxcLfTW1ODh4eG9gZcXUZ2yag14eHh4/y9vMgXn0fHw8PDezOttbSflJpvsr2YteHh4eDEv7yK95/FKfw8PDw9v3FU/33CrbbB8qbhWLR4eHt7ajbBXynnbPd80nyexMGV4eHh4V3mT6OEcSeRR7Pzo1eNn8fDw8BZ4vZt+Eqr2Wlk96i/LBh4eHt4CL/mi5NXqrb8aNOSfwsPDw9vjJeVOZqt3oKoXQ5R/Kzw8PLzBoYHJ8aZevJts1pPIo9wAw8PDwxvzbm1hq7FF8s3Vowb/eB4PDw9vgTc5RNULeauxRS+GiH5JPDw8vDVer8R84Lubcjw8PLxv8nrHAibvyTfc1drw8PDw9niTv/3V4KB6u6+2zR7XOjw8PLxl3q0YotrW6oXLv1SLh4eHt8Cb9ImqEUOvPRYVnb8fDw8P7xIvv/lWo9g88M3bWtVlCQ8PD2+DN1lPehvlahMriXrLJDw8PLwWr3dYal70ZDNdCJfx8PDwFni9MLTaNpscw5ofwMLDw8Pb480PRU2WjTyGuJC14OHh4S3wqp33BFmNfa9NPR4eHt4arxenVqOK3sRV8Xh4eHjf4fVKmfTcknHzeh4nFA8PD+8q76d49VplvemYH1PAw8PD2+DdCmST6CGfmurjCxceHh5ekdcLSXuxRfV4QdTiOi9OeHh4eGu8fIPbOwowmcoLaxoeHh7eC3h5s2pyoKo3Ch4eHt47ecmNfg7LR1lc9/Dw8PAGOWc+QLU9Vg2LC40xPDw8vAVe9R99EiLkDf4ck7fc8PDw8NZ4fwDMgdpPsZ06UAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '多谢大爷赏脸来到鄙人的blog';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '您的到来使寒舍蓬荜生辉';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
