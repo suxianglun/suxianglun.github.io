@@ -24,7 +24,7 @@
 <meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何利用Hexo、GitHub pages从零开始创建个人博客">
-<meta property="og:url" content="http://suxianglun.github.i/2017/04/19/howCreateMyBlog/index.html">
+<meta property="og:url" content="http://suxianglun.github.io/2017/04/19/howCreateMyBlog/index.html">
 <meta property="og:site_name" content="苏湘伦的Blog">
 <meta property="og:description" content="从搭建到成功以及本文的诞生，前后花了两天时间，真是一把辛酸泪，感觉还是挺费事的，中途一度想放弃，可还是咬牙坚持下来了，但看到结果后感觉一切的辛苦都是值得的。过程中一定要有耐心，毕竟需要用到的东西挺多的，比如：node.js、git、 github、hexo其中的知识。废话不多说了，详情如下： 一、系统环境配置：要想利用Hexo、GitHub搭建个人博客，首先要安装Node.js、git：">
 <meta property="og:updated_time" content="2017-04-19T05:58:17.000Z">
@@ -213,7 +213,7 @@
 <h3 id="search插件基于-https-github-com-PaicHyperionDev-hexo-generator-search"><a href="#search插件基于-https-github-com-PaicHyperionDev-hexo-generator-search" class="headerlink" title="search插件基于 https://github.com/PaicHyperionDev/hexo-generator-search"></a>search插件基于 <a href="https://github.com/PaicHyperionDev/hexo-generator-search" target="_blank" rel="external">https://github.com/PaicHyperionDev/hexo-generator-search</a></h3><h3 id="使用说明请参考该repo"><a href="#使用说明请参考该repo" class="headerlink" title="使用说明请参考该repo"></a>使用说明请参考该repo</h3><p>search:<br>  path: search.xml<br>  field: all<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">###### 更新主题</div></pre></td></tr></table></figure></p>
 <p>$ hexo g # 生成<br>$ hexo s # 启动本地web服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 三、GitHub Pages配置</div><div class="line">###### 1、注册、登录GitHub </div><div class="line">github官网：&lt;https://github.com/&gt;</div><div class="line">![你值得拥有](https://ww4.sinaimg.cn/large/006tKfTcgy1fch0a9kz7aj31kw0z7npd.jpg)</div><div class="line">###### 2、创建项目仓库 </div><div class="line">注册并登陆Github官网成功后，点击页面右上角的+，选择New repository。</div><div class="line">![你值得拥有](http://7xs5l8.com1.z0.glb.clouddn.com/wangzhan20163281.png)</div><div class="line"> </div><div class="line">###### 3、填写项目名</div><div class="line">在Repository name中填写：**Github账号名.github.io 必须这样填，否则会出错 例如我的账号为:allen,那么就必须填allen.github.io**</div><div class="line">![你值得拥有](http://www.pchou.info/assets/img/build-github-blog-page-02-img0.png)</div><div class="line">###### 4、设置GitHub pages</div><div class="line">打开settings，有一个Github Pages 的设置，点击 source 中的本来的 None ，使其变成 master 分支，也就是作为部署github pages 的分支，然后点击 save。</div><div class="line">![你值得拥有](http://images2015.cnblogs.com/blog/903320/201701/903320-20170115212404385-1979000093.png)</div><div class="line">###### 5、查看网址</div><div class="line">页面刷新之后，再看 github pages 设置框处，多了一行网址，就是你的 github pages 的网址了，点击进去就进入属于你自己的博客网址了。</div><div class="line">![你值得拥有](http://images2015.cnblogs.com/blog/903320/201701/903320-20170115213630338-44375750.png)</div><div class="line"></div><div class="line">#### 四、部署到GitHub pages</div><div class="line">###### 1、修改_config.yml</div><div class="line">千万要注意冒号：后边要留有空格    </div><div class="line"></div><div class="line">基本设置</div></pre></td></tr></table></figure></p>
 <h1 id="Site"><a href="#Site" class="headerlink" title="Site"></a>Site</h1><p>title: allen #标题<br>subtitle: welcome to allen blog #副标题<br>description:        #描述<br>author: John Doe         #作者<br>language: zh-CN #语言<br>timezone:        #时区</p>
-<h1 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h1><h2 id="If-your-site-is-put-in-a-subdirectory-set-url-as-‘http-yoursite-com-child‘-and-root-as-‘-child-‘"><a href="#If-your-site-is-put-in-a-subdirectory-set-url-as-‘http-yoursite-com-child‘-and-root-as-‘-child-‘" class="headerlink" title="If your site is put in a subdirectory, set url as ‘http://yoursite.com/child‘ and root as ‘/child/‘"></a>If your site is put in a subdirectory, set url as ‘<a href="http://yoursite.com/child" target="_blank" rel="external">http://yoursite.com/child</a>‘ and root as ‘/child/‘</h2><p>url: <a href="http://suxianglun.github.io" target="_blank" rel="external">http://suxianglun.github.io</a>  #用于绑定域名, 其他的不需要配置，即为GitHub pages生成的那个网址<br>root: /<br>permalink: :year/:month/:day/:title/<br>permalink_defaults:</p>
+<h1 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h1><h2 id="If-your-site-is-put-in-a-subdirectory-set-url-as-‘http-yoursite-com-child‘-and-root-as-‘-child-‘"><a href="#If-your-site-is-put-in-a-subdirectory-set-url-as-‘http-yoursite-com-child‘-and-root-as-‘-child-‘" class="headerlink" title="If your site is put in a subdirectory, set url as ‘http://yoursite.com/child‘ and root as ‘/child/‘"></a>If your site is put in a subdirectory, set url as ‘<a href="http://yoursite.com/child" target="_blank" rel="external">http://yoursite.com/child</a>‘ and root as ‘/child/‘</h2><p>url: <a href="http://suxianglun.github.io">http://suxianglun.github.io</a>  #用于绑定域名, 其他的不需要配置，即为GitHub pages生成的那个网址<br>root: /<br>permalink: :year/:month/:day/:title/<br>permalink_defaults:</p>
 <h1 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h1><h2 id="Plugins-https-hexo-io-plugins"><a href="#Plugins-https-hexo-io-plugins" class="headerlink" title="Plugins: https://hexo.io/plugins/"></a>Plugins: <a href="https://hexo.io/plugins/" target="_blank" rel="external">https://hexo.io/plugins/</a></h2><h2 id="Themes-https-hexo-io-themes"><a href="#Themes-https-hexo-io-themes" class="headerlink" title="Themes: https://hexo.io/themes/"></a>Themes: <a href="https://hexo.io/themes/" target="_blank" rel="external">https://hexo.io/themes/</a></h2><p>theme: hexo-theme-landfarz   #主题设置</p>
 <h1 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h1><h2 id="Docs-https-hexo-io-docs-deployment-html"><a href="#Docs-https-hexo-io-docs-deployment-html" class="headerlink" title="Docs: https://hexo.io/docs/deployment.html"></a>Docs: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">https://hexo.io/docs/deployment.html</a></h2><p>deploy:   #部署, 发布在 GitHub 上面<br>  type: git<br>  repo: git@github.com:suxianglun/suxianglun.github.io.git #GitHub 项目仓库<br>  branch: master<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">###### 2、部署到GitHub 上</div></pre></td></tr></table></figure></p>
 <p>$ hexo clean #清除<br>$ hexo g #生成<br>$ hexo d #部署 # 可与hexo g合并为 hexo d -g<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo d 之后如果出现ERROR Deployer not found: Git,请键入如下命令</div></pre></td></tr></table></figure></p>
@@ -221,7 +221,7 @@
 <p>README.md    db.json        package.json    scaffolds    themes<br>_config.yml    node_modules    public        source</p>
 <p>```<br>2、Hexo 配置不正确，请严格按照要求进行配置</p>
 <p>注意事项：<br>markdown标题标准写法写法需要在”#”和后面字符之间加一个空格<br>如果不加空格 有些引擎就解析不了    </p>
-<p>另外说一下我的个人博客地址 <a href="https://suxianglun.github.io/" target="_blank" rel="external">https://suxianglun.github.io/</a> 欢迎来骚扰。</p>
+<p>另外说一下我的个人博客地址 <a href="https://suxianglun.github.io/">https://suxianglun.github.io/</a> 欢迎来骚扰。</p>
 
         </div>
 
@@ -234,11 +234,11 @@
 
 
         
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/04/19/howCreateMyBlog/" target="_blank" rel="external">http://suxianglun.github.i/2017/04/19/howCreateMyBlog/</a>
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/04/19/howCreateMyBlog/" target="_blank" rel="external">http://suxianglun.github.io/2017/04/19/howCreateMyBlog/</a>
         
     </div>
     <footer>
-        <a href="http://suxianglun.github.i">
+        <a href="http://suxianglun.github.io">
             <img src="/img/avatar.jpg" alt="苏湘伦">
             苏湘伦
         </a>
@@ -262,7 +262,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.i/2017/04/19/howCreateMyBlog/&title=《如何利用Hexo、GitHub pages从零开始创建个人博客》 — 苏湘伦的Blog&pic=http://suxianglun.github.i/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/04/19/howCreateMyBlog/&title=《如何利用Hexo、GitHub pages从零开始创建个人博客》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -272,22 +272,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.i/2017/04/19/howCreateMyBlog/&title=《如何利用Hexo、GitHub pages从零开始创建个人博客》 — 苏湘伦的Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/04/19/howCreateMyBlog/&title=《如何利用Hexo、GitHub pages从零开始创建个人博客》 — 苏湘伦的Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.i/2017/04/19/howCreateMyBlog/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/04/19/howCreateMyBlog/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何利用Hexo、GitHub pages从零开始创建个人博客》 — 苏湘伦的Blog&url=http://suxianglun.github.i/2017/04/19/howCreateMyBlog/&via=http://suxianglun.github.i" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何利用Hexo、GitHub pages从零开始创建个人博客》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/04/19/howCreateMyBlog/&via=http://suxianglun.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.i/2017/04/19/howCreateMyBlog/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/04/19/howCreateMyBlog/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -325,7 +325,7 @@
     
 
 <div class="comments" id="comments">
-    <div class="ds-thread" data-thread-key="howCreateMyBlog" data-title="如何利用Hexo、GitHub pages从零开始创建个人博客" data-url="http://suxianglun.github.i/2017/04/19/howCreateMyBlog/"></div>
+    <div class="ds-thread" data-thread-key="howCreateMyBlog" data-title="如何利用Hexo、GitHub pages从零开始创建个人博客" data-url="http://suxianglun.github.io/2017/04/19/howCreateMyBlog/"></div>
 </div>
 <script>
 lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
@@ -412,7 +412,7 @@ lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js'
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.i/2017/04/19/howCreateMyBlog/&title=《如何利用Hexo、GitHub pages从零开始创建个人博客》 — 苏湘伦的Blog&pic=http://suxianglun.github.i/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/04/19/howCreateMyBlog/&title=《如何利用Hexo、GitHub pages从零开始创建个人博客》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -422,22 +422,22 @@ lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js'
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.i/2017/04/19/howCreateMyBlog/&title=《如何利用Hexo、GitHub pages从零开始创建个人博客》 — 苏湘伦的Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/04/19/howCreateMyBlog/&title=《如何利用Hexo、GitHub pages从零开始创建个人博客》 — 苏湘伦的Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.i/2017/04/19/howCreateMyBlog/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/04/19/howCreateMyBlog/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何利用Hexo、GitHub pages从零开始创建个人博客》 — 苏湘伦的Blog&url=http://suxianglun.github.i/2017/04/19/howCreateMyBlog/&via=http://suxianglun.github.i" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何利用Hexo、GitHub pages从零开始创建个人博客》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/04/19/howCreateMyBlog/&via=http://suxianglun.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.i/2017/04/19/howCreateMyBlog/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/04/19/howCreateMyBlog/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -448,7 +448,7 @@ lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js'
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3aS27DMAwFwNz/0uk2gGvnkXQCRBqtgta1NFmw/OjxiNfzZb3+5Pj5+Pzxt8cnz3a5eWFgYPws43m5ro91vXHvDdd/dbojBgbGBozkEElITQ7RC+tvzoyBgYFxwqimdAkJAwMD4y5GNfjOS2UMDAyMpIitFqjXX0e1xL2tFsfAwPhBRh4Kv//5I/MNDAyMn2I8i6saBCfFbeFUGBgYSzPyAFdFJmXnJOBiYGDsw5hcsEjaZFVeM2RjYGAszUjGA5N2W/UCWfKGN2/DwMBYlDHZOAm4eVivXsjAwMDYgTEfN+YDyOqlikJoxsDA2IaRB8155VgtfaNaHAMDY2nGpKGWPJ8PO3unwsDA2IExHxvkqWSeAhbSUwwMjO0ZeQ7WC6l5EXv6fgwMjKUZeZKX33BIit5eufuoHgIDA2MJxvxiRDXJm7wzSg0xMDCWZlQbZ3lj7qv/MTAwMJZjVEeVvaSwNwotwzAwMDZg9ILyJB3sHT1qt2FgYCzKuOuyRQ9WvRT7z14YGBgbMO7qtM8bc81Aj4GBsQ0jT9Sqrfw8jDYHrhgYGIsynsVVbbflY8vbclsMDIzlGNURY2+DPLnM/wH0BqUYGBi/y0gCZfVaRpJE5l9ZFGQxMDA2YPSGiz3Ax2txDAyM7RmTK6q9hPIjARcDA2NpRrVVlzNGw1EMDIwNGNVD9Jr41TcX2nYYGBhLM0alYzDIzJ+ZnwQDA2M5xh+gIHRy6LXi5wAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3awW7rMAwEwPz/T+ediyLOLuU+wNLoVDS2rNGBICW+XvF4fxi/f/30n+uZ27eGAwMD47GM9+VIPnD91vUzn57M14aBgXEOIwmFs9D55fMftiNfGwYGBsYsILZPttuHgYGBkTOSeVaKWAwMDIy2iL2eqC2GVwI6BgbGaYxZWPw/f//J/QYGBsajGO9yzALi7NiuWBUGBsbWjJWp88P9JLlcoWJgYJzGuC5N88O1u64BipIVAwNja8bK0X/+mevtWGkXw8DA2JuRNKome5DMkC+3vhbFwMA4gDELu7MmifUZom4RDAyMTRl5m0W7EeuJ5pcEFAMD4xhGgikuFMujt9n8P4pYDAyMTRnJZ2ZLz4N4fuj/JZRjYGAcyciTvPaoLklA8xIaAwNjb0abqOUfqJskRlenGBgYJzCSdoc84RvG+1ESGaWGGBgYWzDaZqw8LLbXA8kVRdEzgoGBsR1jlrQl1JUlFluMgYGxNaMtSldIOTgJ8VGPGwYGxqaM9cP6u0rcYbMFBgbG1ow8FctbwWYFbfsWBgbGOYyV86u2aSy/Fi3ewsDA2JTxLkdSiK5sRFs8F3uJgYHxWEY+8maI9vCuTRCLZBEDA2MjxizIJkFwFiJnFxIYGBgnMPLAN0vp7gJ/DNwYGBgYo3Qtb/yatcm+2hcwMDAOY+TXAAmyvdq8LeBiYGA8ipEUsUmIbENwG6BvOG7DwMB4ICMvHWdhtAia5UowMDAOYPwDl1AsujeQdTMAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 
