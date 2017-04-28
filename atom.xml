@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suxianglun.github.io/"/>
-  <updated>2017-04-28T08:18:33.000Z</updated>
+  <updated>2017-04-28T08:20:12.000Z</updated>
   <id>http://suxianglun.github.io/</id>
   
   <author>
@@ -16,13 +16,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>URI和URL含义及其理解</title>
     <link href="http://suxianglun.github.io/2017/04/28/URL%E5%92%8CURI%E5%90%AB%E4%B9%89%E5%8F%8A%E7%90%86%E8%A7%A3/"/>
     <id>http://suxianglun.github.io/2017/04/28/URL和URI含义及理解/</id>
     <published>2017-04-28T08:14:03.000Z</published>
-    <updated>2017-04-28T08:18:33.000Z</updated>
+    <updated>2017-04-28T08:20:12.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="URI和URL含义及理解"><a href="#URI和URL含义及理解" class="headerlink" title="URI和URL含义及理解"></a>URI和URL含义及理解</h2><h4 id="1、URI和URL含义："><a href="#1、URI和URL含义：" class="headerlink" title="1、URI和URL含义："></a>1、URI和URL含义：</h4><p>在理解URL之前先来看一下什么是URI    </p>
+    <content type="html"><![CDATA[<h4 id="1、URI和URL含义："><a href="#1、URI和URL含义：" class="headerlink" title="1、URI和URL含义："></a>1、URI和URL含义：</h4><p>在理解URL之前先来看一下什么是URI    </p>
 <h5 id="1-1-什么是URI？"><a href="#1-1-什么是URI？" class="headerlink" title="1.1 什么是URI？"></a>1.1 什么是URI？</h5><p>简单点说：URI就是<strong>通用资源标志符</strong>，不理解是吧，我第一次听说也是不理解。<br>进一步说：网络上的一些资源（文档、图片、音频、视频、程序等）都是有一些通用资源标识（Universal Resource Identifier， URI）进行定位的。也就是说如果你想要在网络上找到特定的这些资源，只需知道他们的URI，就可以进行定位，从而找到他们。  </p>
 <p>通常情况下URI由三部分组成：       </p>
 <blockquote>
@@ -43,7 +43,8 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;URI和URL含义及理解&quot;&gt;&lt;a href=&quot;#URI和URL含义及理解&quot; class=&quot;headerlink&quot; title=&quot;URI和URL含义及理解&quot;&gt;&lt;/a&gt;URI和URL含义及理解&lt;/h2&gt;&lt;h4 id=&quot;1、URI和URL含义：&quot;&gt;&lt;a href=&quot;#1
+      &lt;h4 id=&quot;1、URI和URL含义：&quot;&gt;&lt;a href=&quot;#1、URI和URL含义：&quot; class=&quot;headerlink&quot; title=&quot;1、URI和URL含义：&quot;&gt;&lt;/a&gt;1、URI和URL含义：&lt;/h4&gt;&lt;p&gt;在理解URL之前先来看一下什么是URI    &lt;/p&gt;
+&lt;h
     
     </summary>
     
