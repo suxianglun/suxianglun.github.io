@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suxianglun.github.io/"/>
-  <updated>2017-04-28T02:15:09.000Z</updated>
+  <updated>2017-04-28T08:14:03.000Z</updated>
   <id>http://suxianglun.github.io/</id>
   
   <author>
@@ -14,6 +14,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://suxianglun.github.io/2017/04/28/URL%E5%92%8CURI%E5%90%AB%E4%B9%89%E5%8F%8A%E7%90%86%E8%A7%A3%E5%89%AF%E6%9C%AC/"/>
+    <id>http://suxianglun.github.io/2017/04/28/URL和URI含义及理解副本/</id>
+    <published>2017-04-28T08:14:03.000Z</published>
+    <updated>2017-04-28T08:14:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>##URI和URL含义及理解    </p>
+<p>####1、URI和URL含义：<br>在理解URL之前先来看一下什么是URI    </p>
+<p>#####1.1 什么是URI？<br>简单点说：URI就是<strong>通用资源标志符</strong>，不理解是吧，我第一次听说也是不理解。<br>进一步说：网络上的一些资源（文档、图片、音频、视频、程序等）都是有一些通用资源标识（Universal Resource Identifier， URI）进行定位的。也就是说如果你想要在网络上找到特定的这些资源，只需知道他们的URI，就可以进行定位，从而找到他们。  </p>
+<p>通常情况下URI由三部分组成：       </p>
+<blockquote>
+<p><strong>1、访问资源的命名机制</strong><br><strong>2、存放资源的主机名</strong><br><strong>3、资源自身的名称，由路径表示</strong>    </p>
+</blockquote>
+<p>如下面的URI：<br><a href="http://www.jianshu.com/writer#/notebooks/9212154http://" target="_blank" rel="external">http://www.jianshu.com/writer#/notebooks/9212154http://</a><br>可以这样解读：    </p>
+<blockquote>
+<p>1、以http机制访问资源<br>2、存在以www.jianshu.com为名的主机上<br>3、资源路径为notebooks/9212154http://     </p>
+</blockquote>
+<p>#####1.2什么是URL<br>URL是URI的子集，它是Uniform Resource Locator的缩写，统一资源定位符”。<br>采用URL可以用一种统一的格式来描述各种信息资源，包括文件、服务器的地址和目录等。<br>URL的格式由三部分组成：    </p>
+<blockquote>
+<p>①第一部分是协议(或称为服务方式)。<br>②第二部分是存有该资源的主机IP地址(有时也包括端口号)。<br>③第三部分是主机资源的具体地址，如目录和文件名等。<br>第一部分和第二部分用“://”符号隔开，<br>第二部分和第三部分用“/”符号隔开。<br>第一部分和第二部分是不可缺少的，第三部分有时可以省略。   </p>
+</blockquote>
+<p>###2、URL和URI的区别    </p>
+<blockquote>
+<p>URI的定义是：统一资源标识符；<br>URL的定义是：统一资源定位符。<br>URI属于URL更低层次的抽象，一种字符串文本标准。<br>换句话说，URI属于父类，而URL属于URI的子类。URL是URI的一个子集。<br>URI属于URL更低层次的抽象，一种字符串文本标准。<br>换句话说，URI属于父类，而URL属于URI的子类。URL是URI的一个子集。</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##URI和URL含义及理解    &lt;/p&gt;
+&lt;p&gt;####1、URI和URL含义：&lt;br&gt;在理解URL之前先来看一下什么是URI    &lt;/p&gt;
+&lt;p&gt;#####1.1 什么是URI？&lt;br&gt;简单点说：URI就是&lt;strong&gt;通用资源标志符&lt;/strong&gt;，不理解是吧
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>如何利用Hexo、GitHub pages从零开始创建个人博客</title>
