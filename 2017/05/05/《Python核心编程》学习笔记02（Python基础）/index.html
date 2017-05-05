@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>《Python核心编程》学习笔记02（Python基础） | 苏湘伦的Blog | 多谢大爷赏脸</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="1.模块结构和布局合理的布局结构应该如下：  1、起始行：通常只有在类 Unix 环境下才使用起始行，有起始行就能够仅输入脚本名字来执行脚本，无需直接调用解释器。      2、模块文档：简要介绍模块的功能及重要全局变量的含义,模块外可通过 module.doc 访问这些内容。     3、模块导入：导入当前模块的代码需要的所有模块;每个模块仅导入一次(当前模块被加载时);函数内部的模块导入代码不">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Python核心编程》学习笔记02（Python基础）">
+<meta property="og:url" content="http://suxianglun.github.io/2017/05/05/《Python核心编程》学习笔记02（Python基础）/index.html">
+<meta property="og:site_name" content="苏湘伦的Blog">
+<meta property="og:description" content="1.模块结构和布局合理的布局结构应该如下：  1、起始行：通常只有在类 Unix 环境下才使用起始行，有起始行就能够仅输入脚本名字来执行脚本，无需直接调用解释器。      2、模块文档：简要介绍模块的功能及重要全局变量的含义,模块外可通过 module.doc 访问这些内容。     3、模块导入：导入当前模块的代码需要的所有模块;每个模块仅导入一次(当前模块被加载时);函数内部的模块导入代码不">
+<meta property="og:updated_time" content="2017-05-05T08:28:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Python核心编程》学习笔记02（Python基础）">
+<meta name="twitter:description" content="1.模块结构和布局合理的布局结构应该如下：  1、起始行：通常只有在类 Unix 环境下才使用起始行，有起始行就能够仅输入脚本名字来执行脚本，无需直接调用解释器。      2、模块文档：简要介绍模块的功能及重要全局变量的含义,模块外可通过 module.doc 访问这些内容。     3、模块导入：导入当前模块的代码需要的所有模块;每个模块仅导入一次(当前模块被加载时);函数内部的模块导入代码不">
+    
+        <link rel="alternate" type="application/atom+xml" title="苏湘伦的Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpeg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">苏湘伦</h5>
+          <a href="mailto:suxianglun@163.com" title="suxianglun@163.com" class="mail">suxianglun@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                首页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">《Python核心编程》学习笔记02（Python基础）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">《Python核心编程》学习笔记02（Python基础）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-05-05T07:25:11.000Z" itemprop="datePublished" class="page-time">
+  2017-05-05
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-模块结构和布局"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.模块结构和布局</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-name-指示模块应如何被加载"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. _ name _ 指示模块应如何被加载</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-变量和内存管理细节"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.变量和内存管理细节</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-《Python核心编程》学习笔记02（Python基础）"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">《Python核心编程》学习笔记02（Python基础）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-05-05 15:25:11" datetime="2017-05-05T07:25:11.000Z"  itemprop="datePublished">2017-05-05</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="1-模块结构和布局"><a href="#1-模块结构和布局" class="headerlink" title="1.模块结构和布局"></a>1.模块结构和布局</h3><p>合理的布局结构应该如下：</p>
+<blockquote>
+<p>1、起始行：通常只有在类 Unix 环境下才使用起始行，有起始行就能够仅输入脚本名字来执行脚本，无需直接调用解释器。     </p>
+<p>2、模块文档：简要介绍模块的功能及重要全局变量的含义,模块外可通过 module.<strong>doc</strong> 访问这些内容。    </p>
+<p>3、模块导入：导入当前模块的代码需要的所有模块;每个模块仅导入一次(当前模块被加载时);函数<br>内部的模块导入代码不会被执行， 除非该函数正在执行。    </p>
+<p>4、定义变量：这里定义的变量为全局变量，本模块中的所有函数都可直接使用。从好的编程风格角度说， 除非必须，否则就要尽量使用局部变量代替全局变量，如果坚持这样做，你的代码就不但容易<br>维护，而且还可以 高性能并节省内存。    </p>
+<p>5、类定义语句：<br>所有的类都需要在这里定义。当模块被导入时 class 语句会被执行, 类也就会被定义。类 的文档变量是 class.<strong>doc</strong>。</p>
+<p>6、方法语句：<br> 此处定义的函数可以通过 module.function()在外部被访问到，当模块被导入时 def 语句 会被执行， 函数也就都会定义好，函数的文档变量是 function.<strong>doc</strong>。</p>
+<p>7、主程序：无论这个模块是被别的模块导入还是作为脚本直接执行，都会执行这部分代码。通常这里 不会有太多功能性代码，而是根据执行的模式调用不同的函数。</p>
+</blockquote>
+<h3 id="2-name-指示模块应如何被加载"><a href="#2-name-指示模块应如何被加载" class="headerlink" title="2. _ name _ 指示模块应如何被加载"></a>2. _ <em>name</em> _ 指示模块应如何被加载</h3><p>由于主程序代码无论模块是被导入还是被直接执行都会运行，我们必须知道模块如何决定 运行方向。一个应用程序可能需要导入另一个应用程序的一个模块，以便重用一些有用的代码 (否则就只能用拷贝粘贴那种非面向对象的愚蠢手段)。这种情况下，你只想访问那些位于其 它应用程序中的代码，而不是想运行那个应用程序。因此一个问题出现了，“Python 是否有 一种方法能在运行时检测该模块是被导入还是被直接执行呢?” 答案就是……(鼓声雷动)…..没错! <strong>name</strong> 系统变量就是正确答案。 </p>
+<blockquote>
+<p>如果模块是被导入， _ <em>name</em> <em> 的值为模块名字<br>如果模块是被直接执行， </em> <em>name</em> <em> 的值为 ‘</em> <em>main</em> _’    </p>
+</blockquote>
+<h3 id="3-变量和内存管理细节"><a href="#3-变量和内存管理细节" class="headerlink" title="3.变量和内存管理细节"></a>3.变量和内存管理细节</h3><p>主要包含以下几点：</p>
+<blockquote>
+<p>1、变量无须提前声明<br>2、变量无须制定类型类型<br>3、程序员无须关心内存管理<br>4、变量会被收回<br>5、del 语句能够直接释放资源</p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-05T08:28:28.000Z" itemprop="dateUpdated">2017-05-05 16:28:28</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/05/05/《Python核心编程》学习笔记02（Python基础）/" target="_blank" rel="external">http://suxianglun.github.io/2017/05/05/《Python核心编程》学习笔记02（Python基础）/</a>
+        
+    </div>
+    <footer>
+        <a href="http://suxianglun.github.io">
+            <img src="/img/avatar.jpeg" alt="苏湘伦">
+            苏湘伦
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/05/05/《Python核心编程》学习笔记02（Python基础）/&title=《《Python核心编程》学习笔记02（Python基础）》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/05/05/《Python核心编程》学习笔记02（Python基础）/&title=《《Python核心编程》学习笔记02（Python基础）》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/05/05/《Python核心编程》学习笔记02（Python基础）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《Python核心编程》学习笔记02（Python基础）》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/05/05/《Python核心编程》学习笔记02（Python基础）/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/05/05/《Python核心编程》学习笔记02（Python基础）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/05/04/python核心编程学习笔记01（Python起步）/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">《Python核心编程》学习笔记01（Python起步）</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="《Python核心编程》学习笔记02（Python基础）" data-title="《Python核心编程》学习笔记02（Python基础）" data-url="http://suxianglun.github.io/2017/05/05/《Python核心编程》学习笔记02（Python基础）/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpeg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>苏湘伦 &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/05/05/《Python核心编程》学习笔记02（Python基础）/&title=《《Python核心编程》学习笔记02（Python基础）》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/05/05/《Python核心编程》学习笔记02（Python基础）/&title=《《Python核心编程》学习笔记02（Python基础）》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/05/05/《Python核心编程》学习笔记02（Python基础）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《Python核心编程》学习笔记02（Python基础）》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/05/05/《Python核心编程》学习笔记02（Python基础）/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/05/05/《Python核心编程》学习笔记02（Python基础）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADL0lEQVR42u3aS27jQAwFwNz/0hlgtjNS3mPLgM2UVoEiW130guDn6yu+vv9e/965un9/5+ob2rdc/fexCxsbG/tD2N+3V3L0HNmeIUHeP3kZGmxsbOx17PuD3h/ldZ+6/wFOfh5sbGzs38k+LzBOQtwGBRsbGxs7STz3pUJbfsxSFDY2NjZ23lRKSos88SQJKQ/6C3tp2NjY2G/Pbge97/z3C+fb2NjY2G/J/i6v2eB21srPV3lqBTY2NvYi9uvWbtr0M2tLnYx+sbGxsXewZyPV2Si3TXLnifPyVNjY2NhL2e1I9SS9tcOG5MlizQgbGxt7Ebt92SztzQqePBxteYONjY29lX2ycJMXA3lAZ2s6RVMMGxsbexF7lgDyYuC8IZWHIAkKNjY29j52m8Dqdvzo+fwks5YTNjY29lb2bL0maRjlIZutE+XlEzY2NvYmdrsW05Yl7VJmvtyTh+8//8XGxsZexD4Z3M7SzGx40H4qSrTY2NjYS9lPNYnO20nno+Vovo2NjY394eyn0kz75EnB8xVcdRcNGxsbexE7b/E8laJmTaJ29+aHBIaNjY39sex2rJsz2oFBviQ0G/pGM2FsbGzspey2ODkZAJ+PjZMUi42Njb2V3Y5Xk8QzazzNgl6PqLGxsbFXsJNmfVJs5K2o/I3PFjmXvTRsbGzsD2fPWksnJUTblkq+Z7iphI2Njb2CnX/svBg4KV3aE0a/MDY2NvYKdpLZTsqPfBGnDW773h9CgI2Njf2x7LZeadPDbOmnHTAkJ7wcD2BjY2MvYrflxEnr/yR8ebCwsbGxfwO73WApksQojeXJLB9snJVm2NjY2O/Obpv7s4RxPh5+dnEHGxsbex87vz9rJOXN/VnbqC54sLGxsdexZ035JPnNSpf78D0wfsbGxsZexJ4tvrSFRPtkWy+04cbGxsbex26XY/L2UNLQb4uTxxIYNjY29jp2nn7yQ8xCdtKWKlpg2NjY2L+S3b6mRSZNqGTwHBmxsbGxsQ+Kinaxsl36KVYwsbGxsRex2+HuLFElbaN2FJGPBIbjAWxsbOy3Z88KjOSL2pZQG+g8K2FjY2MvZf8Bj93ecqf6/DQAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '多谢大爷赏脸来到鄙人的blog';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '您的到来使寒舍蓬荜生辉';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
