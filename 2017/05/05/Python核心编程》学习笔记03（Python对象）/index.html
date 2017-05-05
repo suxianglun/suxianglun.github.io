@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>《Python核心编程》学习笔记03（Python对象） | 苏湘伦的Blog | 多谢大爷赏脸</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="1.标准类型内建函数1.type()type()接受一个对象参数，返回该对象的类型。它的返回值是一个对象的类型。 12&amp;gt;&amp;gt;&amp;gt; type(4)     # int type    &amp;lt;type &amp;apos;int&amp;apos;&amp;gt; 2.cmp()内建函数cmp(obj1,obj2)用来比较两个对象obj1和obj2的大小，如果obj1比obj2小的话，返回负整数，如果obj1">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Python核心编程》学习笔记03（Python对象）">
+<meta property="og:url" content="http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/index.html">
+<meta property="og:site_name" content="苏湘伦的Blog">
+<meta property="og:description" content="1.标准类型内建函数1.type()type()接受一个对象参数，返回该对象的类型。它的返回值是一个对象的类型。 12&amp;gt;&amp;gt;&amp;gt; type(4)     # int type    &amp;lt;type &amp;apos;int&amp;apos;&amp;gt; 2.cmp()内建函数cmp(obj1,obj2)用来比较两个对象obj1和obj2的大小，如果obj1比obj2小的话，返回负整数，如果obj1">
+<meta property="og:updated_time" content="2017-05-05T10:04:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Python核心编程》学习笔记03（Python对象）">
+<meta name="twitter:description" content="1.标准类型内建函数1.type()type()接受一个对象参数，返回该对象的类型。它的返回值是一个对象的类型。 12&amp;gt;&amp;gt;&amp;gt; type(4)     # int type    &amp;lt;type &amp;apos;int&amp;apos;&amp;gt; 2.cmp()内建函数cmp(obj1,obj2)用来比较两个对象obj1和obj2的大小，如果obj1比obj2小的话，返回负整数，如果obj1">
+    
+        <link rel="alternate" type="application/atom+xml" title="苏湘伦的Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpeg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">苏湘伦</h5>
+          <a href="mailto:suxianglun@163.com" title="suxianglun@163.com" class="mail">suxianglun@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                首页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">《Python核心编程》学习笔记03（Python对象）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">《Python核心编程》学习笔记03（Python对象）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-05-05T08:52:32.000Z" itemprop="datePublished" class="page-time">
+  2017-05-05
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-标准类型内建函数"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.标准类型内建函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-type"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.type()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-cmp"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2.cmp()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-str-和-repr-及-运算符"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3.str()和 repr() (及 `` 运算符)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-type-和-isinstance"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4.type() 和 isinstance()</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-标准类型分布"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.标准类型分布</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Python核心编程》学习笔记03（Python对象）"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">《Python核心编程》学习笔记03（Python对象）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-05-05 16:52:32" datetime="2017-05-05T08:52:32.000Z"  itemprop="datePublished">2017-05-05</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="1-标准类型内建函数"><a href="#1-标准类型内建函数" class="headerlink" title="1.标准类型内建函数"></a>1.标准类型内建函数</h3><h4 id="1-type"><a href="#1-type" class="headerlink" title="1.type()"></a>1.type()</h4><p>type()接受一个对象参数，返回该对象的类型。它的返回值是一个对象的类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; type(4)     # int type    </div><div class="line">&lt;type &apos;int&apos;&gt;</div></pre></td></tr></table></figure>
+<h4 id="2-cmp"><a href="#2-cmp" class="headerlink" title="2.cmp()"></a>2.cmp()</h4><p>内建函数cmp(obj1,obj2)用来比较两个对象obj1和obj2的大小，如果obj1比obj2小的话，返回负整数，如果obj1比obj2大的话，返回正整数，如果obj1等于obj2小的话，返回0，比较是在对象之间进行的，不管是标准类型对象还是用户自定 义对象。如果是用户自定义对象， cmp()会调用该类的特殊方法<strong>cmp</strong>()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a, b = -4, 12     </div><div class="line"></div><div class="line">&gt;&gt;&gt; cmp(a,b)     </div><div class="line">-1    </div><div class="line">&gt;&gt;&gt; cmp(b,a)  </div><div class="line">  1    </div><div class="line">&gt;&gt;&gt; b = -4    &gt;&gt;&gt; cmp(a,b)    0    &gt;&gt;&gt;    &gt;&gt;&gt; a, b = &apos;abc&apos;, &apos;xyz&apos;    &gt;&gt;&gt; cmp(a,b)    -23    &gt;&gt;&gt; cmp(b,a)    23    &gt;&gt;&gt; b = &apos;abc&apos;    &gt;&gt;&gt; cmp(a,b)    0</div></pre></td></tr></table></figure>
+<h4 id="3-str-和-repr-及-运算符"><a href="#3-str-和-repr-及-运算符" class="headerlink" title="3.str()和 repr() (及 `` 运算符)"></a>3.str()和 repr() (及 `` 运算符)</h4><p>str()函数得到的字符串可读性好， 而 repr()函数得到的字符 串通常可以用来重新获得该对象, 通常情况下 obj == eval(repr(obj)) 这个等式是成立的。事实上 repr() 和 “” 做的 是完全一样的事情，它们返回的是一个对象的“官方”字符串表示，但 str()则有所不同。str() 致力 于生成一个对象的可读性好的字符串表示，它的返回结果通常无法用于 eval()求值， 但很适 合用于 print 语句输出。</p>
+<h4 id="4-type-和-isinstance"><a href="#4-type-和-isinstance" class="headerlink" title="4.type() 和 isinstance()"></a>4.type() 和 isinstance()</h4><p>在Python中可以使用type()与isinstance()这两个函数判断对象类型，而isinstance()函数的使用上比type更加方便。区别就是 对于subclass之类的 type就不行了，所以,强烈建议不要使用type判断对象类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  class A:</div><div class="line">   pass</div><div class="line"></div><div class="line">class B(A):</div><div class="line">   pass</div><div class="line"></div><div class="line">isinstance(A(), A)  # returns True</div><div class="line">type(A()) == A      # returns True</div><div class="line">isinstance(B(), A)    # returns True</div><div class="line">type(B()) == A        # returns False</div></pre></td></tr></table></figure>
+<h3 id="2-标准类型分布"><a href="#2-标准类型分布" class="headerlink" title="2.标准类型分布"></a>2.标准类型分布</h3><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th style="text-align:right">存储模型</th>
+<th style="text-align:center">更新模型</th>
+<th style="text-align:center">访问模型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数字</td>
+<td style="text-align:right">标量</td>
+<td style="text-align:center">不可变</td>
+<td style="text-align:center">直接访问</td>
+</tr>
+<tr>
+<td>字符串</td>
+<td style="text-align:right">标量</td>
+<td style="text-align:center">不可变</td>
+<td style="text-align:center">顺序访问</td>
+</tr>
+<tr>
+<td>列表</td>
+<td style="text-align:right">容器</td>
+<td style="text-align:center">可变</td>
+<td style="text-align:center">顺序访问</td>
+</tr>
+<tr>
+<td>元祖</td>
+<td style="text-align:right">容器</td>
+<td style="text-align:center">不可变</td>
+<td style="text-align:center">顺序访问</td>
+</tr>
+<tr>
+<td>字典</td>
+<td style="text-align:right">容器</td>
+<td style="text-align:center">可变</td>
+<td style="text-align:center">映射访问</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-05T10:04:24.000Z" itemprop="dateUpdated">2017-05-05 18:04:24</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/05/05/Python核心编程》学习笔记03（Python对象）/" target="_blank" rel="external">http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/</a>
+        
+    </div>
+    <footer>
+        <a href="http://suxianglun.github.io">
+            <img src="/img/avatar.jpeg" alt="苏湘伦">
+            苏湘伦
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/&title=《《Python核心编程》学习笔记03（Python对象）》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/&title=《《Python核心编程》学习笔记03（Python对象）》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《Python核心编程》学习笔记03（Python对象）》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/05/05/《Python核心编程》学习笔记02（Python基础）/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">《Python核心编程》学习笔记02（Python基础）</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="Python核心编程》学习笔记03（Python对象）" data-title="《Python核心编程》学习笔记03（Python对象）" data-url="http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpeg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>苏湘伦 &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/&title=《《Python核心编程》学习笔记03（Python对象）》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/&title=《《Python核心编程》学习笔记03（Python对象）》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《Python核心编程》学习笔记03（Python对象）》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADKUlEQVR42u3awbITMQwEwPz/T4crFC/LjLSpSkzviQrJ2u0DQho/HvHz/O35+/PrT67fkKx4vXr+zvrBxsbG/hL28/J59Z3k8+tVkq1fv/PVd5Ijw8bGxj6PnS+Zk/aFMPm8PRpsbGxs7OR/+O1G87Vmv8XGxsbGTthJcUoaj1l7g42NjY2dLxmNbMpStIkK3j5Lw8bGxv54dttgfPKf35JvY2NjY38w+1k+STtxV6FqC1ihwMbGxj6IvRkY5VvMefdGAv9YERsbG/tQdntpcj88ygPgJAAoBknY2NjYR7DbSHUfD+dDos0Vn7oDw8bGxj6I/e5ClQBacH3Q2NjY2Aex81K0j1pnMUMyuhoGEtjY2NhHsBNYvtH2cuQsTthHBdjY2NgnsWdNwn6js3FVDbv+FTY2NvZB7FkB21+UnAW9eQxcXAzCxsbG/lp2XpbaApZfqWnL5CzGqINebGxs7C9hX/+j3x5HS51d+mnbmJdvwMbGxj6IfcNQJh4qbQ4rKU43D6SwsbGxP559VwwwO4I8SN6MpX7YJzY2NvZx7Mfi2RxZfpcmb0KisoeNjY19EDspRXnQmxSe9kJPO3KqDxobGxv7y9mbBiNpHhLSJjZog4Q/hkrY2NjYB7GTUX4e387wbYHcHCs2Njb2Sex2yU1ssGk8kghh2ORgY2NjH8F+9xWZWTyQjJBWv8LGxsY+gt22H7OtJ6Ulbyo2Lc3Ly5fY2NjYX8vejIqSVqFtZvKj2YyisLGxsU9iz6j50OeuiVfehEQjLWxsbOyD2HeNcmahb1IUZwOv4jIQNjY29hHsWeA6I7WwNvQtgmRsbGzs49jtLCr/fj6cav82X/2H92BjY2Mfyh6OZtol42Izu/QTFWlsbGzsI9jP8smR+aBqFiG0pbSYhGFjY2N/FbstAG05uTfEnR3ubOfY2NjY38VuI9XhEKfskDZhc3Rk2NjY2Mex2/Kzbydm125mRbfIt7GxsbH/S3ZeitqGJwfnwTA2NjY29r6QbMphvoebWxFsbGzsj2cnQ6W2Scjj2M31nXb8hI2NjX0eexbZ7je3CYw3h46NjY19EPsXaA0A/NOu26IAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '多谢大爷赏脸来到鄙人的blog';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '您的到来使寒舍蓬荜生辉';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

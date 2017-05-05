@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suxianglun.github.io/"/>
-  <updated>2017-05-05T08:28:28.000Z</updated>
+  <updated>2017-05-05T10:04:24.000Z</updated>
   <id>http://suxianglun.github.io/</id>
   
   <author>
@@ -16,11 +16,78 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>《Python核心编程》学习笔记03（Python对象）</title>
+    <link href="http://suxianglun.github.io/2017/05/05/Python%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B003%EF%BC%88Python%E5%AF%B9%E8%B1%A1%EF%BC%89/"/>
+    <id>http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/</id>
+    <published>2017-05-05T08:52:32.000Z</published>
+    <updated>2017-05-05T10:04:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-标准类型内建函数"><a href="#1-标准类型内建函数" class="headerlink" title="1.标准类型内建函数"></a>1.标准类型内建函数</h3><h4 id="1-type"><a href="#1-type" class="headerlink" title="1.type()"></a>1.type()</h4><p>type()接受一个对象参数，返回该对象的类型。它的返回值是一个对象的类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; type(4)     # int type    </div><div class="line">&lt;type &apos;int&apos;&gt;</div></pre></td></tr></table></figure>
+<h4 id="2-cmp"><a href="#2-cmp" class="headerlink" title="2.cmp()"></a>2.cmp()</h4><p>内建函数cmp(obj1,obj2)用来比较两个对象obj1和obj2的大小，如果obj1比obj2小的话，返回负整数，如果obj1比obj2大的话，返回正整数，如果obj1等于obj2小的话，返回0，比较是在对象之间进行的，不管是标准类型对象还是用户自定 义对象。如果是用户自定义对象， cmp()会调用该类的特殊方法<strong>cmp</strong>()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a, b = -4, 12     </div><div class="line"></div><div class="line">&gt;&gt;&gt; cmp(a,b)     </div><div class="line">-1    </div><div class="line">&gt;&gt;&gt; cmp(b,a)  </div><div class="line">  1    </div><div class="line">&gt;&gt;&gt; b = -4    &gt;&gt;&gt; cmp(a,b)    0    &gt;&gt;&gt;    &gt;&gt;&gt; a, b = &apos;abc&apos;, &apos;xyz&apos;    &gt;&gt;&gt; cmp(a,b)    -23    &gt;&gt;&gt; cmp(b,a)    23    &gt;&gt;&gt; b = &apos;abc&apos;    &gt;&gt;&gt; cmp(a,b)    0</div></pre></td></tr></table></figure>
+<h4 id="3-str-和-repr-及-运算符"><a href="#3-str-和-repr-及-运算符" class="headerlink" title="3.str()和 repr() (及 `` 运算符)"></a>3.str()和 repr() (及 `` 运算符)</h4><p>str()函数得到的字符串可读性好， 而 repr()函数得到的字符 串通常可以用来重新获得该对象, 通常情况下 obj == eval(repr(obj)) 这个等式是成立的。事实上 repr() 和 “” 做的 是完全一样的事情，它们返回的是一个对象的“官方”字符串表示，但 str()则有所不同。str() 致力 于生成一个对象的可读性好的字符串表示，它的返回结果通常无法用于 eval()求值， 但很适 合用于 print 语句输出。</p>
+<h4 id="4-type-和-isinstance"><a href="#4-type-和-isinstance" class="headerlink" title="4.type() 和 isinstance()"></a>4.type() 和 isinstance()</h4><p>在Python中可以使用type()与isinstance()这两个函数判断对象类型，而isinstance()函数的使用上比type更加方便。区别就是 对于subclass之类的 type就不行了，所以,强烈建议不要使用type判断对象类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  class A:</div><div class="line">   pass</div><div class="line"></div><div class="line">class B(A):</div><div class="line">   pass</div><div class="line"></div><div class="line">isinstance(A(), A)  # returns True</div><div class="line">type(A()) == A      # returns True</div><div class="line">isinstance(B(), A)    # returns True</div><div class="line">type(B()) == A        # returns False</div></pre></td></tr></table></figure>
+<h3 id="2-标准类型分布"><a href="#2-标准类型分布" class="headerlink" title="2.标准类型分布"></a>2.标准类型分布</h3><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th style="text-align:right">存储模型</th>
+<th style="text-align:center">更新模型</th>
+<th style="text-align:center">访问模型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数字</td>
+<td style="text-align:right">标量</td>
+<td style="text-align:center">不可变</td>
+<td style="text-align:center">直接访问</td>
+</tr>
+<tr>
+<td>字符串</td>
+<td style="text-align:right">标量</td>
+<td style="text-align:center">不可变</td>
+<td style="text-align:center">顺序访问</td>
+</tr>
+<tr>
+<td>列表</td>
+<td style="text-align:right">容器</td>
+<td style="text-align:center">可变</td>
+<td style="text-align:center">顺序访问</td>
+</tr>
+<tr>
+<td>元祖</td>
+<td style="text-align:right">容器</td>
+<td style="text-align:center">不可变</td>
+<td style="text-align:center">顺序访问</td>
+</tr>
+<tr>
+<td>字典</td>
+<td style="text-align:right">容器</td>
+<td style="text-align:center">可变</td>
+<td style="text-align:center">映射访问</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-标准类型内建函数&quot;&gt;&lt;a href=&quot;#1-标准类型内建函数&quot; class=&quot;headerlink&quot; title=&quot;1.标准类型内建函数&quot;&gt;&lt;/a&gt;1.标准类型内建函数&lt;/h3&gt;&lt;h4 id=&quot;1-type&quot;&gt;&lt;a href=&quot;#1-type&quot; class=&quot;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>《Python核心编程》学习笔记02（Python基础）</title>
     <link href="http://suxianglun.github.io/2017/05/05/%E3%80%8APython%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B002%EF%BC%88Python%E5%9F%BA%E7%A1%80%EF%BC%89/"/>
     <id>http://suxianglun.github.io/2017/05/05/《Python核心编程》学习笔记02（Python基础）/</id>
     <published>2017-05-05T07:25:11.000Z</published>
-    <updated>2017-05-05T08:28:28.000Z</updated>
+    <updated>2017-05-05T08:28:48.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-模块结构和布局"><a href="#1-模块结构和布局" class="headerlink" title="1.模块结构和布局"></a>1.模块结构和布局</h3><p>合理的布局结构应该如下：</p>
 <blockquote>
