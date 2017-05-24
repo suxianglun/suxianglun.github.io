@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suxianglun.github.io/"/>
-  <updated>2017-05-15T09:41:18.000Z</updated>
+  <updated>2017-05-24T07:10:10.000Z</updated>
   <id>http://suxianglun.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://suxianglun.github.io/2017/05/15/%E5%AE%89%E8%A3%85%20Flask-RESTful%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
     <id>http://suxianglun.github.io/2017/05/15/安装 Flask-RESTful遇到的问题/</id>
     <published>2017-05-15T09:40:16.000Z</published>
-    <updated>2017-05-15T09:41:18.000Z</updated>
+    <updated>2017-05-24T07:10:10.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="1-使用-pip-安装-Flask-RESTful"><a href="#1-使用-pip-安装-Flask-RESTful" class="headerlink" title="1.使用 pip 安装 Flask-RESTful:"></a>1.使用 pip 安装 Flask-RESTful:</h4><blockquote>
 <p>pip install flask-restful</p>
@@ -44,6 +44,10 @@
     
     </summary>
     
+      <category term="Python" scheme="http://suxianglun.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="http://suxianglun.github.io/tags/Python/"/>
     
   </entry>
   
@@ -52,7 +56,7 @@
     <link href="http://suxianglun.github.io/2017/05/11/Java%E5%85%B3%E9%94%AE%E5%AD%97this%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://suxianglun.github.io/2017/05/11/Java关键字this的使用/</id>
     <published>2017-05-11T02:44:15.000Z</published>
-    <updated>2017-05-11T06:17:56.000Z</updated>
+    <updated>2017-05-24T07:11:03.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="1-成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。"><a href="#1-成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。" class="headerlink" title="1.成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。"></a>1.成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">  public class Hello &#123;</div><div class="line">   String s = &quot;Hello&quot;;</div><div class="line"></div><div class="line">   public Hello(String s) &#123;</div><div class="line">      System.out.println(&quot;s = &quot; + s);</div><div class="line">      System.out.println(&quot;1 -&gt; this.s = &quot; + this.s);</div><div class="line">      this.s = s;//把参数值赋给成员变量，成员变量的值改变</div><div class="line">      System.out.println(&quot;2 -&gt; this.s = &quot; + this.s);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   public static void main(String[] args) &#123;</div><div class="line">      Hello x = new Hello(&quot;HelloWorld!&quot;);</div><div class="line">      System.out.println(&quot;s=&quot; + x.s);//验证成员变量值的改变</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p> 结果为：</p>
@@ -81,6 +85,10 @@
     
     </summary>
     
+      <category term="Java" scheme="http://suxianglun.github.io/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://suxianglun.github.io/tags/Java/"/>
     
   </entry>
   
@@ -89,7 +97,7 @@
     <link href="http://suxianglun.github.io/2017/05/05/Python%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B003%EF%BC%88Python%E5%AF%B9%E8%B1%A1%EF%BC%89/"/>
     <id>http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/</id>
     <published>2017-05-05T08:52:32.000Z</published>
-    <updated>2017-05-05T10:04:24.000Z</updated>
+    <updated>2017-05-24T07:11:26.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-标准类型内建函数"><a href="#1-标准类型内建函数" class="headerlink" title="1.标准类型内建函数"></a>1.标准类型内建函数</h3><h4 id="1-type"><a href="#1-type" class="headerlink" title="1.type()"></a>1.type()</h4><p>type()接受一个对象参数，返回该对象的类型。它的返回值是一个对象的类型。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; type(4)     # int type    </div><div class="line">&lt;type &apos;int&apos;&gt;</div></pre></td></tr></table></figure>
@@ -148,6 +156,10 @@
     
     </summary>
     
+      <category term="Python" scheme="http://suxianglun.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="http://suxianglun.github.io/tags/Python/"/>
     
   </entry>
   
@@ -156,7 +168,7 @@
     <link href="http://suxianglun.github.io/2017/05/05/%E3%80%8APython%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B002%EF%BC%88Python%E5%9F%BA%E7%A1%80%EF%BC%89/"/>
     <id>http://suxianglun.github.io/2017/05/05/《Python核心编程》学习笔记02（Python基础）/</id>
     <published>2017-05-05T07:25:11.000Z</published>
-    <updated>2017-05-05T08:28:48.000Z</updated>
+    <updated>2017-05-24T07:08:59.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-模块结构和布局"><a href="#1-模块结构和布局" class="headerlink" title="1.模块结构和布局"></a>1.模块结构和布局</h3><p>合理的布局结构应该如下：</p>
 <blockquote>
@@ -186,6 +198,10 @@
     
     </summary>
     
+      <category term="Python" scheme="http://suxianglun.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="http://suxianglun.github.io/tags/Python/"/>
     
   </entry>
   
@@ -194,7 +210,7 @@
     <link href="http://suxianglun.github.io/2017/05/04/python%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B001%EF%BC%88Python%E8%B5%B7%E6%AD%A5%EF%BC%89/"/>
     <id>http://suxianglun.github.io/2017/05/04/python核心编程学习笔记01（Python起步）/</id>
     <published>2017-05-04T05:52:13.000Z</published>
-    <updated>2017-05-04T14:44:21.000Z</updated>
+    <updated>2017-05-24T07:11:48.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-程序输出print语句及“HelloWorld-”"><a href="#1-程序输出print语句及“HelloWorld-”" class="headerlink" title="1.程序输出print语句及“HelloWorld!”"></a>1.程序输出print语句及“HelloWorld!”</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; myString = &apos;Hello World!&apos; </div><div class="line">&gt;&gt;&gt; print myString</div><div class="line">  &apos;Hello World!&apos;</div><div class="line">&gt;&gt;&gt; myString</div><div class="line">  &apos;Hello World!&apos;</div></pre></td></tr></table></figure>
 <h4 id="1-1-和-在print中的使用"><a href="#1-1-和-在print中的使用" class="headerlink" title="1.1._ 和 %在print中的使用"></a>1.1._ 和 %在print中的使用</h4><p>下划线(_)在解释器中有特别的含义，表示最后一个表达式的值。所以上面的代码执行之后， 下划线变量会包含字符串:</p>
@@ -265,6 +281,10 @@
     
     </summary>
     
+      <category term="Python" scheme="http://suxianglun.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="http://suxianglun.github.io/tags/Python/"/>
     
   </entry>
   
@@ -273,7 +293,7 @@
     <link href="http://suxianglun.github.io/2017/04/28/URL%E5%92%8CURI%E5%90%AB%E4%B9%89%E5%8F%8A%E7%90%86%E8%A7%A3/"/>
     <id>http://suxianglun.github.io/2017/04/28/URL和URI含义及理解/</id>
     <published>2017-04-28T08:14:03.000Z</published>
-    <updated>2017-04-28T08:20:12.000Z</updated>
+    <updated>2017-05-24T07:07:30.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="1、URI和URL含义："><a href="#1、URI和URL含义：" class="headerlink" title="1、URI和URL含义："></a>1、URI和URL含义：</h4><p>在理解URL之前先来看一下什么是URI    </p>
 <h5 id="1-1-什么是URI？"><a href="#1-1-什么是URI？" class="headerlink" title="1.1 什么是URI？"></a>1.1 什么是URI？</h5><p>简单点说：URI就是<strong>通用资源标志符</strong>，不理解是吧，我第一次听说也是不理解。<br>进一步说：网络上的一些资源（文档、图片、音频、视频、程序等）都是有一些通用资源标识（Universal Resource Identifier， URI）进行定位的。也就是说如果你想要在网络上找到特定的这些资源，只需知道他们的URI，就可以进行定位，从而找到他们。  </p>
@@ -301,6 +321,10 @@
     
     </summary>
     
+      <category term="Web" scheme="http://suxianglun.github.io/categories/Web/"/>
+    
+    
+      <category term="Web" scheme="http://suxianglun.github.io/tags/Web/"/>
     
   </entry>
   
@@ -309,7 +333,7 @@
     <link href="http://suxianglun.github.io/2017/04/19/howCreateMyBlog/"/>
     <id>http://suxianglun.github.io/2017/04/19/howCreateMyBlog/</id>
     <published>2017-04-19T01:19:42.000Z</published>
-    <updated>2017-04-28T08:57:24.000Z</updated>
+    <updated>2017-05-24T07:08:25.000Z</updated>
     
     <content type="html"><![CDATA[<p>从搭建到成功以及本文的诞生，前后花了两天时间，真是一把辛酸泪，感觉还是挺费事的，中途一度想放弃，可还是咬牙坚持下来了，但看到结果后感觉一切的辛苦都是值得的。过程中一定要有耐心，毕竟需要用到的东西挺多的，比如：node.js、git、 github、hexo其中的知识。废话不多说了，详情如下：</p>
 <h3 id="一、系统环境配置："><a href="#一、系统环境配置：" class="headerlink" title="一、系统环境配置："></a>一、系统环境配置：</h3><p>要想利用Hexo、GitHub搭建个人博客，首先要安装Node.js、git：    </p>
@@ -435,6 +459,10 @@
     
     </summary>
     
+      <category term="Hexo" scheme="http://suxianglun.github.io/categories/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="http://suxianglun.github.io/tags/Hexo/"/>
     
   </entry>
   
@@ -443,7 +471,7 @@
     <link href="http://suxianglun.github.io/2017/04/05/Android%20studio%E4%B8%8BJNI%E5%92%8CNDK%E5%BC%80%E5%8F%91/"/>
     <id>http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/</id>
     <published>2017-04-05T03:11:48.000Z</published>
-    <updated>2017-04-28T02:00:06.000Z</updated>
+    <updated>2017-05-24T07:06:54.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-下载Ndk并配置"><a href="#1-下载Ndk并配置" class="headerlink" title="1.下载Ndk并配置"></a>1.下载Ndk并配置</h3><p>点菜单栏的File-&gt;ProjectStructure…-&gt;在打开的窗口中左侧选中SDKLocation-&gt;<br>在右侧Android NDK Location中填入NDK目录所在路径，如下图所示：  </p>
 <p><img src="http://img.blog.csdn.net/20160516224637401?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><img src="http://img.blog.csdn.net/20160516224841000?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
@@ -498,6 +526,10 @@ JNIEXPORT jint JNICALL Java_com_richsoft_jnidemo_JniUtil_getJniAdd
     
     </summary>
     
+      <category term="Android" scheme="http://suxianglun.github.io/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://suxianglun.github.io/tags/Android/"/>
     
   </entry>
   
