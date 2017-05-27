@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suxianglun.github.io/"/>
-  <updated>2017-05-24T07:51:13.000Z</updated>
+  <updated>2017-05-27T01:28:24.000Z</updated>
   <id>http://suxianglun.github.io/</id>
   
   <author>
@@ -14,6 +14,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java线程的五种状态</title>
+    <link href="http://suxianglun.github.io/2017/05/26/Java%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81%20/"/>
+    <id>http://suxianglun.github.io/2017/05/26/Java线程的状态 /</id>
+    <published>2017-05-26T09:34:36.000Z</published>
+    <updated>2017-05-27T01:28:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="什么是线程："><a href="#什么是线程：" class="headerlink" title="什么是线程："></a>什么是线程：</h4><p>一个线程是进程的一个顺序执行流。同类的多个线程共享一块内存空间和一组系统资源，一个进程中可以包含多个线程。    </p>
+<h4 id="进程与线程的区别"><a href="#进程与线程的区别" class="headerlink" title="进程与线程的区别"></a>进程与线程的区别</h4><p>一个进程至少有一个线程。线程的划分尺度小于进程，使得多线程程序的并发性高。另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率。</p>
+<h4 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h4><p><img src="http://pdf7.tarena.com.cn/tts8_source/ttsPage/JAVA/JSD_N_V06/JAVASE02/DAY04/SUPERDOC/01/index.files/image001.png" alt=""></p>
+<h5 id="新建状态"><a href="#新建状态" class="headerlink" title="新建状态"></a>新建状态</h5><p>当用new操作符创建一个线程时。此时程序还没有开始运行线程中的代码。</p>
+<h5 id="就绪状态"><a href="#就绪状态" class="headerlink" title="就绪状态"></a>就绪状态</h5><p>个新创建的线程并不自动开始运行，要执行线程，必须调用线程的start()方法。当线程对象调用start()方法即启动了线程，start()方法创建线程运行的系统资源，并调度线程运行run()方法。当start()方法返回后，线程就处于就绪状态。</p>
+<p>处于就绪状态的线程并不一定立即运行run()方法，线程还必须同其他线程竞争CPU时间，只有获得CPU时间才可以运行线程。因为在单CPU的计算机系统中，不可能同时运行多个线程，一个时刻仅有一个线程处于运行状态。因此此时可能有多个线程处于就绪状态。对多个处于就绪状态的线程是由Java运行时系统的线程调度程序来调度的。</p>
+<h5 id="运行状态（Running）"><a href="#运行状态（Running）" class="headerlink" title="运行状态（Running）"></a>运行状态（Running）</h5><p>当线程获得CPU时间后，它才进入运行状态，真正开始执行run()方法。</p>
+<h5 id="阻塞状态（blocked）"><a href="#阻塞状态（blocked）" class="headerlink" title="阻塞状态（blocked）"></a>阻塞状态（blocked）</h5><p>线程运行过程中，可能由于各种原因进入阻塞状态：</p>
+<p>①线程通过调用sleep方法进入睡眠状态；</p>
+<p>②线程调用一个在I/O上被阻塞的操作，即该操作在输入输出操作完成之前不会返回到它的调用者；</p>
+<p>③线程试图得到一个锁，而该锁正被其他线程持有；</p>
+<p>④线程在等待某个触发条件；</p>
+<p>所谓阻塞状态是正在运行的线程没有运行结束，暂时让出CPU，这时其他处于就绪状态的线程就可以获得CPU时间，进入运行状态。</p>
+<h5 id="死亡状态"><a href="#死亡状态" class="headerlink" title="死亡状态"></a>死亡状态</h5><p>有两个原因会导致线程死亡：</p>
+<p>①run方法正常退出而自然死亡；</p>
+<p>②一个未捕获的异常终止了run方法而使线程猝死；</p>
+<p>为了确定线程在当前是否存活着（就是要么是可运行的，要么是被阻塞了），需要使用isAlive方法，如果是可运行或被阻塞，这个方法返回true；如果线程仍旧是new状态且不是可运行的，或者线程死亡了，则返回false。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;什么是线程：&quot;&gt;&lt;a href=&quot;#什么是线程：&quot; class=&quot;headerlink&quot; title=&quot;什么是线程：&quot;&gt;&lt;/a&gt;什么是线程：&lt;/h4&gt;&lt;p&gt;一个线程是进程的一个顺序执行流。同类的多个线程共享一块内存空间和一组系统资源，一个进程中可以包含多个线程。 
+    
+    </summary>
+    
+      <category term="Java" scheme="http://suxianglun.github.io/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://suxianglun.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Kotlin中val 和var的区别</title>
