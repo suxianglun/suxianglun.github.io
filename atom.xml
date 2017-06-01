@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suxianglun.github.io/"/>
-  <updated>2017-05-27T01:28:24.000Z</updated>
+  <updated>2017-06-01T08:14:30.000Z</updated>
   <id>http://suxianglun.github.io/</id>
   
   <author>
@@ -14,6 +14,216 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java线程常用方法之join()</title>
+    <link href="http://suxianglun.github.io/2017/06/01/Java%E7%BA%BF%E7%A8%8B%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E4%B9%8Bjoin()/"/>
+    <id>http://suxianglun.github.io/2017/06/01/Java线程常用方法之join()/</id>
+    <published>2017-06-01T08:10:06.000Z</published>
+    <updated>2017-06-01T08:14:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>join()方法的作用是等待线程销毁。例如在main线程新起一个子线程，子线程需要做一些耗时造作，main线程想要得到子线程执行完成的数据，就必须等到执行完子线程再去执行，这时候就可以用join来解决。</p>
+<h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p>下面用代码来说明：    </p>
+<p><strong>MyThread类</strong>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class MyThread04 extends Thread&#123;</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        try&#123;</div><div class="line">            int value=(int)(Math.random()*1000);</div><div class="line">            System.out.println(&quot;thread04 value=&quot;+value);</div><div class="line">            Thread.sleep(value);</div><div class="line">        &#125;catch (InterruptedException e)&#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>YieldTest类</strong>     </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public class JoinTest &#123;</div><div class="line">    public  static void main(String[] args)&#123;</div><div class="line">        MyThread04 thread04=new MyThread04();</div><div class="line">        thread04.start();</div><div class="line">//        try &#123;</div><div class="line">//            thread04.join();</div><div class="line">//        &#125;catch (InterruptedException e)&#123;</div><div class="line">//            e.printStackTrace();</div><div class="line">//        &#125;</div><div class="line">        System.out.println(&quot;我想在thread04之后执行&quot;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果如下：     </p>
+<blockquote>
+<blockquote>
+<p>我想在thread04之后执行<br>thread04 value=8</p>
+</blockquote>
+</blockquote>
+<p>从结果上看，主线程和子线程是异步的，并没有在子线程执行完之后才执行，而是在子线程执行过程中就执行了主线程。如果想要实现同步的话，需要用到join()方法</p>
+<p>将MyThread03类更改一下    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">public class JoinTest &#123;</div><div class="line">    public  static void main(String[] args)&#123;</div><div class="line">        MyThread04 thread04=new MyThread04();</div><div class="line">        thread04.start();</div><div class="line">        try &#123;</div><div class="line">            thread04.join();</div><div class="line">           </div><div class="line">        &#125;catch (InterruptedException e)&#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">		 System.out.println(&quot;我想在thread04之后执行&quot;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果如下：    </p>
+<blockquote>
+<blockquote>
+<p>thread04 value=323<br>我想在thread04之后执行</p>
+</blockquote>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;join()方法的作用是等待线程销毁。例如在main线程新起一个子线程，子线程需要做一些耗时造作，main线程想要得到子线程执行完成的数据，就必须等到执行完子线程再去执行，这时候就可以用join来解决。&lt;/p&gt;
+&lt;h4 id=&quot;基本使用&quot;&gt;&lt;a href=&quot;#基本使用&quot; c
+    
+    </summary>
+    
+      <category term="Java" scheme="http://suxianglun.github.io/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://suxianglun.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java线程常用方法之yield()</title>
+    <link href="http://suxianglun.github.io/2017/06/01/Java%E7%BA%BF%E7%A8%8B%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E4%B9%8Byield()/"/>
+    <id>http://suxianglun.github.io/2017/06/01/Java线程常用方法之yield()/</id>
+    <published>2017-06-01T07:41:19.000Z</published>
+    <updated>2017-06-01T08:14:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>yield()方法的作用是让当前线程放弃当前cup资源，让其他任务获取cup资源。但放弃的时间不确定，有可能放放弃又马上获取cpu资源。</p>
+<h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p>下面用代码来说明：    </p>
+<p><strong>MyThread类</strong>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class MyThread03 extends Thread&#123;</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        long beginTime=System.currentTimeMillis();</div><div class="line">        int count=0;</div><div class="line">        for (int i=0;i&lt;50000000;i++)&#123;</div><div class="line">//            Thread.yield();</div><div class="line">            count=count+(i+1);</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        long endTime=System.currentTimeMillis();</div><div class="line">        System.out.println(&quot;用时=&quot;+(endTime-beginTime)+&quot;毫秒&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>YieldTest类</strong>     </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class YieldTest &#123;</div><div class="line">    public  static void main(String[] args)&#123;</div><div class="line">        MyThread03 thread03=new MyThread03();</div><div class="line">        thread03.start();</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果如下：     </p>
+<blockquote>
+<blockquote>
+<p>用时=23毫秒</p>
+</blockquote>
+</blockquote>
+<p>将MyThread03类更改一下    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class MyThread03 extends Thread&#123;</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        long beginTime=System.currentTimeMillis();</div><div class="line">        int count=0;</div><div class="line">        for (int i=0;i&lt;50000000;i++)&#123;</div><div class="line">            Thread.yield();</div><div class="line">            count=count+(i+1);</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        long endTime=System.currentTimeMillis();</div><div class="line">        System.out.println(&quot;用时=&quot;+(endTime-beginTime)+&quot;毫秒&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果如下：    </p>
+<blockquote>
+<blockquote>
+<p>用时=10552毫秒</p>
+</blockquote>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;yield()方法的作用是让当前线程放弃当前cup资源，让其他任务获取cup资源。但放弃的时间不确定，有可能放放弃又马上获取cpu资源。&lt;/p&gt;
+&lt;h4 id=&quot;基本使用&quot;&gt;&lt;a href=&quot;#基本使用&quot; class=&quot;headerlink&quot; title=&quot;基本使用&quot;&gt;&lt;/
+    
+    </summary>
+    
+      <category term="Java" scheme="http://suxianglun.github.io/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://suxianglun.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java线程常用方法之sleep()</title>
+    <link href="http://suxianglun.github.io/2017/06/01/Java%E7%BA%BF%E7%A8%8B%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E4%B9%8Bsleep()%20/"/>
+    <id>http://suxianglun.github.io/2017/06/01/Java线程常用方法之sleep() /</id>
+    <published>2017-06-01T07:25:55.000Z</published>
+    <updated>2017-06-01T08:14:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>sleep()方法的作用是在指定的毫秒数中让当前运行的线程休眠，当前的线程指的是this.currentTread() </p>
+<h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p>下面用代码来说明：    </p>
+<p><strong>MyThread类</strong>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class  MyThread02 extends Thread&#123;</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        try &#123;</div><div class="line">            System.out.println(&quot;Thread name:&quot;+Thread.currentThread().getName()+&quot;begin=&quot;+System.currentTimeMillis());</div><div class="line">            Thread.sleep(2000);</div><div class="line">            System.out.println(&quot;Thread name:&quot;+Thread.currentThread().getName()+&quot;end=&quot;+System.currentTimeMillis());</div><div class="line">        &#125;catch (InterruptedException e)&#123;</div><div class="line">            e.printStackTrace();</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>SleepTest类</strong>     </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public class SleepTest &#123;</div><div class="line">    public  static void main(String[] args)&#123;</div><div class="line">        MyThread02 thread02=new MyThread02();</div><div class="line">        System.out.println(&quot;Begin&quot;);</div><div class="line">        thread02.start();</div><div class="line">        System.out.println(&quot;end&quot;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果如下：     </p>
+<blockquote>
+<blockquote>
+<p>Begin<br>end<br>Thread name:Thread-0begin=1496281723821<br>Thread name:Thread-0end=1496281725822   </p>
+</blockquote>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;sleep()方法的作用是在指定的毫秒数中让当前运行的线程休眠，当前的线程指的是this.currentTread() &lt;/p&gt;
+&lt;h4 id=&quot;基本使用&quot;&gt;&lt;a href=&quot;#基本使用&quot; class=&quot;headerlink&quot; title=&quot;基本使用&quot;&gt;&lt;/a&gt;基本使用&lt;/
+    
+    </summary>
+    
+      <category term="Java" scheme="http://suxianglun.github.io/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://suxianglun.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java线程常用方法之isAlive()</title>
+    <link href="http://suxianglun.github.io/2017/05/27/Java%E7%BA%BF%E7%A8%8B%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E4%B9%8BisAlive()/"/>
+    <id>http://suxianglun.github.io/2017/05/27/Java线程常用方法之isAlive()/</id>
+    <published>2017-05-27T08:49:30.000Z</published>
+    <updated>2017-06-01T08:14:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这篇主要来了解一下isAlive()方法，此方法返回当前线程是否处于“活动状态”，何为“活动状态”，线程已经启动尚未终止。</p>
+<h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p>下面用代码来说明：    </p>
+<p><strong>MyThread类</strong>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">class MyThread01 extends Thread&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        System.out.println(&quot;Name:&quot;+Thread.currentThread().getName());</div><div class="line">        System.out.println(&quot;state:&quot;+Thread.currentThread().isAlive());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>IsAliveTest类</strong>     </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public class IsAliveTest &#123;</div><div class="line">    public static void main(String [] args)&#123;</div><div class="line">        MyThread01 thread01=new MyThread01();</div><div class="line">        System.out.println(&quot;begin:&quot;+thread01.isAlive());</div><div class="line">        thread01.start();</div><div class="line">        System.out.println(&quot;end:&quot;+thread01.isAlive());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果如下：     </p>
+<blockquote>
+<blockquote>
+<p>begin:false<br>end:true<br>Name:Thread-0<br>state:true </p>
+</blockquote>
+</blockquote>
+<p>将IsAliveTest类改为如下：     </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public class IsAliveTest &#123;</div><div class="line">    public static void main(String [] args)&#123;</div><div class="line">        MyThread01 thread01=new MyThread01();</div><div class="line">        System.out.println(&quot;begin:&quot;+thread01.isAlive());</div><div class="line">        thread01.start();</div><div class="line">        try &#123;</div><div class="line">            Thread.sleep(1000);</div><div class="line">        &#125;catch (InterruptedException e)&#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        System.out.println(&quot;end:&quot;+thread01.isAlive());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<blockquote>
+<blockquote>
+<p>begin:false<br>Name:Thread-0<br>state:true<br>end:false</p>
+</blockquote>
+</blockquote>
+<p>调用Thread.sleep(1000)让主线程休眠1秒，在这1秒内Thread-0线程已经执行完毕，再调用isAlive()时返回false</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这篇主要来了解一下isAlive()方法，此方法返回当前线程是否处于“活动状态”，何为“活动状态”，线程已经启动尚未终止。&lt;/p&gt;
+&lt;h4 id=&quot;基本使用&quot;&gt;&lt;a href=&quot;#基本使用&quot; class=&quot;headerlink&quot; title=&quot;基本使用&quot;&gt;&lt;/a&gt;基本使用&lt;
+    
+    </summary>
+    
+      <category term="Java" scheme="http://suxianglun.github.io/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://suxianglun.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java线程常用方法之currentThread（）</title>
+    <link href="http://suxianglun.github.io/2017/05/27/Java%E7%BA%BF%E7%A8%8B%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E4%B9%8BcurrentThread()/"/>
+    <id>http://suxianglun.github.io/2017/05/27/Java线程常用方法之currentThread()/</id>
+    <published>2017-05-27T08:35:30.000Z</published>
+    <updated>2017-05-27T08:42:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java线程中有很多常用的方法，需要花费一些时间来理解，今天就先来学习一下currentThread（）方法。<br>currentThread（）方法返回调用此代码段的线程信息，其中可以通过     Thread.currentThread().getId()获取当前线程id<br>Thread.currentThread().getName()获取当前线程name<br>Thread.currentThread().getPriority()获取当前线程优先级     </p>
+<p>下面用代码来说明：    </p>
+<p><strong>MyThread类</strong>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">class MyThread extends Thread&#123;</div><div class="line">    public  MyThread()&#123;</div><div class="line">        System.out.println(&quot;构造方法中打印的线程名字：&quot;+Thread.currentThread().getName());</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        System.out.println(&quot;run方法中打印的线程名字：&quot;+Thread.currentThread().getName());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>CurrentThreadTest类</strong>     </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class CurrentThreadTest &#123;</div><div class="line"></div><div class="line">    public static void main(String[ ]args)&#123;</div><div class="line">        Thread thread=new MyThread();</div><div class="line">        thread.start();</div><div class="line">//        thread.run();</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果如下：     </p>
+<blockquote>
+<blockquote>
+<p>构造方法中打印的线程名字：main<br>run方法中打印的线程名字：Thread-0  </p>
+</blockquote>
+</blockquote>
+<p>说明MyThread类的构造方法被main线程调用的，run方法是自动调用的方法。</p>
+<p>将CurrentThreadTest类改为如下：     </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class CurrentThreadTest &#123;</div><div class="line"></div><div class="line">    public static void main(String[ ]args)&#123;</div><div class="line">        Thread thread=new MyThread();</div><div class="line">//        thread.start();</div><div class="line">        thread.run();</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<blockquote>
+<blockquote>
+<p>构造方法中打印的线程名字：main<br>run方法中打印的线程名字：main     </p>
+</blockquote>
+</blockquote>
+<p>说明MyThread类的构造方法被main线程调用的，run方法是被main线程调用的。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Java线程中有很多常用的方法，需要花费一些时间来理解，今天就先来学习一下currentThread（）方法。&lt;br&gt;currentThread（）方法返回调用此代码段的线程信息，其中可以通过     Thread.currentThread().getId()获取当前线程
+    
+    </summary>
+    
+      <category term="Java" scheme="http://suxianglun.github.io/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://suxianglun.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Java线程的五种状态</title>
