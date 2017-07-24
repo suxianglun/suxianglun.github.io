@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suxianglun.github.io/"/>
-  <updated>2017-07-07T06:54:30.000Z</updated>
+  <updated>2017-07-24T07:14:48.000Z</updated>
   <id>http://suxianglun.github.io/</id>
   
   <author>
@@ -16,11 +16,52 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>python中range和xrange的区别</title>
+    <link href="http://suxianglun.github.io/2017/07/24/python%E4%B8%ADrange%E5%92%8Cxrange%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://suxianglun.github.io/2017/07/24/python中range和xrange的区别/</id>
+    <published>2017-07-24T06:26:20.000Z</published>
+    <updated>2017-07-24T07:14:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="range-start-None-stop-None-step-None-函数说明："><a href="#range-start-None-stop-None-step-None-函数说明：" class="headerlink" title="range(start=None, stop=None, step=None)函数说明："></a>range(start=None, stop=None, step=None)函数说明：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Return a list containing an arithmetic progression of integers.     </div><div class="line">  	range(i, j) returns [i, i+1, i+2, ..., j-1]; start (!) defaults to 0.</div><div class="line">    When step is given, it specifies the increment (or decrement).</div><div class="line">    For example, range(4) returns [0, 1, 2, 3].  The end point is omitted!</div><div class="line">    These are exactly the valid indices for a list of 4 elements.</div></pre></td></tr></table></figure>
+<p>大致意思就是：range函数返回的是包含一个等差数列的整数列表，根据参数start与stop指定的范围以及step设定的差值，生成一个列表。 如果不指定step默认差值就是1，如果指定step，它指定递增(或递减)，差值就是step.如果不明白举个栗子，如果还不明白就举2个栗子。    </p>
+<p>例子1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a=range(0,10,2)</div><div class="line">print a</div><div class="line">print type(a)</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[0, 2, 4, 6, 8]</div><div class="line">&lt;type &apos;list&apos;&gt;</div></pre></td></tr></table></figure>
+<p>例子2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a=range(0,-10,-2)</div><div class="line">print a</div><div class="line">print type(a)</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[0, -2, -4, -6, -8]</div><div class="line">&lt;type &apos;list&apos;&gt;</div></pre></td></tr></table></figure>
+<h4 id="xrange-函数说明：和range-的用法完全相同，但是返回的是一个生成器。"><a href="#xrange-函数说明：和range-的用法完全相同，但是返回的是一个生成器。" class="headerlink" title="xrange 函数说明：和range 的用法完全相同，但是返回的是一个生成器。"></a>xrange 函数说明：和range 的用法完全相同，但是返回的是一个生成器。</h4><p>例子1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a=xrange(0,10,2)</div><div class="line">print a</div><div class="line">print type(a)</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[xrange(0, 10, 2)</div><div class="line">&lt;type &apos;xrange&apos;&gt;</div></pre></td></tr></table></figure>
+<p>例子2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a=xrange(0,-10,-2)</div><div class="line">print a</div><div class="line">print type(a)</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xrange(0, -10, -2)</div><div class="line">&lt;type &apos;xrange&apos;&gt;</div></pre></td></tr></table></figure>
+<h4 id="range和xrange区别："><a href="#range和xrange区别：" class="headerlink" title="range和xrange区别："></a>range和xrange区别：</h4><p>两个都是在循环迭代的时候使用，range返回的是个list,xrange返回的是xrange对象，生成很小的数字序列时候性能没什么区别，但是要生成很大的数字序列的时候，用xrange会比range性能优很多，因为不需要一上来就开辟一块很大的内存空间。如果你不是为了要返回一个list,在循环中尽量使用xrange。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;range-start-None-stop-None-step-None-函数说明：&quot;&gt;&lt;a href=&quot;#range-start-None-stop-None-step-None-函数说明：&quot; class=&quot;headerlink&quot; title=&quot;range(st
+    
+    </summary>
+    
+      <category term="Python" scheme="http://suxianglun.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="http://suxianglun.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Python PIL库安装</title>
     <link href="http://suxianglun.github.io/2017/07/05/Python%20pIL%E5%BA%93%E5%AE%89%E8%A3%85/"/>
     <id>http://suxianglun.github.io/2017/07/05/Python pIL库安装/</id>
     <published>2017-07-05T08:01:16.000Z</published>
-    <updated>2017-07-07T06:54:30.000Z</updated>
+    <updated>2017-07-24T06:55:01.000Z</updated>
     
     <content type="html"><![CDATA[<p>由于需要使用Python操作图片，想使用<strong>sudo pip install PIL</strong>引入PIL(Python Imaging Library)库，但是结果如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">could not find a version that satisfies the requirement PIL.(form versions:)</div><div class="line">No matching distribution found for PIL.</div></pre></td></tr></table></figure>
