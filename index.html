@@ -186,7 +186,14 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        range(start=None, stop=None, step=None)函数说明：12345Return a list containing an arithmetic progression of integers.       	range(i, j) returns [i, i+1, i+2, ..., j-1]; start (!) defaults to 0.    When...
+        按照惯例先吟诗一首：
+
+
+《行宫》–元稹   
+寥落古行宫，宫花寂寞红。  白头宫女在，闲坐说玄宗。
+
+
+range(start=None, stop=None, step=None)函数说明：12345Return a list containing an arithmetic progression of integers.       	range(i, j) returns [i, ...
     
 
         <a href="/2017/07/24/python中range和xrange的区别/" class="post-more waves-effect waves-button">
@@ -235,9 +242,14 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        由于需要使用Python操作图片，想使用sudo pip install PIL引入PIL(Python Imaging Library)库，但是结果如下：
-12could not find a version that satisfies the requirement PIL.(form versions:)No matching distribution found for PIL.
-...
+        按照惯例先吟诗一首
+
+
+ 听筝唐代：李端鸣筝金粟柱，素手玉房前。欲得周郎顾，时时误拂弦。
+
+
+由于需要使用Python操作图片，想使用sudo pip install PIL引入PIL(Python Imaging Library)库，但是结果如下：
+12could not find a version that satisfies the requirement PIL.(form ver...
     
 
         <a href="/2017/07/05/Python pIL库安装/" class="post-more waves-effect waves-button">
@@ -286,10 +298,16 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        join()方法的作用是等待线程销毁。例如在main线程新起一个子线程，子线程需要做一些耗时造作，main线程想要得到子线程执行完成的数据，就必须等到执行完子线程再去执行，这时候就可以用join来解决。
+        按照惯例先吟诗一首：
+
+
+ 送崔九唐代：裴迪归山深浅去，须尽丘壑美。莫学武陵人，暂游桃源里。
+
+
+join()方法的作用是等待线程销毁。例如在main线程新起一个子线程，子线程需要做一些耗时造作，main线程想要得到子线程执行完成的数据，就必须等到执行完子线程再去执行，这时候就可以用join来解决。
 基本使用下面用代码来说明：    
 MyThread类  
-1234567891011121314class MyThread04 extends Thread&#123;    @Over...
+1234567891011121...
     
 
         <a href="/2017/06/01/Java线程常用方法之join()/" class="post-more waves-effect waves-button">
@@ -338,10 +356,16 @@ MyThread类
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        yield()方法的作用是让当前线程放弃当前cup资源，让其他任务获取cup资源。但放弃的时间不确定，有可能放放弃又马上获取cpu资源。
+        按照惯例先吟诗一首：
+
+
+ 杂诗唐代：王维君自故乡来，应知故乡事。来日绮窗前，寒梅著花未？
+
+
+yield()方法的作用是让当前线程放弃当前cup资源，让其他任务获取cup资源。但放弃的时间不确定，有可能放放弃又马上获取cpu资源。
 基本使用下面用代码来说明：    
 MyThread类  
-1234567891011121314class MyThread03 extends Thread&#123;    @Override    public void run() &#123; ...
+1234567891011121314class MyThread03 extends Thread...
     
 
         <a href="/2017/06/01/Java线程常用方法之yield()/" class="post-more waves-effect waves-button">
@@ -390,10 +414,16 @@ MyThread类
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        sleep()方法的作用是在指定的毫秒数中让当前运行的线程休眠，当前的线程指的是this.currentTread() 
+        按照惯例先吟诗一首：
+
+
+ 山中送别唐代：王维山中相送罢，日暮掩柴扉。春草明年绿，王孙归不归？
+
+
+sleep()方法的作用是在指定的毫秒数中让当前运行的线程休眠，当前的线程指的是this.currentTread() 
 基本使用下面用代码来说明：    
 MyThread类  
-1234567891011121314class  MyThread02 extends Thread&#123;    @Override    public void run() &#123;        ...
+1234567891011121314class  MyThread02 extends Thread&#123...
     
 
         <a href="/2017/06/01/Java线程常用方法之sleep() /" class="post-more waves-effect waves-button">
@@ -442,10 +472,16 @@ MyThread类
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        这篇主要来了解一下isAlive()方法，此方法返回当前线程是否处于“活动状态”，何为“活动状态”，线程已经启动尚未终止。
+        按照惯例先吟诗一首：
+
+
+《春怨 / 伊州歌》唐代：金昌绪打起黄莺儿，莫教枝上啼。啼时惊妾梦，不得到辽西。
+
+
+这篇主要来了解一下isAlive()方法，此方法返回当前线程是否处于“活动状态”，何为“活动状态”，线程已经启动尚未终止。
 基本使用下面用代码来说明：    
 MyThread类  
-12345678class MyThread01 extends Thread&#123;    @Override    public void run() &#123;        System.out....
+12345678class MyThread01 extends Thread&#123;    ...
     
 
         <a href="/2017/05/27/Java线程常用方法之isAlive()/" class="post-more waves-effect waves-button">
@@ -543,10 +579,14 @@ MyThread类
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        什么是线程：一个线程是进程的一个顺序执行流。同类的多个线程共享一块内存空间和一组系统资源，一个进程中可以包含多个线程。    
-进程与线程的区别一个进程至少有一个线程。线程的划分尺度小于进程，使得多线程程序的并发性高。另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率。
-线程状态
-新建状态当用new操作符创建一个线程时。此时程序还没有开始运行线程中的...
+        按照惯例先吟诗一首：
+
+
+ 送上人唐代：刘长卿孤云将野鹤，岂向人间住。莫买沃洲山，时人已知处。
+
+
+什么是线程：一个线程是进程的一个顺序执行流。同类的多个线程共享一块内存空间和一组系统资源，一个进程中可以包含多个线程。    
+进程与线程的区别一个进程至少有一个线程。线程的划分尺度小于进程，使得多线程程序的并发性高。另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高...
     
 
         <a href="/2017/05/26/Java线程的状态 /" class="post-more waves-effect waves-button">
@@ -595,8 +635,14 @@ MyThread类
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        前几天朋友圈刷爆了关于Kotlin成为Android官方语言的新闻，为了体验一下，开始学习Kotlin的基础语法。其中Kotlin中有两个关键字定义变量var和val,区别如下：    
-var： var是一个可变变量，这是一个可以通过重新分配来更改为另一个值的变量。这种声明变量的方式和Java中声明变量的方式一样。val:  val是一个只读变量，这种声明变量的方式相当于java中的fin...
+        按照惯例先吟诗一首
+
+
+ 静夜思唐代：李白床前明月光，疑是地上霜。举头望明月，低头思故乡。
+
+
+前几天朋友圈刷爆了关于Kotlin成为Android官方语言的新闻，为了体验一下，开始学习Kotlin的基础语法。其中Kotlin中有两个关键字定义变量var和val,区别如下：    
+var： var是一个可变变量，这是一个可以通过重新分配来更改为另一个值的变量。这种声明变量的方式和Java中...
     
 
         <a href="/2017/05/24/Kotlin中val 和var的区别/" class="post-more waves-effect waves-button">
@@ -645,12 +691,17 @@ var： var是一个可变变量，这是一个可以通过重新分配来更改�
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        1.使用 pip 安装 Flask-RESTful:
+        按照惯例先吟诗一首：
+
+
+《登乐游原》–李商隐向晚意不适，驱车登古原。夕阳无限好，只是近黄昏。
+
+
+1.使用 pip 安装 Flask-RESTful:
 pip install flask-restful
 
 使用pip安装第三方库总是提示：You are using pip version 8.0.2, however version 8.1.0 is available
-且输入“python -m pip install -U pip”升级pip版本命名还是报同样的错误。 
-解决办法： ...
+且输入“pytho...
     
 
         <a href="/2017/05/15/安装 Flask-RESTful遇到的问题/" class="post-more waves-effect waves-button">

@@ -20,17 +20,17 @@
     
     
     <meta name="keywords" content="Python">
-    <meta name="description" content="1.标准类型内建函数1.type()type()接受一个对象参数，返回该对象的类型。它的返回值是一个对象的类型。 12&amp;gt;&amp;gt;&amp;gt; type(4)     # int type    &amp;lt;type &amp;apos;int&amp;apos;&amp;gt; 2.cmp()内建函数cmp(obj1,obj2)用来比较两个对象obj1和obj2的大小，如果obj1比obj2小的话，返回负整数，如果obj1">
+    <meta name="description" content="按照惯例先吟诗一首：    宿建德江唐代：孟浩然移舟泊烟渚，日暮客愁新。野旷天低树，江清月近人。   1.标准类型内建函数1.type()type()接受一个对象参数，返回该对象的类型。它的返回值是一个对象的类型。 12&amp;gt;&amp;gt;&amp;gt; type(4)     # int type    &amp;lt;type &amp;apos;int&amp;apos;&amp;gt; 2.cmp()内建函数cmp(obj1,ob">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Python核心编程》学习笔记03（Python对象）">
 <meta property="og:url" content="http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/index.html">
 <meta property="og:site_name" content="苏湘伦的Blog">
-<meta property="og:description" content="1.标准类型内建函数1.type()type()接受一个对象参数，返回该对象的类型。它的返回值是一个对象的类型。 12&amp;gt;&amp;gt;&amp;gt; type(4)     # int type    &amp;lt;type &amp;apos;int&amp;apos;&amp;gt; 2.cmp()内建函数cmp(obj1,obj2)用来比较两个对象obj1和obj2的大小，如果obj1比obj2小的话，返回负整数，如果obj1">
-<meta property="og:updated_time" content="2017-05-24T07:11:26.000Z">
+<meta property="og:description" content="按照惯例先吟诗一首：    宿建德江唐代：孟浩然移舟泊烟渚，日暮客愁新。野旷天低树，江清月近人。   1.标准类型内建函数1.type()type()接受一个对象参数，返回该对象的类型。它的返回值是一个对象的类型。 12&amp;gt;&amp;gt;&amp;gt; type(4)     # int type    &amp;lt;type &amp;apos;int&amp;apos;&amp;gt; 2.cmp()内建函数cmp(obj1,ob">
+<meta property="og:updated_time" content="2017-07-25T06:32:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Python核心编程》学习笔记03（Python对象）">
-<meta name="twitter:description" content="1.标准类型内建函数1.type()type()接受一个对象参数，返回该对象的类型。它的返回值是一个对象的类型。 12&amp;gt;&amp;gt;&amp;gt; type(4)     # int type    &amp;lt;type &amp;apos;int&amp;apos;&amp;gt; 2.cmp()内建函数cmp(obj1,obj2)用来比较两个对象obj1和obj2的大小，如果obj1比obj2小的话，返回负整数，如果obj1">
+<meta name="twitter:description" content="按照惯例先吟诗一首：    宿建德江唐代：孟浩然移舟泊烟渚，日暮客愁新。野旷天低树，江清月近人。   1.标准类型内建函数1.type()type()接受一个对象参数，返回该对象的类型。它的返回值是一个对象的类型。 12&amp;gt;&amp;gt;&amp;gt; type(4)     # int type    &amp;lt;type &amp;apos;int&amp;apos;&amp;gt; 2.cmp()内建函数cmp(obj1,ob">
     
         <link rel="alternate" type="application/atom+xml" title="苏湘伦的Blog" href="/atom.xml">
     
@@ -195,7 +195,13 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h3 id="1-标准类型内建函数"><a href="#1-标准类型内建函数" class="headerlink" title="1.标准类型内建函数"></a>1.标准类型内建函数</h3><h4 id="1-type"><a href="#1-type" class="headerlink" title="1.type()"></a>1.type()</h4><p>type()接受一个对象参数，返回该对象的类型。它的返回值是一个对象的类型。</p>
+            <p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p> 宿建德江<br>唐代：孟浩然<br>移舟泊烟渚，日暮客愁新。<br>野旷天低树，江清月近人。</p>
+</blockquote>
+</blockquote>
+<h3 id="1-标准类型内建函数"><a href="#1-标准类型内建函数" class="headerlink" title="1.标准类型内建函数"></a>1.标准类型内建函数</h3><h4 id="1-type"><a href="#1-type" class="headerlink" title="1.type()"></a>1.type()</h4><p>type()接受一个对象参数，返回该对象的类型。它的返回值是一个对象的类型。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; type(4)     # int type    </div><div class="line">&lt;type &apos;int&apos;&gt;</div></pre></td></tr></table></figure>
 <h4 id="2-cmp"><a href="#2-cmp" class="headerlink" title="2.cmp()"></a>2.cmp()</h4><p>内建函数cmp(obj1,obj2)用来比较两个对象obj1和obj2的大小，如果obj1比obj2小的话，返回负整数，如果obj1比obj2大的话，返回正整数，如果obj1等于obj2小的话，返回0，比较是在对象之间进行的，不管是标准类型对象还是用户自定 义对象。如果是用户自定义对象， cmp()会调用该类的特殊方法<strong>cmp</strong>()</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a, b = -4, 12     </div><div class="line"></div><div class="line">&gt;&gt;&gt; cmp(a,b)     </div><div class="line">-1    </div><div class="line">&gt;&gt;&gt; cmp(b,a)  </div><div class="line">  1    </div><div class="line">&gt;&gt;&gt; b = -4    &gt;&gt;&gt; cmp(a,b)    0    &gt;&gt;&gt;    &gt;&gt;&gt; a, b = &apos;abc&apos;, &apos;xyz&apos;    &gt;&gt;&gt; cmp(a,b)    -23    &gt;&gt;&gt; cmp(b,a)    23    &gt;&gt;&gt; b = &apos;abc&apos;    &gt;&gt;&gt; cmp(a,b)    0</div></pre></td></tr></table></figure>
@@ -251,7 +257,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-05-24T07:11:26.000Z" itemprop="dateUpdated">2017-05-24 15:11:26</time>
+    最后更新时间：<time datetime="2017-07-25T06:32:57.000Z" itemprop="dateUpdated">2017-07-25 14:32:57</time>
 </span><br>
 
 

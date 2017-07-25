@@ -20,17 +20,17 @@
     
     
     <meta name="keywords" content="Java">
-    <meta name="description" content="1.成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。123456789101112131415  public class Hello &amp;#123;   String s = &amp;quot;Hello&amp;quot;;   public Hello(String s) &amp;#123;      System.out.println(&amp;quot;s = &amp;quot;">
+    <meta name="description" content="按照惯例先吟诗一首：   《八阵图》–杜甫功盖三分国，名成八阵图。江流石不转，遗恨失吞吴。   1.成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。123456789101112131415  public class Hello &amp;#123;   String s = &amp;quot;Hello&amp;quot;;   public Hello(String s)">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java关键字this的使用">
 <meta property="og:url" content="http://suxianglun.github.io/2017/05/11/Java关键字this的使用/index.html">
 <meta property="og:site_name" content="苏湘伦的Blog">
-<meta property="og:description" content="1.成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。123456789101112131415  public class Hello &amp;#123;   String s = &amp;quot;Hello&amp;quot;;   public Hello(String s) &amp;#123;      System.out.println(&amp;quot;s = &amp;quot;">
-<meta property="og:updated_time" content="2017-05-24T07:11:03.000Z">
+<meta property="og:description" content="按照惯例先吟诗一首：   《八阵图》–杜甫功盖三分国，名成八阵图。江流石不转，遗恨失吞吴。   1.成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。123456789101112131415  public class Hello &amp;#123;   String s = &amp;quot;Hello&amp;quot;;   public Hello(String s)">
+<meta property="og:updated_time" content="2017-07-24T07:45:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java关键字this的使用">
-<meta name="twitter:description" content="1.成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。123456789101112131415  public class Hello &amp;#123;   String s = &amp;quot;Hello&amp;quot;;   public Hello(String s) &amp;#123;      System.out.println(&amp;quot;s = &amp;quot;">
+<meta name="twitter:description" content="按照惯例先吟诗一首：   《八阵图》–杜甫功盖三分国，名成八阵图。江流石不转，遗恨失吞吴。   1.成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。123456789101112131415  public class Hello &amp;#123;   String s = &amp;quot;Hello&amp;quot;;   public Hello(String s)">
     
         <link rel="alternate" type="application/atom+xml" title="苏湘伦的Blog" href="/atom.xml">
     
@@ -195,7 +195,13 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h4 id="1-成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。"><a href="#1-成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。" class="headerlink" title="1.成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。"></a>1.成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">  public class Hello &#123;</div><div class="line">   String s = &quot;Hello&quot;;</div><div class="line"></div><div class="line">   public Hello(String s) &#123;</div><div class="line">      System.out.println(&quot;s = &quot; + s);</div><div class="line">      System.out.println(&quot;1 -&gt; this.s = &quot; + this.s);</div><div class="line">      this.s = s;//把参数值赋给成员变量，成员变量的值改变</div><div class="line">      System.out.println(&quot;2 -&gt; this.s = &quot; + this.s);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   public static void main(String[] args) &#123;</div><div class="line">      Hello x = new Hello(&quot;HelloWorld!&quot;);</div><div class="line">      System.out.println(&quot;s=&quot; + x.s);//验证成员变量值的改变</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+            <p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p>《八阵图》–杜甫<br>功盖三分国，名成八阵图。<br>江流石不转，遗恨失吞吴。</p>
+</blockquote>
+</blockquote>
+<h4 id="1-成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。"><a href="#1-成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。" class="headerlink" title="1.成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。"></a>1.成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">  public class Hello &#123;</div><div class="line">   String s = &quot;Hello&quot;;</div><div class="line"></div><div class="line">   public Hello(String s) &#123;</div><div class="line">      System.out.println(&quot;s = &quot; + s);</div><div class="line">      System.out.println(&quot;1 -&gt; this.s = &quot; + this.s);</div><div class="line">      this.s = s;//把参数值赋给成员变量，成员变量的值改变</div><div class="line">      System.out.println(&quot;2 -&gt; this.s = &quot; + this.s);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   public static void main(String[] args) &#123;</div><div class="line">      Hello x = new Hello(&quot;HelloWorld!&quot;);</div><div class="line">      System.out.println(&quot;s=&quot; + x.s);//验证成员变量值的改变</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p> 结果为：</p>
 <blockquote>
 <p>s = HelloWorld!<br>   1 -&gt; this.s = Hello<br>   2 -&gt; this.s = HelloWorld!<br>   s=HelloWorld!     </p>
@@ -221,7 +227,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-05-24T07:11:03.000Z" itemprop="dateUpdated">2017-05-24 15:11:03</time>
+    最后更新时间：<time datetime="2017-07-24T07:45:41.000Z" itemprop="dateUpdated">2017-07-24 15:45:41</time>
 </span><br>
 
 

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suxianglun.github.io/"/>
-  <updated>2017-07-24T07:14:48.000Z</updated>
+  <updated>2017-07-24T07:33:47.000Z</updated>
   <id>http://suxianglun.github.io/</id>
   
   <author>
@@ -20,9 +20,16 @@
     <link href="http://suxianglun.github.io/2017/07/24/python%E4%B8%ADrange%E5%92%8Cxrange%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
     <id>http://suxianglun.github.io/2017/07/24/python中range和xrange的区别/</id>
     <published>2017-07-24T06:26:20.000Z</published>
-    <updated>2017-07-24T07:14:48.000Z</updated>
+    <updated>2017-07-24T07:33:47.000Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="range-start-None-stop-None-step-None-函数说明："><a href="#range-start-None-stop-None-step-None-函数说明：" class="headerlink" title="range(start=None, stop=None, step=None)函数说明："></a>range(start=None, stop=None, step=None)函数说明：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Return a list containing an arithmetic progression of integers.     </div><div class="line">  	range(i, j) returns [i, i+1, i+2, ..., j-1]; start (!) defaults to 0.</div><div class="line">    When step is given, it specifies the increment (or decrement).</div><div class="line">    For example, range(4) returns [0, 1, 2, 3].  The end point is omitted!</div><div class="line">    These are exactly the valid indices for a list of 4 elements.</div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p>《行宫》–元稹   </p>
+<p>寥落古行宫，宫花寂寞红。<br>  白头宫女在，闲坐说玄宗。</p>
+</blockquote>
+</blockquote>
+<h4 id="range-start-None-stop-None-step-None-函数说明："><a href="#range-start-None-stop-None-step-None-函数说明：" class="headerlink" title="range(start=None, stop=None, step=None)函数说明："></a>range(start=None, stop=None, step=None)函数说明：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Return a list containing an arithmetic progression of integers.     </div><div class="line">  	range(i, j) returns [i, i+1, i+2, ..., j-1]; start (!) defaults to 0.</div><div class="line">    When step is given, it specifies the increment (or decrement).</div><div class="line">    For example, range(4) returns [0, 1, 2, 3].  The end point is omitted!</div><div class="line">    These are exactly the valid indices for a list of 4 elements.</div></pre></td></tr></table></figure>
 <p>大致意思就是：range函数返回的是包含一个等差数列的整数列表，根据参数start与stop指定的范围以及step设定的差值，生成一个列表。 如果不指定step默认差值就是1，如果指定step，它指定递增(或递减)，差值就是step.如果不明白举个栗子，如果还不明白就举2个栗子。    </p>
 <p>例子1：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a=range(0,10,2)</div><div class="line">print a</div><div class="line">print type(a)</div></pre></td></tr></table></figure>
@@ -45,7 +52,14 @@
     
     <summary type="html">
     
-      &lt;h4 id=&quot;range-start-None-stop-None-step-None-函数说明：&quot;&gt;&lt;a href=&quot;#range-start-None-stop-None-step-None-函数说明：&quot; class=&quot;headerlink&quot; title=&quot;range(st
+      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;《行宫》–元稹   &lt;/p&gt;
+&lt;p&gt;寥落古行宫，宫花寂寞红。&lt;br&gt;  白头宫女在，闲坐说玄宗。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;rang
     
     </summary>
     
@@ -61,9 +75,15 @@
     <link href="http://suxianglun.github.io/2017/07/05/Python%20pIL%E5%BA%93%E5%AE%89%E8%A3%85/"/>
     <id>http://suxianglun.github.io/2017/07/05/Python pIL库安装/</id>
     <published>2017-07-05T08:01:16.000Z</published>
-    <updated>2017-07-24T06:55:01.000Z</updated>
+    <updated>2017-07-25T06:31:41.000Z</updated>
     
-    <content type="html"><![CDATA[<p>由于需要使用Python操作图片，想使用<strong>sudo pip install PIL</strong>引入PIL(Python Imaging Library)库，但是结果如下：</p>
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首</p>
+<blockquote>
+<blockquote>
+<p> 听筝<br>唐代：李端<br>鸣筝金粟柱，素手玉房前。<br>欲得周郎顾，时时误拂弦。</p>
+</blockquote>
+</blockquote>
+<p>由于需要使用Python操作图片，想使用<strong>sudo pip install PIL</strong>引入PIL(Python Imaging Library)库，但是结果如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">could not find a version that satisfies the requirement PIL.(form versions:)</div><div class="line">No matching distribution found for PIL.</div></pre></td></tr></table></figure>
 <p>这个提示很费解，只能去找度娘了，原来已经用Pillow代替了PIL，在使用方面没有不同，API都是相同的。真是个挨千刀的，提示信息里怎么不告诉我们这些刚学Python的小白呢，还得白忙活半天。既然这样那就老老实实安装Pillow吧。但是又发现Pillow需要依赖multiprocessing，所以必须先安装multiprocessing。命令如下:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip install multiprocessing</div></pre></td></tr></table></figure>
@@ -75,8 +95,13 @@
     
     <summary type="html">
     
-      &lt;p&gt;由于需要使用Python操作图片，想使用&lt;strong&gt;sudo pip install PIL&lt;/strong&gt;引入PIL(Python Imaging Library)库，但是结果如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;tabl
+      &lt;p&gt;按照惯例先吟诗一首&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 听筝&lt;br&gt;唐代：李端&lt;br&gt;鸣筝金粟柱，素手玉房前。&lt;br&gt;欲得周郎顾，时时误拂弦。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;由于需要使用Python操作
     
     </summary>
     
@@ -92,9 +117,15 @@
     <link href="http://suxianglun.github.io/2017/06/01/Java%E7%BA%BF%E7%A8%8B%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E4%B9%8Bjoin()/"/>
     <id>http://suxianglun.github.io/2017/06/01/Java线程常用方法之join()/</id>
     <published>2017-06-01T08:10:06.000Z</published>
-    <updated>2017-06-01T08:14:30.000Z</updated>
+    <updated>2017-07-25T06:24:08.000Z</updated>
     
-    <content type="html"><![CDATA[<p>join()方法的作用是等待线程销毁。例如在main线程新起一个子线程，子线程需要做一些耗时造作，main线程想要得到子线程执行完成的数据，就必须等到执行完子线程再去执行，这时候就可以用join来解决。</p>
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p> 送崔九<br>唐代：裴迪<br>归山深浅去，须尽丘壑美。<br>莫学武陵人，暂游桃源里。</p>
+</blockquote>
+</blockquote>
+<p>join()方法的作用是等待线程销毁。例如在main线程新起一个子线程，子线程需要做一些耗时造作，main线程想要得到子线程执行完成的数据，就必须等到执行完子线程再去执行，这时候就可以用join来解决。</p>
 <h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p>下面用代码来说明：    </p>
 <p><strong>MyThread类</strong>  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class MyThread04 extends Thread&#123;</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        try&#123;</div><div class="line">            int value=(int)(Math.random()*1000);</div><div class="line">            System.out.println(&quot;thread04 value=&quot;+value);</div><div class="line">            Thread.sleep(value);</div><div class="line">        &#125;catch (InterruptedException e)&#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -119,8 +150,13 @@
     
     <summary type="html">
     
-      &lt;p&gt;join()方法的作用是等待线程销毁。例如在main线程新起一个子线程，子线程需要做一些耗时造作，main线程想要得到子线程执行完成的数据，就必须等到执行完子线程再去执行，这时候就可以用join来解决。&lt;/p&gt;
-&lt;h4 id=&quot;基本使用&quot;&gt;&lt;a href=&quot;#基本使用&quot; c
+      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 送崔九&lt;br&gt;唐代：裴迪&lt;br&gt;归山深浅去，须尽丘壑美。&lt;br&gt;莫学武陵人，暂游桃源里。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;join()方法的作用是
     
     </summary>
     
@@ -136,9 +172,15 @@
     <link href="http://suxianglun.github.io/2017/06/01/Java%E7%BA%BF%E7%A8%8B%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E4%B9%8Byield()/"/>
     <id>http://suxianglun.github.io/2017/06/01/Java线程常用方法之yield()/</id>
     <published>2017-06-01T07:41:19.000Z</published>
-    <updated>2017-06-01T08:14:44.000Z</updated>
+    <updated>2017-07-25T06:26:24.000Z</updated>
     
-    <content type="html"><![CDATA[<p>yield()方法的作用是让当前线程放弃当前cup资源，让其他任务获取cup资源。但放弃的时间不确定，有可能放放弃又马上获取cpu资源。</p>
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p> 杂诗<br>唐代：王维<br>君自故乡来，应知故乡事。<br>来日绮窗前，寒梅著花未？</p>
+</blockquote>
+</blockquote>
+<p>yield()方法的作用是让当前线程放弃当前cup资源，让其他任务获取cup资源。但放弃的时间不确定，有可能放放弃又马上获取cpu资源。</p>
 <h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p>下面用代码来说明：    </p>
 <p><strong>MyThread类</strong>  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class MyThread03 extends Thread&#123;</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        long beginTime=System.currentTimeMillis();</div><div class="line">        int count=0;</div><div class="line">        for (int i=0;i&lt;50000000;i++)&#123;</div><div class="line">//            Thread.yield();</div><div class="line">            count=count+(i+1);</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        long endTime=System.currentTimeMillis();</div><div class="line">        System.out.println(&quot;用时=&quot;+(endTime-beginTime)+&quot;毫秒&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -162,8 +204,13 @@
     
     <summary type="html">
     
-      &lt;p&gt;yield()方法的作用是让当前线程放弃当前cup资源，让其他任务获取cup资源。但放弃的时间不确定，有可能放放弃又马上获取cpu资源。&lt;/p&gt;
-&lt;h4 id=&quot;基本使用&quot;&gt;&lt;a href=&quot;#基本使用&quot; class=&quot;headerlink&quot; title=&quot;基本使用&quot;&gt;&lt;/
+      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 杂诗&lt;br&gt;唐代：王维&lt;br&gt;君自故乡来，应知故乡事。&lt;br&gt;来日绮窗前，寒梅著花未？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;yield()方法的作用是
     
     </summary>
     
@@ -179,9 +226,15 @@
     <link href="http://suxianglun.github.io/2017/06/01/Java%E7%BA%BF%E7%A8%8B%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E4%B9%8Bsleep()%20/"/>
     <id>http://suxianglun.github.io/2017/06/01/Java线程常用方法之sleep() /</id>
     <published>2017-06-01T07:25:55.000Z</published>
-    <updated>2017-06-01T08:14:37.000Z</updated>
+    <updated>2017-07-25T06:28:08.000Z</updated>
     
-    <content type="html"><![CDATA[<p>sleep()方法的作用是在指定的毫秒数中让当前运行的线程休眠，当前的线程指的是this.currentTread() </p>
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p> 山中送别<br>唐代：王维<br>山中相送罢，<br>日暮掩柴扉。<br>春草明年绿，<br>王孙归不归？</p>
+</blockquote>
+</blockquote>
+<p>sleep()方法的作用是在指定的毫秒数中让当前运行的线程休眠，当前的线程指的是this.currentTread() </p>
 <h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p>下面用代码来说明：    </p>
 <p><strong>MyThread类</strong>  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class  MyThread02 extends Thread&#123;</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        try &#123;</div><div class="line">            System.out.println(&quot;Thread name:&quot;+Thread.currentThread().getName()+&quot;begin=&quot;+System.currentTimeMillis());</div><div class="line">            Thread.sleep(2000);</div><div class="line">            System.out.println(&quot;Thread name:&quot;+Thread.currentThread().getName()+&quot;end=&quot;+System.currentTimeMillis());</div><div class="line">        &#125;catch (InterruptedException e)&#123;</div><div class="line">            e.printStackTrace();</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -197,8 +250,13 @@
     
     <summary type="html">
     
-      &lt;p&gt;sleep()方法的作用是在指定的毫秒数中让当前运行的线程休眠，当前的线程指的是this.currentTread() &lt;/p&gt;
-&lt;h4 id=&quot;基本使用&quot;&gt;&lt;a href=&quot;#基本使用&quot; class=&quot;headerlink&quot; title=&quot;基本使用&quot;&gt;&lt;/a&gt;基本使用&lt;/
+      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 山中送别&lt;br&gt;唐代：王维&lt;br&gt;山中相送罢，&lt;br&gt;日暮掩柴扉。&lt;br&gt;春草明年绿，&lt;br&gt;王孙归不归？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;sle
     
     </summary>
     
@@ -214,9 +272,15 @@
     <link href="http://suxianglun.github.io/2017/05/27/Java%E7%BA%BF%E7%A8%8B%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E4%B9%8BisAlive()/"/>
     <id>http://suxianglun.github.io/2017/05/27/Java线程常用方法之isAlive()/</id>
     <published>2017-05-27T08:49:30.000Z</published>
-    <updated>2017-06-01T08:14:22.000Z</updated>
+    <updated>2017-07-24T07:48:24.000Z</updated>
     
-    <content type="html"><![CDATA[<p>这篇主要来了解一下isAlive()方法，此方法返回当前线程是否处于“活动状态”，何为“活动状态”，线程已经启动尚未终止。</p>
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p>《春怨 / 伊州歌》<br>唐代：金昌绪<br>打起黄莺儿，莫教枝上啼。<br>啼时惊妾梦，不得到辽西。</p>
+</blockquote>
+</blockquote>
+<p>这篇主要来了解一下isAlive()方法，此方法返回当前线程是否处于“活动状态”，何为“活动状态”，线程已经启动尚未终止。</p>
 <h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p>下面用代码来说明：    </p>
 <p><strong>MyThread类</strong>  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">class MyThread01 extends Thread&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        System.out.println(&quot;Name:&quot;+Thread.currentThread().getName());</div><div class="line">        System.out.println(&quot;state:&quot;+Thread.currentThread().isAlive());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -241,8 +305,13 @@
     
     <summary type="html">
     
-      &lt;p&gt;这篇主要来了解一下isAlive()方法，此方法返回当前线程是否处于“活动状态”，何为“活动状态”，线程已经启动尚未终止。&lt;/p&gt;
-&lt;h4 id=&quot;基本使用&quot;&gt;&lt;a href=&quot;#基本使用&quot; class=&quot;headerlink&quot; title=&quot;基本使用&quot;&gt;&lt;/a&gt;基本使用&lt;
+      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;《春怨 / 伊州歌》&lt;br&gt;唐代：金昌绪&lt;br&gt;打起黄莺儿，莫教枝上啼。&lt;br&gt;啼时惊妾梦，不得到辽西。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这篇主要来
     
     </summary>
     
@@ -302,9 +371,15 @@
     <link href="http://suxianglun.github.io/2017/05/26/Java%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81%20/"/>
     <id>http://suxianglun.github.io/2017/05/26/Java线程的状态 /</id>
     <published>2017-05-26T09:34:36.000Z</published>
-    <updated>2017-05-27T01:28:24.000Z</updated>
+    <updated>2017-07-25T06:27:04.000Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="什么是线程："><a href="#什么是线程：" class="headerlink" title="什么是线程："></a>什么是线程：</h4><p>一个线程是进程的一个顺序执行流。同类的多个线程共享一块内存空间和一组系统资源，一个进程中可以包含多个线程。    </p>
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p> 送上人<br>唐代：刘长卿<br>孤云将野鹤，岂向人间住。<br>莫买沃洲山，时人已知处。</p>
+</blockquote>
+</blockquote>
+<h4 id="什么是线程："><a href="#什么是线程：" class="headerlink" title="什么是线程："></a>什么是线程：</h4><p>一个线程是进程的一个顺序执行流。同类的多个线程共享一块内存空间和一组系统资源，一个进程中可以包含多个线程。    </p>
 <h4 id="进程与线程的区别"><a href="#进程与线程的区别" class="headerlink" title="进程与线程的区别"></a>进程与线程的区别</h4><p>一个进程至少有一个线程。线程的划分尺度小于进程，使得多线程程序的并发性高。另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率。</p>
 <h4 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h4><p><img src="http://pdf7.tarena.com.cn/tts8_source/ttsPage/JAVA/JSD_N_V06/JAVASE02/DAY04/SUPERDOC/01/index.files/image001.png" alt=""></p>
 <h5 id="新建状态"><a href="#新建状态" class="headerlink" title="新建状态"></a>新建状态</h5><p>当用new操作符创建一个线程时。此时程序还没有开始运行线程中的代码。</p>
@@ -325,7 +400,13 @@
     
     <summary type="html">
     
-      &lt;h4 id=&quot;什么是线程：&quot;&gt;&lt;a href=&quot;#什么是线程：&quot; class=&quot;headerlink&quot; title=&quot;什么是线程：&quot;&gt;&lt;/a&gt;什么是线程：&lt;/h4&gt;&lt;p&gt;一个线程是进程的一个顺序执行流。同类的多个线程共享一块内存空间和一组系统资源，一个进程中可以包含多个线程。 
+      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 送上人&lt;br&gt;唐代：刘长卿&lt;br&gt;孤云将野鹤，岂向人间住。&lt;br&gt;莫买沃洲山，时人已知处。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;什么是线程：
     
     </summary>
     
@@ -341,9 +422,15 @@
     <link href="http://suxianglun.github.io/2017/05/24/Kotlin%E4%B8%ADval%20%E5%92%8Cvar%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
     <id>http://suxianglun.github.io/2017/05/24/Kotlin中val 和var的区别/</id>
     <published>2017-05-24T07:25:28.000Z</published>
-    <updated>2017-05-24T07:51:13.000Z</updated>
+    <updated>2017-07-25T06:30:36.000Z</updated>
     
-    <content type="html"><![CDATA[<p>前几天朋友圈刷爆了关于Kotlin成为Android官方语言的新闻，为了体验一下，开始学习Kotlin的基础语法。其中Kotlin中有两个关键字定义变量var和val,区别如下：    </p>
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首</p>
+<blockquote>
+<blockquote>
+<p> 静夜思<br>唐代：李白<br>床前明月光，疑是地上霜。<br>举头望明月，低头思故乡。</p>
+</blockquote>
+</blockquote>
+<p>前几天朋友圈刷爆了关于Kotlin成为Android官方语言的新闻，为了体验一下，开始学习Kotlin的基础语法。其中Kotlin中有两个关键字定义变量var和val,区别如下：    </p>
 <p><strong>var：</strong> var是一个可变变量，这是一个可以通过重新分配来更改为另一个值的变量。这种声明变量的方式和Java中声明变量的方式一样。<br><strong>val:</strong>  val是一个只读变量，这种声明变量的方式相当于java中的final变量。一个val创建的时候必须初始化，因为以后不能被改变。</p>
 <p>上段代码体验一下：</p>
 <pre><code>var name = &quot;lao wang&quot;
@@ -360,8 +447,13 @@ println(finalValue);
     
     <summary type="html">
     
-      &lt;p&gt;前几天朋友圈刷爆了关于Kotlin成为Android官方语言的新闻，为了体验一下，开始学习Kotlin的基础语法。其中Kotlin中有两个关键字定义变量var和val,区别如下：    &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;var：&lt;/strong&gt; var是一个可变变量，这是一
+      &lt;p&gt;按照惯例先吟诗一首&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 静夜思&lt;br&gt;唐代：李白&lt;br&gt;床前明月光，疑是地上霜。&lt;br&gt;举头望明月，低头思故乡。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;前几天朋友圈刷爆了关于Ko
     
     </summary>
     
@@ -377,9 +469,15 @@ println(finalValue);
     <link href="http://suxianglun.github.io/2017/05/15/%E5%AE%89%E8%A3%85%20Flask-RESTful%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
     <id>http://suxianglun.github.io/2017/05/15/安装 Flask-RESTful遇到的问题/</id>
     <published>2017-05-15T09:40:16.000Z</published>
-    <updated>2017-05-24T07:10:10.000Z</updated>
+    <updated>2017-07-24T07:44:19.000Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="1-使用-pip-安装-Flask-RESTful"><a href="#1-使用-pip-安装-Flask-RESTful" class="headerlink" title="1.使用 pip 安装 Flask-RESTful:"></a>1.使用 pip 安装 Flask-RESTful:</h4><blockquote>
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p>《登乐游原》–李商隐<br>向晚意不适，驱车登古原。<br>夕阳无限好，只是近黄昏。</p>
+</blockquote>
+</blockquote>
+<h4 id="1-使用-pip-安装-Flask-RESTful"><a href="#1-使用-pip-安装-Flask-RESTful" class="headerlink" title="1.使用 pip 安装 Flask-RESTful:"></a>1.使用 pip 安装 Flask-RESTful:</h4><blockquote>
 <p>pip install flask-restful</p>
 </blockquote>
 <p>使用pip安装第三方库总是提示：You are using pip version 8.0.2, however version 8.1.0 is available</p>
@@ -397,7 +495,13 @@ println(finalValue);
     
     <summary type="html">
     
-      &lt;h4 id=&quot;1-使用-pip-安装-Flask-RESTful&quot;&gt;&lt;a href=&quot;#1-使用-pip-安装-Flask-RESTful&quot; class=&quot;headerlink&quot; title=&quot;1.使用 pip 安装 Flask-RESTful:&quot;&gt;&lt;/a&gt;1.使用 pip 安
+      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;《登乐游原》–李商隐&lt;br&gt;向晚意不适，驱车登古原。&lt;br&gt;夕阳无限好，只是近黄昏。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;1-使用-pip-安
     
     </summary>
     
@@ -413,9 +517,15 @@ println(finalValue);
     <link href="http://suxianglun.github.io/2017/05/11/Java%E5%85%B3%E9%94%AE%E5%AD%97this%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://suxianglun.github.io/2017/05/11/Java关键字this的使用/</id>
     <published>2017-05-11T02:44:15.000Z</published>
-    <updated>2017-05-24T07:11:03.000Z</updated>
+    <updated>2017-07-24T07:45:41.000Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="1-成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。"><a href="#1-成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。" class="headerlink" title="1.成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。"></a>1.成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">  public class Hello &#123;</div><div class="line">   String s = &quot;Hello&quot;;</div><div class="line"></div><div class="line">   public Hello(String s) &#123;</div><div class="line">      System.out.println(&quot;s = &quot; + s);</div><div class="line">      System.out.println(&quot;1 -&gt; this.s = &quot; + this.s);</div><div class="line">      this.s = s;//把参数值赋给成员变量，成员变量的值改变</div><div class="line">      System.out.println(&quot;2 -&gt; this.s = &quot; + this.s);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   public static void main(String[] args) &#123;</div><div class="line">      Hello x = new Hello(&quot;HelloWorld!&quot;);</div><div class="line">      System.out.println(&quot;s=&quot; + x.s);//验证成员变量值的改变</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p>《八阵图》–杜甫<br>功盖三分国，名成八阵图。<br>江流石不转，遗恨失吞吴。</p>
+</blockquote>
+</blockquote>
+<h4 id="1-成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。"><a href="#1-成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。" class="headerlink" title="1.成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。"></a>1.成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">  public class Hello &#123;</div><div class="line">   String s = &quot;Hello&quot;;</div><div class="line"></div><div class="line">   public Hello(String s) &#123;</div><div class="line">      System.out.println(&quot;s = &quot; + s);</div><div class="line">      System.out.println(&quot;1 -&gt; this.s = &quot; + this.s);</div><div class="line">      this.s = s;//把参数值赋给成员变量，成员变量的值改变</div><div class="line">      System.out.println(&quot;2 -&gt; this.s = &quot; + this.s);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   public static void main(String[] args) &#123;</div><div class="line">      Hello x = new Hello(&quot;HelloWorld!&quot;);</div><div class="line">      System.out.println(&quot;s=&quot; + x.s);//验证成员变量值的改变</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p> 结果为：</p>
 <blockquote>
 <p>s = HelloWorld!<br>   1 -&gt; this.s = Hello<br>   2 -&gt; this.s = HelloWorld!<br>   s=HelloWorld!     </p>
@@ -438,7 +548,13 @@ println(finalValue);
     
     <summary type="html">
     
-      &lt;h4 id=&quot;1-成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。&quot;&gt;&lt;a href=&quot;#1-成员变量和局部变量重名时，在方法中使用this时，this代表的是该方法所在类的成员变量。&quot; class=&quot;headerlink&quot; title
+      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;《八阵图》–杜甫&lt;br&gt;功盖三分国，名成八阵图。&lt;br&gt;江流石不转，遗恨失吞吴。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;1-成员变量和局部变量重
     
     </summary>
     
@@ -454,9 +570,15 @@ println(finalValue);
     <link href="http://suxianglun.github.io/2017/05/05/Python%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B003%EF%BC%88Python%E5%AF%B9%E8%B1%A1%EF%BC%89/"/>
     <id>http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/</id>
     <published>2017-05-05T08:52:32.000Z</published>
-    <updated>2017-05-24T07:11:26.000Z</updated>
+    <updated>2017-07-25T06:32:57.000Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="1-标准类型内建函数"><a href="#1-标准类型内建函数" class="headerlink" title="1.标准类型内建函数"></a>1.标准类型内建函数</h3><h4 id="1-type"><a href="#1-type" class="headerlink" title="1.type()"></a>1.type()</h4><p>type()接受一个对象参数，返回该对象的类型。它的返回值是一个对象的类型。</p>
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p> 宿建德江<br>唐代：孟浩然<br>移舟泊烟渚，日暮客愁新。<br>野旷天低树，江清月近人。</p>
+</blockquote>
+</blockquote>
+<h3 id="1-标准类型内建函数"><a href="#1-标准类型内建函数" class="headerlink" title="1.标准类型内建函数"></a>1.标准类型内建函数</h3><h4 id="1-type"><a href="#1-type" class="headerlink" title="1.type()"></a>1.type()</h4><p>type()接受一个对象参数，返回该对象的类型。它的返回值是一个对象的类型。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; type(4)     # int type    </div><div class="line">&lt;type &apos;int&apos;&gt;</div></pre></td></tr></table></figure>
 <h4 id="2-cmp"><a href="#2-cmp" class="headerlink" title="2.cmp()"></a>2.cmp()</h4><p>内建函数cmp(obj1,obj2)用来比较两个对象obj1和obj2的大小，如果obj1比obj2小的话，返回负整数，如果obj1比obj2大的话，返回正整数，如果obj1等于obj2小的话，返回0，比较是在对象之间进行的，不管是标准类型对象还是用户自定 义对象。如果是用户自定义对象， cmp()会调用该类的特殊方法<strong>cmp</strong>()</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a, b = -4, 12     </div><div class="line"></div><div class="line">&gt;&gt;&gt; cmp(a,b)     </div><div class="line">-1    </div><div class="line">&gt;&gt;&gt; cmp(b,a)  </div><div class="line">  1    </div><div class="line">&gt;&gt;&gt; b = -4    &gt;&gt;&gt; cmp(a,b)    0    &gt;&gt;&gt;    &gt;&gt;&gt; a, b = &apos;abc&apos;, &apos;xyz&apos;    &gt;&gt;&gt; cmp(a,b)    -23    &gt;&gt;&gt; cmp(b,a)    23    &gt;&gt;&gt; b = &apos;abc&apos;    &gt;&gt;&gt; cmp(a,b)    0</div></pre></td></tr></table></figure>
@@ -509,7 +631,13 @@ println(finalValue);
     
     <summary type="html">
     
-      &lt;h3 id=&quot;1-标准类型内建函数&quot;&gt;&lt;a href=&quot;#1-标准类型内建函数&quot; class=&quot;headerlink&quot; title=&quot;1.标准类型内建函数&quot;&gt;&lt;/a&gt;1.标准类型内建函数&lt;/h3&gt;&lt;h4 id=&quot;1-type&quot;&gt;&lt;a href=&quot;#1-type&quot; class=&quot;
+      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 宿建德江&lt;br&gt;唐代：孟浩然&lt;br&gt;移舟泊烟渚，日暮客愁新。&lt;br&gt;野旷天低树，江清月近人。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;1-标准类
     
     </summary>
     
@@ -525,9 +653,15 @@ println(finalValue);
     <link href="http://suxianglun.github.io/2017/05/05/%E3%80%8APython%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B002%EF%BC%88Python%E5%9F%BA%E7%A1%80%EF%BC%89/"/>
     <id>http://suxianglun.github.io/2017/05/05/《Python核心编程》学习笔记02（Python基础）/</id>
     <published>2017-05-05T07:25:11.000Z</published>
-    <updated>2017-05-24T07:08:59.000Z</updated>
+    <updated>2017-07-24T07:43:07.000Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="1-模块结构和布局"><a href="#1-模块结构和布局" class="headerlink" title="1.模块结构和布局"></a>1.模块结构和布局</h3><p>合理的布局结构应该如下：</p>
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p>《哥舒歌》–西鄙人<br>北斗七星高，哥舒夜带刀。<br>至今窥牧马，不敢过临洮。</p>
+</blockquote>
+</blockquote>
+<h3 id="1-模块结构和布局"><a href="#1-模块结构和布局" class="headerlink" title="1.模块结构和布局"></a>1.模块结构和布局</h3><p>合理的布局结构应该如下：</p>
 <blockquote>
 <p>1、起始行：通常只有在类 Unix 环境下才使用起始行，有起始行就能够仅输入脚本名字来执行脚本，无需直接调用解释器。     </p>
 <p>2、模块文档：简要介绍模块的功能及重要全局变量的含义,模块外可通过 module.<strong>doc</strong> 访问这些内容。    </p>
@@ -549,9 +683,13 @@ println(finalValue);
     
     <summary type="html">
     
-      &lt;h3 id=&quot;1-模块结构和布局&quot;&gt;&lt;a href=&quot;#1-模块结构和布局&quot; class=&quot;headerlink&quot; title=&quot;1.模块结构和布局&quot;&gt;&lt;/a&gt;1.模块结构和布局&lt;/h3&gt;&lt;p&gt;合理的布局结构应该如下：&lt;/p&gt;
+      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;1、起始行：通常只
+&lt;blockquote&gt;
+&lt;p&gt;《哥舒歌》–西鄙人&lt;br&gt;北斗七星高，哥舒夜带刀。&lt;br&gt;至今窥牧马，不敢过临洮。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;1-模块结构和布局&quot;&gt;
     
     </summary>
     
@@ -567,9 +705,15 @@ println(finalValue);
     <link href="http://suxianglun.github.io/2017/05/04/python%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B001%EF%BC%88Python%E8%B5%B7%E6%AD%A5%EF%BC%89/"/>
     <id>http://suxianglun.github.io/2017/05/04/python核心编程学习笔记01（Python起步）/</id>
     <published>2017-05-04T05:52:13.000Z</published>
-    <updated>2017-05-24T07:11:48.000Z</updated>
+    <updated>2017-07-25T06:34:07.000Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="1-程序输出print语句及“HelloWorld-”"><a href="#1-程序输出print语句及“HelloWorld-”" class="headerlink" title="1.程序输出print语句及“HelloWorld!”"></a>1.程序输出print语句及“HelloWorld!”</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; myString = &apos;Hello World!&apos; </div><div class="line">&gt;&gt;&gt; print myString</div><div class="line">  &apos;Hello World!&apos;</div><div class="line">&gt;&gt;&gt; myString</div><div class="line">  &apos;Hello World!&apos;</div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p> 江雪<br>唐代：柳宗元<br>千山鸟飞绝，万径人踪灭。<br>孤舟蓑笠翁，独钓寒江雪。</p>
+</blockquote>
+</blockquote>
+<h3 id="1-程序输出print语句及“HelloWorld-”"><a href="#1-程序输出print语句及“HelloWorld-”" class="headerlink" title="1.程序输出print语句及“HelloWorld!”"></a>1.程序输出print语句及“HelloWorld!”</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; myString = &apos;Hello World!&apos; </div><div class="line">&gt;&gt;&gt; print myString</div><div class="line">  &apos;Hello World!&apos;</div><div class="line">&gt;&gt;&gt; myString</div><div class="line">  &apos;Hello World!&apos;</div></pre></td></tr></table></figure>
 <h4 id="1-1-和-在print中的使用"><a href="#1-1-和-在print中的使用" class="headerlink" title="1.1._ 和 %在print中的使用"></a>1.1._ 和 %在print中的使用</h4><p>下划线(_)在解释器中有特别的含义，表示最后一个表达式的值。所以上面的代码执行之后， 下划线变量会包含字符串:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; _</div><div class="line">Hello World!</div></pre></td></tr></table></figure>
 <p>Python的print语句，与字符串格式运算符( %)结合使用，可实现字符串替换功能。%s 表示由一个字符串来替换，而%d 表示由一个整数来替换，另外一个很常用的就是%f。它表示由一个浮点数来替换。 </p>
@@ -634,7 +778,13 @@ println(finalValue);
     
     <summary type="html">
     
-      &lt;h3 id=&quot;1-程序输出print语句及“HelloWorld-”&quot;&gt;&lt;a href=&quot;#1-程序输出print语句及“HelloWorld-”&quot; class=&quot;headerlink&quot; title=&quot;1.程序输出print语句及“HelloWorld!”&quot;&gt;&lt;/a&gt;1.程序输
+      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 江雪&lt;br&gt;唐代：柳宗元&lt;br&gt;千山鸟飞绝，万径人踪灭。&lt;br&gt;孤舟蓑笠翁，独钓寒江雪。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;1-程序输出p
     
     </summary>
     
@@ -650,9 +800,16 @@ println(finalValue);
     <link href="http://suxianglun.github.io/2017/04/28/URL%E5%92%8CURI%E5%90%AB%E4%B9%89%E5%8F%8A%E7%90%86%E8%A7%A3/"/>
     <id>http://suxianglun.github.io/2017/04/28/URL和URI含义及理解/</id>
     <published>2017-04-28T08:14:03.000Z</published>
-    <updated>2017-05-24T07:07:30.000Z</updated>
+    <updated>2017-07-24T07:32:06.000Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="1、URI和URL含义："><a href="#1、URI和URL含义：" class="headerlink" title="1、URI和URL含义："></a>1、URI和URL含义：</h4><p>在理解URL之前先来看一下什么是URI    </p>
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p>   &lt;&lt;相思&gt;&gt;  –王维  </p>
+<p>红豆生南国，春来发几枝。<br>  愿君多采撷，此物最相思。</p>
+</blockquote>
+</blockquote>
+<h4 id="1、URI和URL含义："><a href="#1、URI和URL含义：" class="headerlink" title="1、URI和URL含义："></a>1、URI和URL含义：</h4><p>在理解URL之前先来看一下什么是URI    </p>
 <h5 id="1-1-什么是URI？"><a href="#1-1-什么是URI？" class="headerlink" title="1.1 什么是URI？"></a>1.1 什么是URI？</h5><p>简单点说：URI就是<strong>通用资源标志符</strong>，不理解是吧，我第一次听说也是不理解。<br>进一步说：网络上的一些资源（文档、图片、音频、视频、程序等）都是有一些通用资源标识（Universal Resource Identifier， URI）进行定位的。也就是说如果你想要在网络上找到特定的这些资源，只需知道他们的URI，就可以进行定位，从而找到他们。  </p>
 <p>通常情况下URI由三部分组成：       </p>
 <blockquote>
@@ -673,8 +830,13 @@ println(finalValue);
     
     <summary type="html">
     
-      &lt;h4 id=&quot;1、URI和URL含义：&quot;&gt;&lt;a href=&quot;#1、URI和URL含义：&quot; class=&quot;headerlink&quot; title=&quot;1、URI和URL含义：&quot;&gt;&lt;/a&gt;1、URI和URL含义：&lt;/h4&gt;&lt;p&gt;在理解URL之前先来看一下什么是URI    &lt;/p&gt;
-&lt;h
+      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;   &amp;lt;&amp;lt;相思&amp;gt;&amp;gt;  –王维  &lt;/p&gt;
+&lt;p&gt;红豆生南国，春来发几枝。&lt;br&gt;  愿君多采撷，此物最相思。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockq
     
     </summary>
     
@@ -690,9 +852,15 @@ println(finalValue);
     <link href="http://suxianglun.github.io/2017/04/19/howCreateMyBlog/"/>
     <id>http://suxianglun.github.io/2017/04/19/howCreateMyBlog/</id>
     <published>2017-04-19T01:19:42.000Z</published>
-    <updated>2017-05-24T07:08:25.000Z</updated>
+    <updated>2017-07-24T07:39:19.000Z</updated>
     
-    <content type="html"><![CDATA[<p>从搭建到成功以及本文的诞生，前后花了两天时间，真是一把辛酸泪，感觉还是挺费事的，中途一度想放弃，可还是咬牙坚持下来了，但看到结果后感觉一切的辛苦都是值得的。过程中一定要有耐心，毕竟需要用到的东西挺多的，比如：node.js、git、 github、hexo其中的知识。废话不多说了，详情如下：</p>
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p>《竹里馆》–王维<br>独坐幽篁里，弹琴复长啸。<br>深林人不知，明月来相照。</p>
+</blockquote>
+</blockquote>
+<p>从搭建到成功以及本文的诞生，前后花了两天时间，真是一把辛酸泪，感觉还是挺费事的，中途一度想放弃，可还是咬牙坚持下来了，但看到结果后感觉一切的辛苦都是值得的。过程中一定要有耐心，毕竟需要用到的东西挺多的，比如：node.js、git、 github、hexo其中的知识。废话不多说了，详情如下：</p>
 <h3 id="一、系统环境配置："><a href="#一、系统环境配置：" class="headerlink" title="一、系统环境配置："></a>一、系统环境配置：</h3><p>要想利用Hexo、GitHub搭建个人博客，首先要安装Node.js、git：    </p>
 <h4 id="1、Node-js安装："><a href="#1、Node-js安装：" class="headerlink" title="1、Node.js安装："></a>1、Node.js安装：</h4><p><a href="http://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="external">下载Node.js</a>     </p>
 <h4 id="或者通过如下命令安装："><a href="#或者通过如下命令安装：" class="headerlink" title="或者通过如下命令安装："></a>或者通过如下命令安装：</h4><blockquote>
@@ -812,7 +980,13 @@ println(finalValue);
     
     <summary type="html">
     
-      &lt;p&gt;从搭建到成功以及本文的诞生，前后花了两天时间，真是一把辛酸泪，感觉还是挺费事的，中途一度想放弃，可还是咬牙坚持下来了，但看到结果后感觉一切的辛苦都是值得的。过程中一定要有耐心，毕竟需要用到的东西挺多的，比如：node.js、git、 github、hexo其中的知识。废话不
+      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;《竹里馆》–王维&lt;br&gt;独坐幽篁里，弹琴复长啸。&lt;br&gt;深林人不知，明月来相照。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;从搭建到成功以及本文的诞生，前后花
     
     </summary>
     
@@ -828,9 +1002,15 @@ println(finalValue);
     <link href="http://suxianglun.github.io/2017/04/05/Android%20studio%E4%B8%8BJNI%E5%92%8CNDK%E5%BC%80%E5%8F%91/"/>
     <id>http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/</id>
     <published>2017-04-05T03:11:48.000Z</published>
-    <updated>2017-05-24T07:06:54.000Z</updated>
+    <updated>2017-07-24T07:46:02.000Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="1-下载Ndk并配置"><a href="#1-下载Ndk并配置" class="headerlink" title="1.下载Ndk并配置"></a>1.下载Ndk并配置</h3><p>点菜单栏的File-&gt;ProjectStructure…-&gt;在打开的窗口中左侧选中SDKLocation-&gt;<br>在右侧Android NDK Location中填入NDK目录所在路径，如下图所示：  </p>
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p>《登鹳雀楼》–王之涣<br>白日依山尽，黄河入海流。<br>欲穷千里目，更上一层楼。</p>
+</blockquote>
+</blockquote>
+<h3 id="1-下载Ndk并配置"><a href="#1-下载Ndk并配置" class="headerlink" title="1.下载Ndk并配置"></a>1.下载Ndk并配置</h3><p>点菜单栏的File-&gt;ProjectStructure…-&gt;在打开的窗口中左侧选中SDKLocation-&gt;<br>在右侧Android NDK Location中填入NDK目录所在路径，如下图所示：  </p>
 <p><img src="http://img.blog.csdn.net/20160516224637401?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><img src="http://img.blog.csdn.net/20160516224841000?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
 <h3 id="2-新建项目JniDemo"><a href="#2-新建项目JniDemo" class="headerlink" title="2. 新建项目JniDemo"></a>2. 新建项目JniDemo</h3><h4 id="1-新建类JniUtil-声明所需要的native方法：getJniAdd-int-a-int-b-代码如下"><a href="#1-新建类JniUtil-声明所需要的native方法：getJniAdd-int-a-int-b-代码如下" class="headerlink" title="1. 新建类JniUtil,声明所需要的native方法：getJniAdd(int a,int b),代码如下:"></a>1. 新建类JniUtil,声明所需要的native方法：getJniAdd(int a,int b),代码如下:</h4><pre><code>public class JniUtil {
         static {
@@ -879,7 +1059,13 @@ JNIEXPORT jint JNICALL Java_com_richsoft_jnidemo_JniUtil_getJniAdd
     
     <summary type="html">
     
-      &lt;h3 id=&quot;1-下载Ndk并配置&quot;&gt;&lt;a href=&quot;#1-下载Ndk并配置&quot; class=&quot;headerlink&quot; title=&quot;1.下载Ndk并配置&quot;&gt;&lt;/a&gt;1.下载Ndk并配置&lt;/h3&gt;&lt;p&gt;点菜单栏的File-&amp;gt;ProjectStructure…-&amp;gt;在打
+      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;《登鹳雀楼》–王之涣&lt;br&gt;白日依山尽，黄河入海流。&lt;br&gt;欲穷千里目，更上一层楼。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;1-下载Ndk并配置
     
     </summary>
     

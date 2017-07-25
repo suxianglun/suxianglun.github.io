@@ -20,18 +20,18 @@
     
     
     <meta name="keywords" content="Java">
-    <meta name="description" content="什么是线程：一个线程是进程的一个顺序执行流。同类的多个线程共享一块内存空间和一组系统资源，一个进程中可以包含多个线程。     进程与线程的区别一个进程至少有一个线程。线程的划分尺度小于进程，使得多线程程序的并发性高。另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率。 线程状态 新建状态当用new操作符创建一个线程时。此时程序还没有开始运行线程中的代码。">
+    <meta name="description" content="按照惯例先吟诗一首：    送上人唐代：刘长卿孤云将野鹤，岂向人间住。莫买沃洲山，时人已知处。   什么是线程：一个线程是进程的一个顺序执行流。同类的多个线程共享一块内存空间和一组系统资源，一个进程中可以包含多个线程。     进程与线程的区别一个进程至少有一个线程。线程的划分尺度小于进程，使得多线程程序的并发性高。另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java线程的五种状态">
 <meta property="og:url" content="http://suxianglun.github.io/2017/05/26/Java线程的状态 /index.html">
 <meta property="og:site_name" content="苏湘伦的Blog">
-<meta property="og:description" content="什么是线程：一个线程是进程的一个顺序执行流。同类的多个线程共享一块内存空间和一组系统资源，一个进程中可以包含多个线程。     进程与线程的区别一个进程至少有一个线程。线程的划分尺度小于进程，使得多线程程序的并发性高。另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率。 线程状态 新建状态当用new操作符创建一个线程时。此时程序还没有开始运行线程中的代码。">
+<meta property="og:description" content="按照惯例先吟诗一首：    送上人唐代：刘长卿孤云将野鹤，岂向人间住。莫买沃洲山，时人已知处。   什么是线程：一个线程是进程的一个顺序执行流。同类的多个线程共享一块内存空间和一组系统资源，一个进程中可以包含多个线程。     进程与线程的区别一个进程至少有一个线程。线程的划分尺度小于进程，使得多线程程序的并发性高。另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序">
 <meta property="og:image" content="http://pdf7.tarena.com.cn/tts8_source/ttsPage/JAVA/JSD_N_V06/JAVASE02/DAY04/SUPERDOC/01/index.files/image001.png">
-<meta property="og:updated_time" content="2017-05-27T01:28:24.000Z">
+<meta property="og:updated_time" content="2017-07-25T06:27:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java线程的五种状态">
-<meta name="twitter:description" content="什么是线程：一个线程是进程的一个顺序执行流。同类的多个线程共享一块内存空间和一组系统资源，一个进程中可以包含多个线程。     进程与线程的区别一个进程至少有一个线程。线程的划分尺度小于进程，使得多线程程序的并发性高。另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率。 线程状态 新建状态当用new操作符创建一个线程时。此时程序还没有开始运行线程中的代码。">
+<meta name="twitter:description" content="按照惯例先吟诗一首：    送上人唐代：刘长卿孤云将野鹤，岂向人间住。莫买沃洲山，时人已知处。   什么是线程：一个线程是进程的一个顺序执行流。同类的多个线程共享一块内存空间和一组系统资源，一个进程中可以包含多个线程。     进程与线程的区别一个进程至少有一个线程。线程的划分尺度小于进程，使得多线程程序的并发性高。另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序">
 <meta name="twitter:image" content="http://pdf7.tarena.com.cn/tts8_source/ttsPage/JAVA/JSD_N_V06/JAVASE02/DAY04/SUPERDOC/01/index.files/image001.png">
     
         <link rel="alternate" type="application/atom+xml" title="苏湘伦的Blog" href="/atom.xml">
@@ -197,7 +197,13 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h4 id="什么是线程："><a href="#什么是线程：" class="headerlink" title="什么是线程："></a>什么是线程：</h4><p>一个线程是进程的一个顺序执行流。同类的多个线程共享一块内存空间和一组系统资源，一个进程中可以包含多个线程。    </p>
+            <p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p> 送上人<br>唐代：刘长卿<br>孤云将野鹤，岂向人间住。<br>莫买沃洲山，时人已知处。</p>
+</blockquote>
+</blockquote>
+<h4 id="什么是线程："><a href="#什么是线程：" class="headerlink" title="什么是线程："></a>什么是线程：</h4><p>一个线程是进程的一个顺序执行流。同类的多个线程共享一块内存空间和一组系统资源，一个进程中可以包含多个线程。    </p>
 <h4 id="进程与线程的区别"><a href="#进程与线程的区别" class="headerlink" title="进程与线程的区别"></a>进程与线程的区别</h4><p>一个进程至少有一个线程。线程的划分尺度小于进程，使得多线程程序的并发性高。另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率。</p>
 <h4 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h4><p><img src="http://pdf7.tarena.com.cn/tts8_source/ttsPage/JAVA/JSD_N_V06/JAVASE02/DAY04/SUPERDOC/01/index.files/image001.png" alt=""></p>
 <h5 id="新建状态"><a href="#新建状态" class="headerlink" title="新建状态"></a>新建状态</h5><p>当用new操作符创建一个线程时。此时程序还没有开始运行线程中的代码。</p>
@@ -221,7 +227,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-05-27T01:28:24.000Z" itemprop="dateUpdated">2017-05-27 09:28:24</time>
+    最后更新时间：<time datetime="2017-07-25T06:27:04.000Z" itemprop="dateUpdated">2017-07-25 14:27:04</time>
 </span><br>
 
 

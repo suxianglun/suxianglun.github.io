@@ -20,13 +20,13 @@
     
     
     <meta name="keywords" content="Android">
-    <meta name="description" content="1.下载Ndk并配置点菜单栏的File-&amp;gt;ProjectStructure…-&amp;gt;在打开的窗口中左侧选中SDKLocation-&amp;gt;在右侧Android NDK Location中填入NDK目录所在路径，如下图所示：    2. 新建项目JniDemo1. 新建类JniUtil,声明所需要的native方法：getJniAdd(int a,int b),代码如下:public cla">
+    <meta name="description" content="按照惯例先吟诗一首：   《登鹳雀楼》–王之涣白日依山尽，黄河入海流。欲穷千里目，更上一层楼。   1.下载Ndk并配置点菜单栏的File-&amp;gt;ProjectStructure…-&amp;gt;在打开的窗口中左侧选中SDKLocation-&amp;gt;在右侧Android NDK Location中填入NDK目录所在路径，如下图所示：    2. 新建项目JniDemo1. 新建类JniUtil,声明所">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android studio下JNI开发">
 <meta property="og:url" content="http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/index.html">
 <meta property="og:site_name" content="苏湘伦的Blog">
-<meta property="og:description" content="1.下载Ndk并配置点菜单栏的File-&amp;gt;ProjectStructure…-&amp;gt;在打开的窗口中左侧选中SDKLocation-&amp;gt;在右侧Android NDK Location中填入NDK目录所在路径，如下图所示：    2. 新建项目JniDemo1. 新建类JniUtil,声明所需要的native方法：getJniAdd(int a,int b),代码如下:public cla">
+<meta property="og:description" content="按照惯例先吟诗一首：   《登鹳雀楼》–王之涣白日依山尽，黄河入海流。欲穷千里目，更上一层楼。   1.下载Ndk并配置点菜单栏的File-&amp;gt;ProjectStructure…-&amp;gt;在打开的窗口中左侧选中SDKLocation-&amp;gt;在右侧Android NDK Location中填入NDK目录所在路径，如下图所示：    2. 新建项目JniDemo1. 新建类JniUtil,声明所">
 <meta property="og:image" content="http://img.blog.csdn.net/20160516224637401?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
 <meta property="og:image" content="http://img.blog.csdn.net/20160516224841000?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4260213-b3c868adb09b54b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -36,10 +36,10 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4260213-24939b37659a4c28.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4260213-3fee35f92cf1bb2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4260213-a9a4e1f1bff2e324.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-05-24T07:06:54.000Z">
+<meta property="og:updated_time" content="2017-07-24T07:46:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android studio下JNI开发">
-<meta name="twitter:description" content="1.下载Ndk并配置点菜单栏的File-&amp;gt;ProjectStructure…-&amp;gt;在打开的窗口中左侧选中SDKLocation-&amp;gt;在右侧Android NDK Location中填入NDK目录所在路径，如下图所示：    2. 新建项目JniDemo1. 新建类JniUtil,声明所需要的native方法：getJniAdd(int a,int b),代码如下:public cla">
+<meta name="twitter:description" content="按照惯例先吟诗一首：   《登鹳雀楼》–王之涣白日依山尽，黄河入海流。欲穷千里目，更上一层楼。   1.下载Ndk并配置点菜单栏的File-&amp;gt;ProjectStructure…-&amp;gt;在打开的窗口中左侧选中SDKLocation-&amp;gt;在右侧Android NDK Location中填入NDK目录所在路径，如下图所示：    2. 新建项目JniDemo1. 新建类JniUtil,声明所">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20160516224637401?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
     
         <link rel="alternate" type="application/atom+xml" title="苏湘伦的Blog" href="/atom.xml">
@@ -205,7 +205,13 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h3 id="1-下载Ndk并配置"><a href="#1-下载Ndk并配置" class="headerlink" title="1.下载Ndk并配置"></a>1.下载Ndk并配置</h3><p>点菜单栏的File-&gt;ProjectStructure…-&gt;在打开的窗口中左侧选中SDKLocation-&gt;<br>在右侧Android NDK Location中填入NDK目录所在路径，如下图所示：  </p>
+            <p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p>《登鹳雀楼》–王之涣<br>白日依山尽，黄河入海流。<br>欲穷千里目，更上一层楼。</p>
+</blockquote>
+</blockquote>
+<h3 id="1-下载Ndk并配置"><a href="#1-下载Ndk并配置" class="headerlink" title="1.下载Ndk并配置"></a>1.下载Ndk并配置</h3><p>点菜单栏的File-&gt;ProjectStructure…-&gt;在打开的窗口中左侧选中SDKLocation-&gt;<br>在右侧Android NDK Location中填入NDK目录所在路径，如下图所示：  </p>
 <p><img src="http://img.blog.csdn.net/20160516224637401?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><img src="http://img.blog.csdn.net/20160516224841000?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
 <h3 id="2-新建项目JniDemo"><a href="#2-新建项目JniDemo" class="headerlink" title="2. 新建项目JniDemo"></a>2. 新建项目JniDemo</h3><h4 id="1-新建类JniUtil-声明所需要的native方法：getJniAdd-int-a-int-b-代码如下"><a href="#1-新建类JniUtil-声明所需要的native方法：getJniAdd-int-a-int-b-代码如下" class="headerlink" title="1. 新建类JniUtil,声明所需要的native方法：getJniAdd(int a,int b),代码如下:"></a>1. 新建类JniUtil,声明所需要的native方法：getJniAdd(int a,int b),代码如下:</h4><pre><code>public class JniUtil {
         static {
@@ -257,7 +263,7 @@ JNIEXPORT jint JNICALL Java_com_richsoft_jnidemo_JniUtil_getJniAdd
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-05-24T07:06:54.000Z" itemprop="dateUpdated">2017-05-24 15:06:54</time>
+    最后更新时间：<time datetime="2017-07-24T07:46:02.000Z" itemprop="dateUpdated">2017-07-24 15:46:02</time>
 </span><br>
 
 

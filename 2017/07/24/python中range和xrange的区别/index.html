@@ -20,17 +20,17 @@
     
     
     <meta name="keywords" content="Python">
-    <meta name="description" content="range(start=None, stop=None, step=None)函数说明：12345Return a list containing an arithmetic progression of integers.       	range(i, j) returns [i, i+1, i+2, ..., j-1]; start (!) defaults to 0.    When st">
+    <meta name="description" content="按照惯例先吟诗一首：   《行宫》–元稹    寥落古行宫，宫花寂寞红。  白头宫女在，闲坐说玄宗。   range(start=None, stop=None, step=None)函数说明：12345Return a list containing an arithmetic progression of integers.       	range(i, j) returns [i, i+1">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python中range和xrange的区别">
 <meta property="og:url" content="http://suxianglun.github.io/2017/07/24/python中range和xrange的区别/index.html">
 <meta property="og:site_name" content="苏湘伦的Blog">
-<meta property="og:description" content="range(start=None, stop=None, step=None)函数说明：12345Return a list containing an arithmetic progression of integers.       	range(i, j) returns [i, i+1, i+2, ..., j-1]; start (!) defaults to 0.    When st">
-<meta property="og:updated_time" content="2017-07-24T07:14:48.000Z">
+<meta property="og:description" content="按照惯例先吟诗一首：   《行宫》–元稹    寥落古行宫，宫花寂寞红。  白头宫女在，闲坐说玄宗。   range(start=None, stop=None, step=None)函数说明：12345Return a list containing an arithmetic progression of integers.       	range(i, j) returns [i, i+1">
+<meta property="og:updated_time" content="2017-07-24T07:33:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python中range和xrange的区别">
-<meta name="twitter:description" content="range(start=None, stop=None, step=None)函数说明：12345Return a list containing an arithmetic progression of integers.       	range(i, j) returns [i, i+1, i+2, ..., j-1]; start (!) defaults to 0.    When st">
+<meta name="twitter:description" content="按照惯例先吟诗一首：   《行宫》–元稹    寥落古行宫，宫花寂寞红。  白头宫女在，闲坐说玄宗。   range(start=None, stop=None, step=None)函数说明：12345Return a list containing an arithmetic progression of integers.       	range(i, j) returns [i, i+1">
     
         <link rel="alternate" type="application/atom+xml" title="苏湘伦的Blog" href="/atom.xml">
     
@@ -195,7 +195,14 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h4 id="range-start-None-stop-None-step-None-函数说明："><a href="#range-start-None-stop-None-step-None-函数说明：" class="headerlink" title="range(start=None, stop=None, step=None)函数说明："></a>range(start=None, stop=None, step=None)函数说明：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Return a list containing an arithmetic progression of integers.     </div><div class="line">  	range(i, j) returns [i, i+1, i+2, ..., j-1]; start (!) defaults to 0.</div><div class="line">    When step is given, it specifies the increment (or decrement).</div><div class="line">    For example, range(4) returns [0, 1, 2, 3].  The end point is omitted!</div><div class="line">    These are exactly the valid indices for a list of 4 elements.</div></pre></td></tr></table></figure>
+            <p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p>《行宫》–元稹   </p>
+<p>寥落古行宫，宫花寂寞红。<br>  白头宫女在，闲坐说玄宗。</p>
+</blockquote>
+</blockquote>
+<h4 id="range-start-None-stop-None-step-None-函数说明："><a href="#range-start-None-stop-None-step-None-函数说明：" class="headerlink" title="range(start=None, stop=None, step=None)函数说明："></a>range(start=None, stop=None, step=None)函数说明：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Return a list containing an arithmetic progression of integers.     </div><div class="line">  	range(i, j) returns [i, i+1, i+2, ..., j-1]; start (!) defaults to 0.</div><div class="line">    When step is given, it specifies the increment (or decrement).</div><div class="line">    For example, range(4) returns [0, 1, 2, 3].  The end point is omitted!</div><div class="line">    These are exactly the valid indices for a list of 4 elements.</div></pre></td></tr></table></figure>
 <p>大致意思就是：range函数返回的是包含一个等差数列的整数列表，根据参数start与stop指定的范围以及step设定的差值，生成一个列表。 如果不指定step默认差值就是1，如果指定step，它指定递增(或递减)，差值就是step.如果不明白举个栗子，如果还不明白就举2个栗子。    </p>
 <p>例子1：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a=range(0,10,2)</div><div class="line">print a</div><div class="line">print type(a)</div></pre></td></tr></table></figure>
@@ -221,7 +228,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-07-24T07:14:48.000Z" itemprop="dateUpdated">2017-07-24 15:14:48</time>
+    最后更新时间：<time datetime="2017-07-24T07:33:47.000Z" itemprop="dateUpdated">2017-07-24 15:33:47</time>
 </span><br>
 
 

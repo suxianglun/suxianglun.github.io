@@ -20,17 +20,17 @@
     
     
     <meta name="keywords" content="Java">
-    <meta name="description" content="join()方法的作用是等待线程销毁。例如在main线程新起一个子线程，子线程需要做一些耗时造作，main线程想要得到子线程执行完成的数据，就必须等到执行完子线程再去执行，这时候就可以用join来解决。 基本使用下面用代码来说明：     MyThread类   1234567891011121314class MyThread04 extends Thread&amp;#123;    @Overrid">
+    <meta name="description" content="按照惯例先吟诗一首：    送崔九唐代：裴迪归山深浅去，须尽丘壑美。莫学武陵人，暂游桃源里。   join()方法的作用是等待线程销毁。例如在main线程新起一个子线程，子线程需要做一些耗时造作，main线程想要得到子线程执行完成的数据，就必须等到执行完子线程再去执行，这时候就可以用join来解决。 基本使用下面用代码来说明：     MyThread类   1234567891011121314">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java线程常用方法之join()">
 <meta property="og:url" content="http://suxianglun.github.io/2017/06/01/Java线程常用方法之join()/index.html">
 <meta property="og:site_name" content="苏湘伦的Blog">
-<meta property="og:description" content="join()方法的作用是等待线程销毁。例如在main线程新起一个子线程，子线程需要做一些耗时造作，main线程想要得到子线程执行完成的数据，就必须等到执行完子线程再去执行，这时候就可以用join来解决。 基本使用下面用代码来说明：     MyThread类   1234567891011121314class MyThread04 extends Thread&amp;#123;    @Overrid">
-<meta property="og:updated_time" content="2017-06-01T08:14:30.000Z">
+<meta property="og:description" content="按照惯例先吟诗一首：    送崔九唐代：裴迪归山深浅去，须尽丘壑美。莫学武陵人，暂游桃源里。   join()方法的作用是等待线程销毁。例如在main线程新起一个子线程，子线程需要做一些耗时造作，main线程想要得到子线程执行完成的数据，就必须等到执行完子线程再去执行，这时候就可以用join来解决。 基本使用下面用代码来说明：     MyThread类   1234567891011121314">
+<meta property="og:updated_time" content="2017-07-25T06:24:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java线程常用方法之join()">
-<meta name="twitter:description" content="join()方法的作用是等待线程销毁。例如在main线程新起一个子线程，子线程需要做一些耗时造作，main线程想要得到子线程执行完成的数据，就必须等到执行完子线程再去执行，这时候就可以用join来解决。 基本使用下面用代码来说明：     MyThread类   1234567891011121314class MyThread04 extends Thread&amp;#123;    @Overrid">
+<meta name="twitter:description" content="按照惯例先吟诗一首：    送崔九唐代：裴迪归山深浅去，须尽丘壑美。莫学武陵人，暂游桃源里。   join()方法的作用是等待线程销毁。例如在main线程新起一个子线程，子线程需要做一些耗时造作，main线程想要得到子线程执行完成的数据，就必须等到执行完子线程再去执行，这时候就可以用join来解决。 基本使用下面用代码来说明：     MyThread类   1234567891011121314">
     
         <link rel="alternate" type="application/atom+xml" title="苏湘伦的Blog" href="/atom.xml">
     
@@ -195,7 +195,13 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>join()方法的作用是等待线程销毁。例如在main线程新起一个子线程，子线程需要做一些耗时造作，main线程想要得到子线程执行完成的数据，就必须等到执行完子线程再去执行，这时候就可以用join来解决。</p>
+            <p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p> 送崔九<br>唐代：裴迪<br>归山深浅去，须尽丘壑美。<br>莫学武陵人，暂游桃源里。</p>
+</blockquote>
+</blockquote>
+<p>join()方法的作用是等待线程销毁。例如在main线程新起一个子线程，子线程需要做一些耗时造作，main线程想要得到子线程执行完成的数据，就必须等到执行完子线程再去执行，这时候就可以用join来解决。</p>
 <h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p>下面用代码来说明：    </p>
 <p><strong>MyThread类</strong>  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class MyThread04 extends Thread&#123;</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        try&#123;</div><div class="line">            int value=(int)(Math.random()*1000);</div><div class="line">            System.out.println(&quot;thread04 value=&quot;+value);</div><div class="line">            Thread.sleep(value);</div><div class="line">        &#125;catch (InterruptedException e)&#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -223,7 +229,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-06-01T08:14:30.000Z" itemprop="dateUpdated">2017-06-01 16:14:30</time>
+    最后更新时间：<time datetime="2017-07-25T06:24:08.000Z" itemprop="dateUpdated">2017-07-25 14:24:08</time>
 </span><br>
 
 
