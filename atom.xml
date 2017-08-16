@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suxianglun.github.io/"/>
-  <updated>2017-07-24T07:33:47.000Z</updated>
+  <updated>2017-08-16T04:46:17.000Z</updated>
   <id>http://suxianglun.github.io/</id>
   
   <author>
@@ -14,6 +14,83 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>if __name__ == &quot;__main__&quot;:是干嘛的?</title>
+    <link href="http://suxianglun.github.io/2017/08/16/name==main%E7%9A%84%E4%BD%9C%E7%94%A8/"/>
+    <id>http://suxianglun.github.io/2017/08/16/name==main的作用/</id>
+    <published>2017-08-16T04:46:17.000Z</published>
+    <updated>2017-08-16T04:46:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p>《宫词·故国三千里》–张祜<br>故国三千里，深宫二十年。<br>一声何满子，双泪落君前。</p>
+</blockquote>
+</blockquote>
+<h4 id="if-name-“main“-是干嘛的"><a href="#if-name-“main“-是干嘛的" class="headerlink" title="if name == “main“:是干嘛的?"></a>if <strong>name</strong> == “<strong>main</strong>“:是干嘛的?</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># Threading example</div><div class="line">import time, thread</div><div class="line"></div><div class="line">def myfunction(string, sleeptime, lock, *args):</div><div class="line">    while 1:</div><div class="line">        lock.acquire()</div><div class="line">        time.sleep(sleeptime)</div><div class="line">        lock.release()</div><div class="line">        time.sleep(sleeptime)</div><div class="line">if __name__ == &quot;__main__&quot;:</div><div class="line">    lock = thread.allocate_lock()</div><div class="line">    thread.start_new_thread(myfunction, (&quot;Thread #: 1&quot;, 2, lock))</div><div class="line">    thread.start_new_thread(myfunction, (&quot;Thread #: 2&quot;, 2, lock))</div></pre></td></tr></table></figure>
+<p>当Python解析器读取一个源文件时,它会执行所有的代码.在执行代码前,会定义一些特殊的变量.例如,如果解析器运行的模块(源文件)作为主程序,它将会把<strong>name</strong>变量设置成”<strong>main</strong>“.如果只是引入其他的模块,<strong>name</strong>变量将会设置成模块的名字.</p>
+<p>假设下面是你的脚本,让我们作为主程序来执行:  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python threading_example.py</div></pre></td></tr></table></figure>
+<p>当设置完特殊变量,它就会执行import语句并且加载这些模块.当遇到def代码段的时候,它就会创建一个函数对象并创建一个名叫myfunction变量指向函数对象.接下来会读取if语句并检查<strong>name</strong>是不是等于”<strong>main</strong>“,如果是的话他就会执行这个代码段.</p>
+<p>这么做的原因是有时你需要你写的模块既可以直接的执行,还可以被当做模块导入到其他模块中去.通过检查是不是主函数,可以让你的代码只在它作为主程序运行时执行,而当其他人调用你的模块中的函数的时候不必执行.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;《宫词·故国三千里》–张祜&lt;br&gt;故国三千里，深宫二十年。&lt;br&gt;一声何满子，双泪落君前。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;if-name
+    
+    </summary>
+    
+      <category term="Python" scheme="http://suxianglun.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="http://suxianglun.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决Python2.7的UnicodeEncodeError异常错误</title>
+    <link href="http://suxianglun.github.io/2017/08/16/%E8%A7%A3%E5%86%B3Python2.7UnicodeEncodeError%E5%BC%82%E5%B8%B8%E9%94%99%E8%AF%AF/"/>
+    <id>http://suxianglun.github.io/2017/08/16/解决Python2.7UnicodeEncodeError异常错误/</id>
+    <published>2017-08-16T04:37:55.000Z</published>
+    <updated>2017-08-16T04:41:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>按照惯例先吟诗一首:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">      芙蓉楼送辛渐  </div><div class="line">        </div><div class="line">     (唐代：王昌龄)   </div><div class="line">寒雨连江夜入吴，平明送客楚山孤。    </div><div class="line">洛阳亲友如相问，一片冰心在玉壶。</div></pre></td></tr></table></figure>
+<h3 id="1、解决Python2-7的UnicodeEncodeError-‘ascii’-codec-can’t-encode异常错误"><a href="#1、解决Python2-7的UnicodeEncodeError-‘ascii’-codec-can’t-encode异常错误" class="headerlink" title="1、解决Python2.7的UnicodeEncodeError: ‘ascii’ codec can’t encode异常错误"></a>1、解决Python2.7的UnicodeEncodeError: ‘ascii’ codec can’t encode异常错误</h3><p>最近练习Python爬虫的时候遇到一个错误，先上解决错误前的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">   # coding:utf-8</div><div class="line">import urllib2</div><div class="line">import sysfrom bs4 import BeautifulSoup</div><div class="line">import uniout</div><div class="line">from quote import Quote</div><div class="line"></div><div class="line"></div><div class="line">class Xianqian:</div><div class="line">    def __init__(self):</div><div class="line">        self.url = &apos;http://www.juzimi.com/先秦&apos;</div><div class="line">        self.headers = &#123;&apos;User-Agent&apos;: &apos;Mozilla/5.0 (Windows NT 10.0; Win64; x64)&apos;&#125;</div><div class="line"></div><div class="line">    def get_writer(self):</div><div class="line">        # reload(sys)</div><div class="line">        # sys.setdefaultencoding(&apos;utf-8&apos;)</div><div class="line">       </div><div class="line">        req = urllib2.Request(self.url, headers=self.headers, )</div><div class="line">        res = urllib2.urlopen(req)</div><div class="line">        soup = BeautifulSoup(res.read(), &apos;html.parser&apos;)</div><div class="line">        print soup</div></pre></td></tr></table></figure></p>
+<h3 id="2、出现如下错误"><a href="#2、出现如下错误" class="headerlink" title="2、出现如下错误"></a>2、出现如下错误</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UnicodeEncodeError: &apos;ascii&apos; codec can&apos;t encode characters in position 14-15: ordinal not in range(128)</div></pre></td></tr></table></figure>
+<h3 id="3、分析原因："><a href="#3、分析原因：" class="headerlink" title="3、分析原因："></a>3、分析原因：</h3><p>看了下异常信息，是因为编码问题：Unicode编码与ASCII编码的不兼容，其实这个Python脚本文件是由utf-8编码的,而Python默认环境编码是ascii编码方式，由此Python自然调用ascii编码解码程序去处理字符流，当字符流不属于ascii范围内，就会抛出异常（ordinal not in range(128)）。如果你不知道Python默认环境编码是什么，可以通过下面的方法可以获取:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">import sys</div><div class="line">print sys.getdefaultencoding()</div><div class="line"># &apos;ascii&apos;</div></pre></td></tr></table></figure>
+<h3 id="4、解决方案："><a href="#4、解决方案：" class="headerlink" title="4、解决方案："></a>4、解决方案：</h3><p>通过sys.setdefaultencoding(‘utf-8)设置Python默认环境编码为utf-8，代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">import sys</div><div class="line">sys.setdefaultencoding(‘utf-8)</div></pre></td></tr></table></figure>
+<p>但是运行之后出现了如下错误:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">AttributeError: &apos;module&apos; object has no attribute &apos;setdefaultencoding&apos;</div></pre></td></tr></table></figure>
+<p>意思是说sys没有setdefaultencoding()这个方法，其实是有的，只不过是先需要reload(sys)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">import sys</div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(&apos;utf-8&apos;)</div></pre></td></tr></table></figure>
+<p>这样就可以正常运行了<br>修改后的代码如下: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"># coding:utf-8</div><div class="line">import urllib2</div><div class="line">import sys</div><div class="line">from bs4 import BeautifulSoup</div><div class="line">import uniout</div><div class="line">from quote import Quote</div><div class="line"></div><div class="line"></div><div class="line">class Xianqian:</div><div class="line">    def __init__(self):</div><div class="line">        self.url = &apos;http://www.juzimi.com/&apos;</div><div class="line">        self.headers = &#123;&apos;User-Agent&apos;: &apos;Mozilla/5.0 (Windows NT 10.0; Win64; x64)&apos;&#125;</div><div class="line"></div><div class="line">    def get_writer(self):</div><div class="line">        reload(sys)</div><div class="line">        sys.setdefaultencoding(&apos;utf-8&apos;)</div><div class="line">        quote = Quote()</div><div class="line">        req = urllib2.Request(self.url, headers=self.headers)</div><div class="line">        res = urllib2.urlopen(req)</div><div class="line">        soup = BeautifulSoup(res.read(), &apos;html.parser&apos;)</div><div class="line">        print soup</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;按照惯例先吟诗一首:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div 
+    
+    </summary>
+    
+      <category term="Python" scheme="http://suxianglun.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="http://suxianglun.github.io/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>python中range和xrange的区别</title>

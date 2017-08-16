@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>解决Python2.7的UnicodeEncodeError异常错误 | 苏湘伦的Blog | 求知若渴，虚怀若谷</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Python">
+    <meta name="description" content="按照惯例先吟诗一首: 12345      芙蓉楼送辛渐               (唐代：王昌龄)   寒雨连江夜入吴，平明送客楚山孤。    洛阳亲友如相问，一片冰心在玉壶。 1、解决Python2.7的UnicodeEncodeError: ‘ascii’ codec can’t encode异常错误最近练习Python爬虫的时候遇到一个错误，先上解决错误前的代码1234567891011">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决Python2.7的UnicodeEncodeError异常错误">
+<meta property="og:url" content="http://suxianglun.github.io/2017/08/16/解决Python2.7UnicodeEncodeError异常错误/index.html">
+<meta property="og:site_name" content="苏湘伦的Blog">
+<meta property="og:description" content="按照惯例先吟诗一首: 12345      芙蓉楼送辛渐               (唐代：王昌龄)   寒雨连江夜入吴，平明送客楚山孤。    洛阳亲友如相问，一片冰心在玉壶。 1、解决Python2.7的UnicodeEncodeError: ‘ascii’ codec can’t encode异常错误最近练习Python爬虫的时候遇到一个错误，先上解决错误前的代码1234567891011">
+<meta property="og:updated_time" content="2017-08-16T04:41:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="解决Python2.7的UnicodeEncodeError异常错误">
+<meta name="twitter:description" content="按照惯例先吟诗一首: 12345      芙蓉楼送辛渐               (唐代：王昌龄)   寒雨连江夜入吴，平明送客楚山孤。    洛阳亲友如相问，一片冰心在玉壶。 1、解决Python2.7的UnicodeEncodeError: ‘ascii’ codec can’t encode异常错误最近练习Python爬虫的时候遇到一个错误，先上解决错误前的代码1234567891011">
+    
+        <link rel="alternate" type="application/atom+xml" title="苏湘伦的Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpeg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">苏湘伦</h5>
+          <a href="mailto:suxianglun@163.com" title="suxianglun@163.com" class="mail">suxianglun@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                首页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">解决Python2.7的UnicodeEncodeError异常错误</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">解决Python2.7的UnicodeEncodeError异常错误</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-16T04:37:55.000Z" itemprop="datePublished" class="page-time">
+  2017-08-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python/">Python</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、解决Python2-7的UnicodeEncodeError-‘ascii’-codec-can’t-encode异常错误"><span class="post-toc-number">1.</span> <span class="post-toc-text">1、解决Python2.7的UnicodeEncodeError: ‘ascii’ codec can’t encode异常错误</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、出现如下错误"><span class="post-toc-number">2.</span> <span class="post-toc-text">2、出现如下错误</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、分析原因："><span class="post-toc-number">3.</span> <span class="post-toc-text">3、分析原因：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4、解决方案："><span class="post-toc-number">4.</span> <span class="post-toc-text">4、解决方案：</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-解决Python2.7UnicodeEncodeError异常错误"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">解决Python2.7的UnicodeEncodeError异常错误</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-16 12:37:55" datetime="2017-08-16T04:37:55.000Z"  itemprop="datePublished">2017-08-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python/">Python</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>按照惯例先吟诗一首:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">      芙蓉楼送辛渐  </div><div class="line">        </div><div class="line">     (唐代：王昌龄)   </div><div class="line">寒雨连江夜入吴，平明送客楚山孤。    </div><div class="line">洛阳亲友如相问，一片冰心在玉壶。</div></pre></td></tr></table></figure>
+<h3 id="1、解决Python2-7的UnicodeEncodeError-‘ascii’-codec-can’t-encode异常错误"><a href="#1、解决Python2-7的UnicodeEncodeError-‘ascii’-codec-can’t-encode异常错误" class="headerlink" title="1、解决Python2.7的UnicodeEncodeError: ‘ascii’ codec can’t encode异常错误"></a>1、解决Python2.7的UnicodeEncodeError: ‘ascii’ codec can’t encode异常错误</h3><p>最近练习Python爬虫的时候遇到一个错误，先上解决错误前的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">   # coding:utf-8</div><div class="line">import urllib2</div><div class="line">import sysfrom bs4 import BeautifulSoup</div><div class="line">import uniout</div><div class="line">from quote import Quote</div><div class="line"></div><div class="line"></div><div class="line">class Xianqian:</div><div class="line">    def __init__(self):</div><div class="line">        self.url = &apos;http://www.juzimi.com/先秦&apos;</div><div class="line">        self.headers = &#123;&apos;User-Agent&apos;: &apos;Mozilla/5.0 (Windows NT 10.0; Win64; x64)&apos;&#125;</div><div class="line"></div><div class="line">    def get_writer(self):</div><div class="line">        # reload(sys)</div><div class="line">        # sys.setdefaultencoding(&apos;utf-8&apos;)</div><div class="line">       </div><div class="line">        req = urllib2.Request(self.url, headers=self.headers, )</div><div class="line">        res = urllib2.urlopen(req)</div><div class="line">        soup = BeautifulSoup(res.read(), &apos;html.parser&apos;)</div><div class="line">        print soup</div></pre></td></tr></table></figure></p>
+<h3 id="2、出现如下错误"><a href="#2、出现如下错误" class="headerlink" title="2、出现如下错误"></a>2、出现如下错误</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UnicodeEncodeError: &apos;ascii&apos; codec can&apos;t encode characters in position 14-15: ordinal not in range(128)</div></pre></td></tr></table></figure>
+<h3 id="3、分析原因："><a href="#3、分析原因：" class="headerlink" title="3、分析原因："></a>3、分析原因：</h3><p>看了下异常信息，是因为编码问题：Unicode编码与ASCII编码的不兼容，其实这个Python脚本文件是由utf-8编码的,而Python默认环境编码是ascii编码方式，由此Python自然调用ascii编码解码程序去处理字符流，当字符流不属于ascii范围内，就会抛出异常（ordinal not in range(128)）。如果你不知道Python默认环境编码是什么，可以通过下面的方法可以获取:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">import sys</div><div class="line">print sys.getdefaultencoding()</div><div class="line"># &apos;ascii&apos;</div></pre></td></tr></table></figure>
+<h3 id="4、解决方案："><a href="#4、解决方案：" class="headerlink" title="4、解决方案："></a>4、解决方案：</h3><p>通过sys.setdefaultencoding(‘utf-8)设置Python默认环境编码为utf-8，代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">import sys</div><div class="line">sys.setdefaultencoding(‘utf-8)</div></pre></td></tr></table></figure>
+<p>但是运行之后出现了如下错误:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">AttributeError: &apos;module&apos; object has no attribute &apos;setdefaultencoding&apos;</div></pre></td></tr></table></figure>
+<p>意思是说sys没有setdefaultencoding()这个方法，其实是有的，只不过是先需要reload(sys)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">import sys</div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(&apos;utf-8&apos;)</div></pre></td></tr></table></figure>
+<p>这样就可以正常运行了<br>修改后的代码如下: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"># coding:utf-8</div><div class="line">import urllib2</div><div class="line">import sys</div><div class="line">from bs4 import BeautifulSoup</div><div class="line">import uniout</div><div class="line">from quote import Quote</div><div class="line"></div><div class="line"></div><div class="line">class Xianqian:</div><div class="line">    def __init__(self):</div><div class="line">        self.url = &apos;http://www.juzimi.com/&apos;</div><div class="line">        self.headers = &#123;&apos;User-Agent&apos;: &apos;Mozilla/5.0 (Windows NT 10.0; Win64; x64)&apos;&#125;</div><div class="line"></div><div class="line">    def get_writer(self):</div><div class="line">        reload(sys)</div><div class="line">        sys.setdefaultencoding(&apos;utf-8&apos;)</div><div class="line">        quote = Quote()</div><div class="line">        req = urllib2.Request(self.url, headers=self.headers)</div><div class="line">        res = urllib2.urlopen(req)</div><div class="line">        soup = BeautifulSoup(res.read(), &apos;html.parser&apos;)</div><div class="line">        print soup</div></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-16T04:41:42.000Z" itemprop="dateUpdated">2017-08-16 12:41:42</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/08/16/解决Python2.7UnicodeEncodeError异常错误/" target="_blank" rel="external">http://suxianglun.github.io/2017/08/16/解决Python2.7UnicodeEncodeError异常错误/</a>
+        
+    </div>
+    <footer>
+        <a href="http://suxianglun.github.io">
+            <img src="/img/avatar.jpeg" alt="苏湘伦">
+            苏湘伦
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/08/16/解决Python2.7UnicodeEncodeError异常错误/&title=《解决Python2.7的UnicodeEncodeError异常错误》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/08/16/解决Python2.7UnicodeEncodeError异常错误/&title=《解决Python2.7的UnicodeEncodeError异常错误》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/08/16/解决Python2.7UnicodeEncodeError异常错误/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《解决Python2.7的UnicodeEncodeError异常错误》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/08/16/解决Python2.7UnicodeEncodeError异常错误/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/08/16/解决Python2.7UnicodeEncodeError异常错误/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/07/24/python中range和xrange的区别/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">python中range和xrange的区别</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/16/name==main的作用/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">if __name__ == &quot;__main__&quot;:是干嘛的?</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="解决Python2.7UnicodeEncodeError异常错误" data-title="解决Python2.7的UnicodeEncodeError异常错误" data-url="http://suxianglun.github.io/2017/08/16/解决Python2.7UnicodeEncodeError异常错误/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpeg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>苏湘伦 &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/08/16/解决Python2.7UnicodeEncodeError异常错误/&title=《解决Python2.7的UnicodeEncodeError异常错误》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/08/16/解决Python2.7UnicodeEncodeError异常错误/&title=《解决Python2.7的UnicodeEncodeError异常错误》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/08/16/解决Python2.7UnicodeEncodeError异常错误/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《解决Python2.7的UnicodeEncodeError异常错误》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/08/16/解决Python2.7UnicodeEncodeError异常错误/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/08/16/解决Python2.7UnicodeEncodeError异常错误/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADJ0lEQVR42u3aSW4bQRAEQP3/0/JVhmA6s2oMuZvBEyEuM9E8pGr5+Igfn18eX//y/fn3T+2f51d5+IGNjY19CPvz5SN5z1Ps5D6T59EdYmNjY1/Hfip+XjOS97wOsH2UYmNjY2O/jorkOJLISQqh19+MjY2NjZ23eGbNoLwcSgokbGxsbOxNID11WHlMzppf2NjY2Leyn23N/+zzfzLfxsbGxv6P2ZsCIGkPzW5rE2ORAhsbG/si9r7ps2nWP/XO9v6xsbGxb2UnjHaBZlbkJEPfWRBGJ4qNjY19IDu/ZL6CMxsAtEczWyfCxsbGvo+dfKwdx84KieTV/RFgY2Nj38TOv2LWTmqRebDlIbrKQ2xsbOxD2HlsbJr1SasoHy23Jc0f59vY2NjYh7PrzlOcApvhQdtgykcF2NjY2Ley2yHuvknUhlD7Y+TjamxsbOzT2bPx6qyhMzvEdpCcHDc2Njb2fex8mDq7zCaokoNI9nCGvwA2Njb2IezZv/vJo42l2XggOeLfnmNjY2NfxH5qFaYdFefx2Q4Jhg0pbGxs7MPZ+xDKW0X5Yk0eb8MBMzY2NvYV7E1jaBM5+WfbV4vCAxsbG/sK9qwF374nHzO0o9w2zKLFHWxsbOyj2LN/69sb2pQie3a0soONjY19LDvfY8lffbZsmC0VYWNjY78bOwmVljcbD7dD3E0JhI2NjX0He19szBr6ybfNmk3DZR1sbGzsq9ntLe6bSkX2lvFZBBg2Njb2Iez9okw0SY6jZROK+/UgbGxs7HPZefN9s4gzW8dpx8D5MBgbGxv7PnY73N0UD23ZM2sw/eW62NjY2Nexk6hol2OSm2i/YbagWVQw2NjY2Mey88bQ7Bbz4mc2okgWd7CxsbHvY88iKp82bNpMsyZUdBzY2NjYF7HbAJiVB7NhQLvQ89RVsLGxsU9kt82azfJN8mpbhCTHjY2Njf0O7DYYNo2nZNVmthJUHC42Njb2G7PzptKsfb8fJCcrQdjY2NjYbZEwG+tuCh5sbGzsd2O3sdEu7iTRMlumbGMMGxsb+z52Wyq0RUXL2xQqbcRiY2NjH87+BXttU++8jR6MAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '心若有桃源，何处不是水云间';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '以梦为马，仗剑走天涯';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

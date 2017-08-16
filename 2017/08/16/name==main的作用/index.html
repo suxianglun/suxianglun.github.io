@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>if __name__ == &quot;__main__&quot;:是干嘛的? | 苏湘伦的Blog | 求知若渴，虚怀若谷</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Python">
+    <meta name="description" content="按照惯例先吟诗一首：   《宫词·故国三千里》–张祜故国三千里，深宫二十年。一声何满子，双泪落君前。   if name == “main“:是干嘛的?12345678910111213# Threading exampleimport time, threaddef myfunction(string, sleeptime, lock, *args):    while 1:        lo">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="if __name__ == "__main__":是干嘛的?">
+<meta property="og:url" content="http://suxianglun.github.io/2017/08/16/name==main的作用/index.html">
+<meta property="og:site_name" content="苏湘伦的Blog">
+<meta property="og:description" content="按照惯例先吟诗一首：   《宫词·故国三千里》–张祜故国三千里，深宫二十年。一声何满子，双泪落君前。   if name == “main“:是干嘛的?12345678910111213# Threading exampleimport time, threaddef myfunction(string, sleeptime, lock, *args):    while 1:        lo">
+<meta property="og:updated_time" content="2017-08-16T04:46:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="if __name__ == "__main__":是干嘛的?">
+<meta name="twitter:description" content="按照惯例先吟诗一首：   《宫词·故国三千里》–张祜故国三千里，深宫二十年。一声何满子，双泪落君前。   if name == “main“:是干嘛的?12345678910111213# Threading exampleimport time, threaddef myfunction(string, sleeptime, lock, *args):    while 1:        lo">
+    
+        <link rel="alternate" type="application/atom+xml" title="苏湘伦的Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpeg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">苏湘伦</h5>
+          <a href="mailto:suxianglun@163.com" title="suxianglun@163.com" class="mail">suxianglun@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                首页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">if __name__ == &quot;__main__&quot;:是干嘛的?</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">if __name__ == &quot;__main__&quot;:是干嘛的?</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-16T04:46:17.000Z" itemprop="datePublished" class="page-time">
+  2017-08-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python/">Python</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#if-name-“main“-是干嘛的"><span class="post-toc-number">1.</span> <span class="post-toc-text">if name == “main“:是干嘛的?</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-name==main的作用"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">if __name__ == "__main__":是干嘛的?</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-16 12:46:17" datetime="2017-08-16T04:46:17.000Z"  itemprop="datePublished">2017-08-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python/">Python</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>按照惯例先吟诗一首：</p>
+<blockquote>
+<blockquote>
+<p>《宫词·故国三千里》–张祜<br>故国三千里，深宫二十年。<br>一声何满子，双泪落君前。</p>
+</blockquote>
+</blockquote>
+<h4 id="if-name-“main“-是干嘛的"><a href="#if-name-“main“-是干嘛的" class="headerlink" title="if name == “main“:是干嘛的?"></a>if <strong>name</strong> == “<strong>main</strong>“:是干嘛的?</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># Threading example</div><div class="line">import time, thread</div><div class="line"></div><div class="line">def myfunction(string, sleeptime, lock, *args):</div><div class="line">    while 1:</div><div class="line">        lock.acquire()</div><div class="line">        time.sleep(sleeptime)</div><div class="line">        lock.release()</div><div class="line">        time.sleep(sleeptime)</div><div class="line">if __name__ == &quot;__main__&quot;:</div><div class="line">    lock = thread.allocate_lock()</div><div class="line">    thread.start_new_thread(myfunction, (&quot;Thread #: 1&quot;, 2, lock))</div><div class="line">    thread.start_new_thread(myfunction, (&quot;Thread #: 2&quot;, 2, lock))</div></pre></td></tr></table></figure>
+<p>当Python解析器读取一个源文件时,它会执行所有的代码.在执行代码前,会定义一些特殊的变量.例如,如果解析器运行的模块(源文件)作为主程序,它将会把<strong>name</strong>变量设置成”<strong>main</strong>“.如果只是引入其他的模块,<strong>name</strong>变量将会设置成模块的名字.</p>
+<p>假设下面是你的脚本,让我们作为主程序来执行:  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python threading_example.py</div></pre></td></tr></table></figure>
+<p>当设置完特殊变量,它就会执行import语句并且加载这些模块.当遇到def代码段的时候,它就会创建一个函数对象并创建一个名叫myfunction变量指向函数对象.接下来会读取if语句并检查<strong>name</strong>是不是等于”<strong>main</strong>“,如果是的话他就会执行这个代码段.</p>
+<p>这么做的原因是有时你需要你写的模块既可以直接的执行,还可以被当做模块导入到其他模块中去.通过检查是不是主函数,可以让你的代码只在它作为主程序运行时执行,而当其他人调用你的模块中的函数的时候不必执行.</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-16T04:46:17.000Z" itemprop="dateUpdated">2017-08-16 12:46:17</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/08/16/name==main的作用/" target="_blank" rel="external">http://suxianglun.github.io/2017/08/16/name==main的作用/</a>
+        
+    </div>
+    <footer>
+        <a href="http://suxianglun.github.io">
+            <img src="/img/avatar.jpeg" alt="苏湘伦">
+            苏湘伦
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/08/16/name==main的作用/&title=《if __name__ == "__main__":是干嘛的?》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/08/16/name==main的作用/&title=《if __name__ == "__main__":是干嘛的?》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/08/16/name==main的作用/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《if __name__ == "__main__":是干嘛的?》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/08/16/name==main的作用/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/08/16/name==main的作用/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/08/16/解决Python2.7UnicodeEncodeError异常错误/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">解决Python2.7的UnicodeEncodeError异常错误</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="name==main的作用" data-title="if __name__ == "__main__":是干嘛的?" data-url="http://suxianglun.github.io/2017/08/16/name==main的作用/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpeg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>苏湘伦 &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/08/16/name==main的作用/&title=《if __name__ == "__main__":是干嘛的?》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/08/16/name==main的作用/&title=《if __name__ == "__main__":是干嘛的?》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/08/16/name==main的作用/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《if __name__ == "__main__":是干嘛的?》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/08/16/name==main的作用/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/08/16/name==main的作用/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3aUY6DMAxFUfa/abqAUeh9djoSzs1X1VLI4cNybF8XXvdi/b1mdf3zPVffbF4yZMh4LeN+XM+P5NtKX0F6BxkyZJzAWEWw588k4JJn8Ze1/F6GDBkycBDkQZmHbBkyZMhIGXxb6VNqwV2GDBnnMNLQWat38ePuD8/iMmTIeCGDV93///NP+hsyZMh4FeMOVydopilmsCsZMmSMZvTTvrQlUDygghaCDBkyZjNqIw79En/tmjiHlSFDxggGCZe1sMibB51xMRkyZMxm8D9zKgnBfFwsCLUyZMgYzUibASk1LdVtmxaRIUPGOEZa1udbqbUcgqOsDBkyDmN0pjZ2ld5SngwZMmYz0qGHWomf/8qPvigEy5AhYzSD17V42pceWdNyngwZMqYySEkrLZaRhmX6Er8gZciQcQCjc3xNi2Wd1mYwbCFDhoxBjP4YRFzED9ulwX1kyJAxlLFrCJW3QvkWgxAsQ4aM0YxOKY2Da02CtMEpQ4aM2YxaUkgSwVpAL45fyJAh4wBGGjRrLYSU0eq+ypAhYyiDpIBpU5MfhjsHaRkyZExl3OHqtx7JHfjgrAwZMk5g9IMdL8bxzfE0NIbJkCHjtQwSZPnW+9MfNbAMGTJOYKSjWgTGR8c2jH3IkCFDRhhwebjsNFCv9A8yZMg4jMEPt2nILnYnZciQcQCDh9F0ROw57UsTyg3lNhkyZLyQwY+OfPCiFqY7mZ4MGTKGMj7sdmqY/NO5OwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '心若有桃源，何处不是水云间';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '以梦为马，仗剑走天涯';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
