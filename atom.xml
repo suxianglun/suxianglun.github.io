@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suxianglun.github.io/"/>
-  <updated>2017-08-16T04:46:17.000Z</updated>
+  <updated>2017-10-30T05:53:50.000Z</updated>
   <id>http://suxianglun.github.io/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android消息机制</title>
+    <link href="http://suxianglun.github.io/2017/10/30/Android%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/"/>
+    <id>http://suxianglun.github.io/2017/10/30/Android消息机制/</id>
+    <published>2017-10-30T03:15:04.000Z</published>
+    <updated>2017-10-30T05:53:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Android消息机制"><a href="#Android消息机制" class="headerlink" title="Android消息机制"></a>Android消息机制</h3><p>读了《Android开发艺术探索》中Android消息机制后对Android消息机制有了一个更深的理解，Android<br>消息机制主要就是Handler运行机制。Handler运行机制需要MessageQueue、Looper来作为支撑。</p>
+<h5 id="1、MessageQueue工作原理"><a href="#1、MessageQueue工作原理" class="headerlink" title="1、MessageQueue工作原理"></a>1、MessageQueue工作原理</h5><p>MessageQueue即消息队列，主要进行两个操作：插入消息和读取消息，分别对应的方法是enqueueMessage()和next(),读取消息伴随着删除操作。MessageQueue命名为消息队列，其实内部却是使用单向链表的数据结构来维护消息队列的，单向链表在数据的插入和删除效率较高，具有优势。enqueueMessage()方法内部是对单链表的操作，next()方法内部是一个死循环，如果消息队列中没有消息，就一直阻塞在那里。</p>
+<h5 id="2、Looper工作原理"><a href="#2、Looper工作原理" class="headerlink" title="2、Looper工作原理"></a>2、Looper工作原理</h5><p>Looper 在消息机制中起到消息循环的作用，Looper.prepare()获得当前线程的Looper对象，然后再通过Looper.loop()开启消息循环。除了prepare（）方法，Looper.prepareMainLooper()方法可以获取主线程的Looper,当然此方法也是通过prepare（）来实现的。Looper.getMainLooper()可以在任何地方获取主线程的Looper对象。Looper还可以退出，通过quit()和quitSafely()，二者区别是quit()是直接退出，quitSafely（）是先设定一个退出标记，然后将消息队列的中已有的消息都处理完后再退出。<br>Looper退出后，Handler send消息时就会报错。Looper.loop()方法执行后才开启消息循环，loop（）方法是一个无限循环，直到MessageQueue.next()返回null时跳出循环。</p>
+<h5 id="3、Handler工作原理"><a href="#3、Handler工作原理" class="headerlink" title="3、Handler工作原理"></a>3、Handler工作原理</h5><p>Handler主要就是进行消息的发送和接受，发送消息主要通过send的一系列方法和post的一系列方法，post方法也是通过send来实现的。Handler发送一条消息只是将该条数据插入Messagequeue中，Messagequeue的next()方法就会将这条消息返回给Looper,Looper收到消息后就开始处理了，最终Looper将消息交给Handler处理，即调用Handler的dispathMessage()。在dispathMessage()方法中先判断msg.callback是否为空，callback是一个Runnable对象，即handler的post()方法中Runnable,如果不为空就调用handleCallback()方法，然后在判断mCallback是否为空，不为空就调用mCallback的handleMessage()方法，mCallback是一个接口，创建Handler handler=new Handler（callback）时需要传一个callback。也就是说我们可以通过callback无须派生一个Handler子类就可以创建Handler，这样最终就调用handler的handMessage()方法。</p>
+<h5 id="4、Handler使用说明"><a href="#4、Handler使用说明" class="headerlink" title="4、Handler使用说明"></a>4、Handler使用说明</h5><p>要想知道当前的Handler是哪个线程的Handler只需知道创建Handler时绑定的是哪个线程的Looper,如果创建的时候没有指定Looper，那就是主线程的Handler，因为只有主线程的Looper已经被获取，其他线程需要手动获取。还有一点就是，在哪个线程使用Handler的send或者post一系列方法，就是从当前Handler所在的线程给Handler本身所属的线程发消息。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Android消息机制&quot;&gt;&lt;a href=&quot;#Android消息机制&quot; class=&quot;headerlink&quot; title=&quot;Android消息机制&quot;&gt;&lt;/a&gt;Android消息机制&lt;/h3&gt;&lt;p&gt;读了《Android开发艺术探索》中Android消息机制后对And
+    
+    </summary>
+    
+      <category term="Android" scheme="http://suxianglun.github.io/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://suxianglun.github.io/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>if __name__ == &quot;__main__&quot;:是干嘛的?</title>

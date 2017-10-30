@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Android消息机制 | 苏湘伦的Blog | 求知若渴，虚怀若谷</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android">
+    <meta name="description" content="Android消息机制读了《Android开发艺术探索》中Android消息机制后对Android消息机制有了一个更深的理解，Android消息机制主要就是Handler运行机制。Handler运行机制需要MessageQueue、Looper来作为支撑。 1、MessageQueue工作原理MessageQueue即消息队列，主要进行两个操作：插入消息和读取消息，分别对应的方法是enqueueM">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android消息机制">
+<meta property="og:url" content="http://suxianglun.github.io/2017/10/30/Android消息机制/index.html">
+<meta property="og:site_name" content="苏湘伦的Blog">
+<meta property="og:description" content="Android消息机制读了《Android开发艺术探索》中Android消息机制后对Android消息机制有了一个更深的理解，Android消息机制主要就是Handler运行机制。Handler运行机制需要MessageQueue、Looper来作为支撑。 1、MessageQueue工作原理MessageQueue即消息队列，主要进行两个操作：插入消息和读取消息，分别对应的方法是enqueueM">
+<meta property="og:updated_time" content="2017-10-30T05:53:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android消息机制">
+<meta name="twitter:description" content="Android消息机制读了《Android开发艺术探索》中Android消息机制后对Android消息机制有了一个更深的理解，Android消息机制主要就是Handler运行机制。Handler运行机制需要MessageQueue、Looper来作为支撑。 1、MessageQueue工作原理MessageQueue即消息队列，主要进行两个操作：插入消息和读取消息，分别对应的方法是enqueueM">
+    
+        <link rel="alternate" type="application/atom+xml" title="苏湘伦的Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpeg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">苏湘伦</h5>
+          <a href="mailto:suxianglun@163.com" title="suxianglun@163.com" class="mail">suxianglun@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                首页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Android消息机制</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Android消息机制</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-30T03:15:04.000Z" itemprop="datePublished" class="page-time">
+  2017-10-30
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Android消息机制"><span class="post-toc-number">1.</span> <span class="post-toc-text">Android消息机制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1、MessageQueue工作原理"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">1、MessageQueue工作原理</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2、Looper工作原理"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">2、Looper工作原理</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3、Handler工作原理"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">3、Handler工作原理</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#4、Handler使用说明"><span class="post-toc-number">1.0.4.</span> <span class="post-toc-text">4、Handler使用说明</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Android消息机制"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Android消息机制</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-30 11:15:04" datetime="2017-10-30T03:15:04.000Z"  itemprop="datePublished">2017-10-30</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="Android消息机制"><a href="#Android消息机制" class="headerlink" title="Android消息机制"></a>Android消息机制</h3><p>读了《Android开发艺术探索》中Android消息机制后对Android消息机制有了一个更深的理解，Android<br>消息机制主要就是Handler运行机制。Handler运行机制需要MessageQueue、Looper来作为支撑。</p>
+<h5 id="1、MessageQueue工作原理"><a href="#1、MessageQueue工作原理" class="headerlink" title="1、MessageQueue工作原理"></a>1、MessageQueue工作原理</h5><p>MessageQueue即消息队列，主要进行两个操作：插入消息和读取消息，分别对应的方法是enqueueMessage()和next(),读取消息伴随着删除操作。MessageQueue命名为消息队列，其实内部却是使用单向链表的数据结构来维护消息队列的，单向链表在数据的插入和删除效率较高，具有优势。enqueueMessage()方法内部是对单链表的操作，next()方法内部是一个死循环，如果消息队列中没有消息，就一直阻塞在那里。</p>
+<h5 id="2、Looper工作原理"><a href="#2、Looper工作原理" class="headerlink" title="2、Looper工作原理"></a>2、Looper工作原理</h5><p>Looper 在消息机制中起到消息循环的作用，Looper.prepare()获得当前线程的Looper对象，然后再通过Looper.loop()开启消息循环。除了prepare（）方法，Looper.prepareMainLooper()方法可以获取主线程的Looper,当然此方法也是通过prepare（）来实现的。Looper.getMainLooper()可以在任何地方获取主线程的Looper对象。Looper还可以退出，通过quit()和quitSafely()，二者区别是quit()是直接退出，quitSafely（）是先设定一个退出标记，然后将消息队列的中已有的消息都处理完后再退出。<br>Looper退出后，Handler send消息时就会报错。Looper.loop()方法执行后才开启消息循环，loop（）方法是一个无限循环，直到MessageQueue.next()返回null时跳出循环。</p>
+<h5 id="3、Handler工作原理"><a href="#3、Handler工作原理" class="headerlink" title="3、Handler工作原理"></a>3、Handler工作原理</h5><p>Handler主要就是进行消息的发送和接受，发送消息主要通过send的一系列方法和post的一系列方法，post方法也是通过send来实现的。Handler发送一条消息只是将该条数据插入Messagequeue中，Messagequeue的next()方法就会将这条消息返回给Looper,Looper收到消息后就开始处理了，最终Looper将消息交给Handler处理，即调用Handler的dispathMessage()。在dispathMessage()方法中先判断msg.callback是否为空，callback是一个Runnable对象，即handler的post()方法中Runnable,如果不为空就调用handleCallback()方法，然后在判断mCallback是否为空，不为空就调用mCallback的handleMessage()方法，mCallback是一个接口，创建Handler handler=new Handler（callback）时需要传一个callback。也就是说我们可以通过callback无须派生一个Handler子类就可以创建Handler，这样最终就调用handler的handMessage()方法。</p>
+<h5 id="4、Handler使用说明"><a href="#4、Handler使用说明" class="headerlink" title="4、Handler使用说明"></a>4、Handler使用说明</h5><p>要想知道当前的Handler是哪个线程的Handler只需知道创建Handler时绑定的是哪个线程的Looper,如果创建的时候没有指定Looper，那就是主线程的Handler，因为只有主线程的Looper已经被获取，其他线程需要手动获取。还有一点就是，在哪个线程使用Handler的send或者post一系列方法，就是从当前Handler所在的线程给Handler本身所属的线程发消息。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-30T05:53:50.000Z" itemprop="dateUpdated">2017-10-30 13:53:50</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/10/30/Android消息机制/" target="_blank" rel="external">http://suxianglun.github.io/2017/10/30/Android消息机制/</a>
+        
+    </div>
+    <footer>
+        <a href="http://suxianglun.github.io">
+            <img src="/img/avatar.jpeg" alt="苏湘伦">
+            苏湘伦
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/10/30/Android消息机制/&title=《Android消息机制》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/10/30/Android消息机制/&title=《Android消息机制》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/10/30/Android消息机制/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android消息机制》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/10/30/Android消息机制/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/10/30/Android消息机制/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/08/16/name==main的作用/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">if __name__ == &quot;__main__&quot;:是干嘛的?</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="Android消息机制" data-title="Android消息机制" data-url="http://suxianglun.github.io/2017/10/30/Android消息机制/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpeg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>苏湘伦 &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/10/30/Android消息机制/&title=《Android消息机制》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/10/30/Android消息机制/&title=《Android消息机制》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/10/30/Android消息机制/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android消息机制》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/10/30/Android消息机制/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/10/30/Android消息机制/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACOElEQVR42u3aS47DIBBFUe9/0+5ppMj4virSEnA9all0wmFQoT7XhZ/74/l8873me/33yvFnPq2f8MiQIWNZxj18+BeMqfyTx//1uBMZMmQcwHja1ngNCbjku3hYf3wvQ4YMGeB6x4MpuTLKkCFDRp9RC6ZpmJYhQ4aMNImtVbpSwM9zcRkyZCzI4FX3///7J/0NGTJkLMW4w6cWZPm27tIjQ4aMvRlp0Z9slLcEggQVtBBkyJCxK6Mz4sDDcb+o9wKTIUPG1gxe9koD4jhYo98BfNAyZMjYm1G7S6ajXWkTIj4yGTJkbM3gF7LaRZCH1wkprgwZMjZlpGX9NNSmCTB5f9WiuAwZMhZn8O3yC19aMhtv+mU/MmTI2JrRGXcgITJtf9ZCuQwZMs5hpGGxdsXkmLSFIEOGjBMYnQGItAlaO6ZW30OGDBnLMorKSetrg2ho2EKGDBkbMUjJrHZFS1PT1uiqDBkyjmGk3UAybPqLkIpKdTJkyNiOkY448BS3Py4WNDVlyJBxMCMdjJhVBYybBzJkyDiAkQbNdNiiNk4RJLQyZMg4hkEakHw9OaBZ5TkZMmTsyrjDJy3rky3WhmIv8vsgQ4aMLRi1Bmct1SRHw5sTE/q0MmTIWIrRaS7y9JWPU/CAK0OGjNMYPPD1E9TOL8BLKitDhgwZ4cAET1/JMaGMXIYMGTLCFiY/iAmtCBkyZBzAIKlpGmTTNyRATyi3yZAhY0EGTx07SWZnRKPWHJUhQ8YWjD/nJrwqra56ZQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '心若有桃源，何处不是水云间';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '以梦为马，仗剑走天涯';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
