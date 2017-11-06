@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suxianglun.github.io/"/>
-  <updated>2017-10-30T05:53:50.000Z</updated>
+  <updated>2017-11-06T08:05:17.000Z</updated>
   <id>http://suxianglun.github.io/</id>
   
   <author>
@@ -14,6 +14,81 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android四大组件之Activity</title>
+    <link href="http://suxianglun.github.io/2017/11/03/Android%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BActivity%20%20/"/>
+    <id>http://suxianglun.github.io/2017/11/03/Android四大组件之Activity  /</id>
+    <published>2017-11-03T03:23:02.000Z</published>
+    <updated>2017-11-06T08:05:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Android四大组件之Activity"><a href="#Android四大组件之Activity" class="headerlink" title="Android四大组件之Activity"></a>Android四大组件之Activity</h3><h4 id="1、Activity生命周期"><a href="#1、Activity生命周期" class="headerlink" title="1、Activity生命周期"></a>1、Activity生命周期</h4><p>一般情况下Activity会经历如下生命周期：<br>为了方便先上一下官方的Activity生命周期图解</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.bdqn.cn/upload/2013/12/10/7841386643107.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p><strong>（1）onCreate()：</strong> 表示activity正在被创建，是activity的第一个生命周期，在这期间进行页面的初始化，setContenView()加载页面布局资源、初始化一些变量等工作。</p>
+<p><strong>（2）onStart()：</strong> 表示activity正在启动，这个时候已经可见，但是还未出现在前台，不能和用户进行交互。这个时候activity已经出来了但我们看不到。</p>
+<p><strong>（3）onResume()：</strong> 表示activity已经可见了，位于前台了，可以和用户进行交互。和onStart的相同点和区别：onStart和onResume时期Activity都已可见，但onStart不在前台，不能与用户进行交互，而onResume已在前台，可以和用户进行交互。</p>
+<p><strong>（4）onPause()：</strong> 表示activity正在暂停，正常情况下紧接着就执行onStop,这期间可以进行一些动画停止、数据存储工作。但不能耗时，否则会影响新activity的启动。因为启动新activity时，执行onPause()后就会执行新Activity的onCreate</p>
+<p><strong>（5）onStop()：</strong> 表示activity即将停止，这期间可以做一些重量级的回收工作。但不能太耗时</p>
+<p><strong>（6）onDestroy()：</strong> 表示activity即将被销毁，这是activity最后一个生命周期，这期间可以做一些回收工作和资源回收。</p>
+<p><strong>（7）onRestart()：</strong> 表示activity重新启动，即从不可见状态变为可见状态时就会被调用，一般情况下都是用户操作才会调用，例如用户操作Home键或者启动一个新页面，旧页面会执行onPause和onStop，然后再回到旧页面，这时就会调用onRestart，然后再调用onStart和onResume</p>
+<h4 id="2、Activity启动模式"><a href="#2、Activity启动模式" class="headerlink" title="2、Activity启动模式"></a>2、Activity启动模式</h4><ul>
+<li><p>2.1、<strong>standard</strong>  Activity默认的启动模式，每次启动Activity都会创建一个新的实例，放入任务栈中。这是一个典型的多实例，每一个任务栈可以有多个Activity，每个Activity可以属于多个任务栈。哪个Activity启动了当前Activity，当前Activity就放入改Activity所在的任务栈。比如<br>Activity A启动了Activity B，那么Activity B就位于Activity A所在的任务栈中。此模式下onCreate()、onStart()、onResume()都会执行。<br><img src="http://upload-images.jianshu.io/upload_images/1865963-95632974ce6906ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png">   </p>
+</li>
+<li><p>2.2、<strong>singleTop</strong> 栈顶复用模式，启动的Activity位于栈顶时则会通过调用onNewItent()方法复用原来的Activity，不再创建一个新的实例。否则会像standard模式那样。一句话概述就是：<strong>当且仅当启动的 Activity 和上一个 Activity 一致的时候才会通过调用 onNewIntent() 方法重用 Activity</strong> 。使用场景：资讯阅读类 APP 的内容界面。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1865963-ba7ce60bc7c5024c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" title="">
+                </div>
+                <div class="image-caption">image.png</div>
+            </figure>
+</li>
+</ul>
+<ul>
+<li>2.3 <strong>singleTask</strong> 栈内复用模式，当启动的Activity位于栈内时，就会通过调用onNewItent()方法复用当前的Activity，如果当前Activity上面还有其他Activity，同时会将其他Activity从栈内移出。如果栈内不存在当前Activity，则和standard模式一样。即： A -&gt;B -&gt; C -&gt; D -&gt; B，此时栈内变成了  A -&gt; B。而 A -&gt; B -&gt; C，栈内还是 A -&gt; B -&gt; C。使用场景：浏览器的主页面，或者大部分 APP 的主页面。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1865963-5b4d620903d03f94.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" title="">
+                </div>
+                <div class="image-caption">image.png</div>
+            </figure>
+<ul>
+<li>2.4 <strong>singleInstance</strong> 单实例模式，是一个加强版的singleTask，除了拥有singleTask的特性外，此种模式下Activity单独在一个任务栈中，依然是调用 onNewIntent() 方法。<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1865963-445b30b1ea2d746a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" title="">
+                </div>
+                <div class="image-caption">image.png</div>
+            </figure>
+</li>
+</ul>
+<p>到这里Activity启动模式就要说完了，其实还有一点与其相联系的知识，那就是<strong>Inent标签</strong><br>在 Android 中，我们除了在清单文件 AndroidManifest.xml 中配置 launchMode，当然可以用 Intent 标签说事儿。启动 Activity ，我们需要传递一个 Intent，完全可以通过设置 Intent.setFlags(int flags) 来设置启动的 Activity 的启动模式。</p>
+<p>需要注意的是：通过代码来设置 Activity 的启动模式的方式，优先级比清单文件设置更高。</p>
+<p>FLAG_ACTIVITY_NEW_TASK<br>这个标识会使新启动的 Activity 独立创建一个 Task。</p>
+<p>FLAG_ACTIVITY_CLEAR_TOP<br>这个标识会使新启动的 Activity 检查是否存在于 Task 中，如果存在则清除其之上的 Activity，使它获得焦点，并不重新实例化一个 Activity，一般结合 FLAG_ACTIVITY_NEW_TASK 一起使用。</p>
+<p>FLAG_ACTIVITY_SINGLE_TOP<br>等同于在 launcherMode 属性设置为 singleTop。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Android四大组件之Activity&quot;&gt;&lt;a href=&quot;#Android四大组件之Activity&quot; class=&quot;headerlink&quot; title=&quot;Android四大组件之Activity&quot;&gt;&lt;/a&gt;Android四大组件之Activity&lt;/h3&gt;&lt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://suxianglun.github.io/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://suxianglun.github.io/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>Android消息机制</title>
@@ -1098,85 +1173,6 @@ println(finalValue);
     
     
       <category term="Hexo" scheme="http://suxianglun.github.io/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android studio下JNI开发</title>
-    <link href="http://suxianglun.github.io/2017/04/05/Android%20studio%E4%B8%8BJNI%E5%92%8CNDK%E5%BC%80%E5%8F%91/"/>
-    <id>http://suxianglun.github.io/2017/04/05/Android studio下JNI和NDK开发/</id>
-    <published>2017-04-05T03:11:48.000Z</published>
-    <updated>2017-07-24T07:46:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
-<blockquote>
-<blockquote>
-<p>《登鹳雀楼》–王之涣<br>白日依山尽，黄河入海流。<br>欲穷千里目，更上一层楼。</p>
-</blockquote>
-</blockquote>
-<h3 id="1-下载Ndk并配置"><a href="#1-下载Ndk并配置" class="headerlink" title="1.下载Ndk并配置"></a>1.下载Ndk并配置</h3><p>点菜单栏的File-&gt;ProjectStructure…-&gt;在打开的窗口中左侧选中SDKLocation-&gt;<br>在右侧Android NDK Location中填入NDK目录所在路径，如下图所示：  </p>
-<p><img src="http://img.blog.csdn.net/20160516224637401?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><img src="http://img.blog.csdn.net/20160516224841000?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<h3 id="2-新建项目JniDemo"><a href="#2-新建项目JniDemo" class="headerlink" title="2. 新建项目JniDemo"></a>2. 新建项目JniDemo</h3><h4 id="1-新建类JniUtil-声明所需要的native方法：getJniAdd-int-a-int-b-代码如下"><a href="#1-新建类JniUtil-声明所需要的native方法：getJniAdd-int-a-int-b-代码如下" class="headerlink" title="1. 新建类JniUtil,声明所需要的native方法：getJniAdd(int a,int b),代码如下:"></a>1. 新建类JniUtil,声明所需要的native方法：getJniAdd(int a,int b),代码如下:</h4><pre><code>public class JniUtil {
-        static {
-        System.loadLibrary(&quot;JniUtil&quot;);
-    }
-
-    public static native int getJniAdd(int a, int b);
-}
-</code></pre><h4 id="2-生成Java文件中native方法相对应的jin层c代码接口"><a href="#2-生成Java文件中native方法相对应的jin层c代码接口" class="headerlink" title="2. 生成Java文件中native方法相对应的jin层c代码接口"></a>2. 生成Java文件中native方法相对应的jin层c代码接口</h4><p>在AS界面的Terminal窗口中执行命令：cd app/src/main/java<br>定位至java文件夹，然后再执行命令：javah -jni com.richsoft.jnidemo.JniUtil<br>注意”com.richsoft.jnidemo”是JniUtil所在的包名。<br>此时在app/src/main/java路径下生成了一个.h文件，如图：   </p>
-<p><img src="http://upload-images.jianshu.io/upload_images/4260213-b3c868adb09b54b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
-<h4 id="3-新建jni文件夹"><a href="#3-新建jni文件夹" class="headerlink" title="3.新建jni文件夹"></a>3.新建jni文件夹</h4><p>app-&gt;new-&gt;Floder-&gt;JNI Folder,如下图： </p>
-<p><img src="http://upload-images.jianshu.io/upload_images/4260213-60b3d9612e7a94b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>点击之后弹出选择框：   </p>
-<p><img src="http://upload-images.jianshu.io/upload_images/4260213-451c550875c3dd19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
-<p>点击finish之后，main文件夹下生成jni文件夹，如下图：  </p>
-<p><img src="http://upload-images.jianshu.io/upload_images/4260213-206d517c3250e22b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
-<h4 id="4-实现项目中声明的Native方法"><a href="#4-实现项目中声明的Native方法" class="headerlink" title="4.实现项目中声明的Native方法"></a>4.实现项目中声明的Native方法</h4><p>在jni目录下创建JniUtil.c文件,然后将com_richsoft_jnidemo_JniUtil.h中的方法拷贝至JniUtil.c中，并实现这个方法，如下代码：   </p>
-<pre><code>#include&lt;jni.h&gt;
-JNIEXPORT jint JNICALL Java_com_richsoft_jnidemo_JniUtil_getJniAdd
-        (JNIEnv *env, jclass cls, jint a, jint b) {
-    return a + b;
-}
-</code></pre><h3 id="3-编译-so文件"><a href="#3-编译-so文件" class="headerlink" title="3.编译.so文件"></a>3.编译.so文件</h3><h4 id="1-gradle内添加代码："><a href="#1-gradle内添加代码：" class="headerlink" title="1.gradle内添加代码："></a>1.gradle内添加代码：</h4><p>在gradle.properties文件末尾添加上“android.useDeprecatedNdk=true”<br>然后在app文件下build.grade－&gt;defaultConfig括号内添加如下代码：   </p>
-<pre><code>ndk {
-            moduleName &quot;JniUtil&quot;          //生成的so名字
-            abiFilters &quot;armeabi&quot;, &quot;armeabi-v7a&quot;, &quot;arm64-v8a&quot; ,&quot;x86&quot;//输出指定三种abi体系结构下的so库，目前可有可无。
-        }
-</code></pre><h4 id="2-build-项目"><a href="#2-build-项目" class="headerlink" title="2.build 项目"></a>2.build 项目</h4><p>点击Build下的Make Project,成功之后打开app-&gt;intermediates-&gt;ndk-&gt;debug发现了四个文件夹,如下图： </p>
-<p><img src="http://upload-images.jianshu.io/upload_images/4260213-24939b37659a4c28.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
-<p>到此，生成.so文件的过程结束。<br>在src\main下新建jniLibs文件夹，将上面的四个文件夹拷贝至jniLibs文件夹下，如图：</p>
-<p>将jni文件夹和.h文件删除，如下图：    </p>
-<p><img src="http://upload-images.jianshu.io/upload_images/4260213-3fee35f92cf1bb2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
-<p>最后咱们试试生成的.so文件能不能用，贴下MainActivity代码：  </p>
-<pre><code>public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        TextView tv = (TextView) findViewById(R.id.tv);
-        tv.setText(&quot;java调用C语言实现的加法运算:2+1000=&quot; + JniUtil.getJniAdd(2, 10000));
-    }
-}
-</code></pre><p>运行下程序，结果如下：    </p>
-<p><img src="http://upload-images.jianshu.io/upload_images/4260213-a9a4e1f1bff2e324.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> </p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;《登鹳雀楼》–王之涣&lt;br&gt;白日依山尽，黄河入海流。&lt;br&gt;欲穷千里目，更上一层楼。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;1-下载Ndk并配置
-    
-    </summary>
-    
-      <category term="Android" scheme="http://suxianglun.github.io/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://suxianglun.github.io/tags/Android/"/>
     
   </entry>
   

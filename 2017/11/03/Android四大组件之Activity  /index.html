@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Android四大组件之Activity | 苏湘伦的Blog | 求知若渴，虚怀若谷</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android">
+    <meta name="description" content="Android四大组件之Activity1、Activity生命周期一般情况下Activity会经历如下生命周期：为了方便先上一下官方的Activity生命周期图解                                                                                                            （1）onCreat">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android四大组件之Activity">
+<meta property="og:url" content="http://suxianglun.github.io/2017/11/03/Android四大组件之Activity  /index.html">
+<meta property="og:site_name" content="苏湘伦的Blog">
+<meta property="og:description" content="Android四大组件之Activity1、Activity生命周期一般情况下Activity会经历如下生命周期：为了方便先上一下官方的Activity生命周期图解                                                                                                            （1）onCreat">
+<meta property="og:image" content="http://www.bdqn.cn/upload/2013/12/10/7841386643107.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1865963-95632974ce6906ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1865963-ba7ce60bc7c5024c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1865963-5b4d620903d03f94.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1865963-445b30b1ea2d746a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-11-06T08:05:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android四大组件之Activity">
+<meta name="twitter:description" content="Android四大组件之Activity1、Activity生命周期一般情况下Activity会经历如下生命周期：为了方便先上一下官方的Activity生命周期图解                                                                                                            （1）onCreat">
+<meta name="twitter:image" content="http://www.bdqn.cn/upload/2013/12/10/7841386643107.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="苏湘伦的Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpeg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">苏湘伦</h5>
+          <a href="mailto:suxianglun@163.com" title="suxianglun@163.com" class="mail">suxianglun@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                首页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Android四大组件之Activity</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Android四大组件之Activity</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-03T03:23:02.000Z" itemprop="datePublished" class="page-time">
+  2017-11-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Android四大组件之Activity"><span class="post-toc-number">1.</span> <span class="post-toc-text">Android四大组件之Activity</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、Activity生命周期"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1、Activity生命周期</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、Activity启动模式"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2、Activity启动模式</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Android四大组件之Activity  "
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Android四大组件之Activity</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-03 11:23:02" datetime="2017-11-03T03:23:02.000Z"  itemprop="datePublished">2017-11-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="Android四大组件之Activity"><a href="#Android四大组件之Activity" class="headerlink" title="Android四大组件之Activity"></a>Android四大组件之Activity</h3><h4 id="1、Activity生命周期"><a href="#1、Activity生命周期" class="headerlink" title="1、Activity生命周期"></a>1、Activity生命周期</h4><p>一般情况下Activity会经历如下生命周期：<br>为了方便先上一下官方的Activity生命周期图解</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.bdqn.cn/upload/2013/12/10/7841386643107.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p><strong>（1）onCreate()：</strong> 表示activity正在被创建，是activity的第一个生命周期，在这期间进行页面的初始化，setContenView()加载页面布局资源、初始化一些变量等工作。</p>
+<p><strong>（2）onStart()：</strong> 表示activity正在启动，这个时候已经可见，但是还未出现在前台，不能和用户进行交互。这个时候activity已经出来了但我们看不到。</p>
+<p><strong>（3）onResume()：</strong> 表示activity已经可见了，位于前台了，可以和用户进行交互。和onStart的相同点和区别：onStart和onResume时期Activity都已可见，但onStart不在前台，不能与用户进行交互，而onResume已在前台，可以和用户进行交互。</p>
+<p><strong>（4）onPause()：</strong> 表示activity正在暂停，正常情况下紧接着就执行onStop,这期间可以进行一些动画停止、数据存储工作。但不能耗时，否则会影响新activity的启动。因为启动新activity时，执行onPause()后就会执行新Activity的onCreate</p>
+<p><strong>（5）onStop()：</strong> 表示activity即将停止，这期间可以做一些重量级的回收工作。但不能太耗时</p>
+<p><strong>（6）onDestroy()：</strong> 表示activity即将被销毁，这是activity最后一个生命周期，这期间可以做一些回收工作和资源回收。</p>
+<p><strong>（7）onRestart()：</strong> 表示activity重新启动，即从不可见状态变为可见状态时就会被调用，一般情况下都是用户操作才会调用，例如用户操作Home键或者启动一个新页面，旧页面会执行onPause和onStop，然后再回到旧页面，这时就会调用onRestart，然后再调用onStart和onResume</p>
+<h4 id="2、Activity启动模式"><a href="#2、Activity启动模式" class="headerlink" title="2、Activity启动模式"></a>2、Activity启动模式</h4><ul>
+<li><p>2.1、<strong>standard</strong>  Activity默认的启动模式，每次启动Activity都会创建一个新的实例，放入任务栈中。这是一个典型的多实例，每一个任务栈可以有多个Activity，每个Activity可以属于多个任务栈。哪个Activity启动了当前Activity，当前Activity就放入改Activity所在的任务栈。比如<br>Activity A启动了Activity B，那么Activity B就位于Activity A所在的任务栈中。此模式下onCreate()、onStart()、onResume()都会执行。<br><img src="http://upload-images.jianshu.io/upload_images/1865963-95632974ce6906ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png">   </p>
+</li>
+<li><p>2.2、<strong>singleTop</strong> 栈顶复用模式，启动的Activity位于栈顶时则会通过调用onNewItent()方法复用原来的Activity，不再创建一个新的实例。否则会像standard模式那样。一句话概述就是：<strong>当且仅当启动的 Activity 和上一个 Activity 一致的时候才会通过调用 onNewIntent() 方法重用 Activity</strong> 。使用场景：资讯阅读类 APP 的内容界面。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1865963-ba7ce60bc7c5024c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" title="">
+                </div>
+                <div class="image-caption">image.png</div>
+            </figure>
+</li>
+</ul>
+<ul>
+<li>2.3 <strong>singleTask</strong> 栈内复用模式，当启动的Activity位于栈内时，就会通过调用onNewItent()方法复用当前的Activity，如果当前Activity上面还有其他Activity，同时会将其他Activity从栈内移出。如果栈内不存在当前Activity，则和standard模式一样。即： A -&gt;B -&gt; C -&gt; D -&gt; B，此时栈内变成了  A -&gt; B。而 A -&gt; B -&gt; C，栈内还是 A -&gt; B -&gt; C。使用场景：浏览器的主页面，或者大部分 APP 的主页面。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1865963-5b4d620903d03f94.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" title="">
+                </div>
+                <div class="image-caption">image.png</div>
+            </figure>
+<ul>
+<li>2.4 <strong>singleInstance</strong> 单实例模式，是一个加强版的singleTask，除了拥有singleTask的特性外，此种模式下Activity单独在一个任务栈中，依然是调用 onNewIntent() 方法。<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1865963-445b30b1ea2d746a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" title="">
+                </div>
+                <div class="image-caption">image.png</div>
+            </figure>
+</li>
+</ul>
+<p>到这里Activity启动模式就要说完了，其实还有一点与其相联系的知识，那就是<strong>Inent标签</strong><br>在 Android 中，我们除了在清单文件 AndroidManifest.xml 中配置 launchMode，当然可以用 Intent 标签说事儿。启动 Activity ，我们需要传递一个 Intent，完全可以通过设置 Intent.setFlags(int flags) 来设置启动的 Activity 的启动模式。</p>
+<p>需要注意的是：通过代码来设置 Activity 的启动模式的方式，优先级比清单文件设置更高。</p>
+<p>FLAG_ACTIVITY_NEW_TASK<br>这个标识会使新启动的 Activity 独立创建一个 Task。</p>
+<p>FLAG_ACTIVITY_CLEAR_TOP<br>这个标识会使新启动的 Activity 检查是否存在于 Task 中，如果存在则清除其之上的 Activity，使它获得焦点，并不重新实例化一个 Activity，一般结合 FLAG_ACTIVITY_NEW_TASK 一起使用。</p>
+<p>FLAG_ACTIVITY_SINGLE_TOP<br>等同于在 launcherMode 属性设置为 singleTop。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-11-06T08:05:17.000Z" itemprop="dateUpdated">2017-11-06 16:05:17</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/11/03/Android四大组件之Activity  /" target="_blank" rel="external">http://suxianglun.github.io/2017/11/03/Android四大组件之Activity  /</a>
+        
+    </div>
+    <footer>
+        <a href="http://suxianglun.github.io">
+            <img src="/img/avatar.jpeg" alt="苏湘伦">
+            苏湘伦
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/11/03/Android四大组件之Activity  /&title=《Android四大组件之Activity》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/11/03/Android四大组件之Activity  /&title=《Android四大组件之Activity》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/11/03/Android四大组件之Activity  /" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android四大组件之Activity》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/11/03/Android四大组件之Activity  /&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/11/03/Android四大组件之Activity  /" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/10/30/Android消息机制/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Android消息机制</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="Android四大组件之Activity  " data-title="Android四大组件之Activity" data-url="http://suxianglun.github.io/2017/11/03/Android四大组件之Activity  /"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpeg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>苏湘伦 &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/11/03/Android四大组件之Activity  /&title=《Android四大组件之Activity》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/11/03/Android四大组件之Activity  /&title=《Android四大组件之Activity》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/11/03/Android四大组件之Activity  /" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android四大组件之Activity》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/11/03/Android四大组件之Activity  /&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/11/03/Android四大组件之Activity  /" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtElEQVR42u3aQW7jMBAEwPz/09nrAoHs7uFwnQVKJ8GwZBYDkEzPfH3F1/df18/Pn76ZXMmzT7+1duHh4eEdDP31q58+SYb7c4iv39Z+/jQGPDw8vHu8pxV1676duPz+jQUPDw/v1/AeF+LgfDs7IuPh4eH977xkELO3JWEEHh4e3m/g5RHqLBR4vZHk4ItZCx4eHl7MOznOfur+Sn0PDw8P77iq3halziduuSkBDw8P7wIvX3BPSvht0Sv/zutx4uHh4d3gPb30dXyQbwltFNtuBm82Gzw8PLxrvNnP5wv3bBKTdxb5NB4eHt4FXl76Sgpds9ii3QaiGAIPDw9vlRdlFfES37ZGzVqvFup4eHh4eMe9RiclruSpfOh5FBJtJHh4eHiXebMCfxv4bgW10Qjx8PDw/gkvOTTPjssnEzTMZvHw8PCu8WYFpzaKbQ/E50EGHh4e3g3eLAVtj+O7xbZk48HDw8O7x5u1WN2Y42QSkzd85bU4PDw8vBEvH3rb6rTVqpUHE1GYi4eHh7fEyzeJ2faQM9rIuGgaw8PDw1vinQ+3DS/a+9mhHA8PD++zvLzparYjtdMxbLrCw8PDW+LlC3cb6bbxQR7ODpsb8PDw8JZ4s8U6B8+aq9rD/eN04OHh4V3gzVqd8rC1bRdo8dFTeHh4eJd57SE7j3dnJf8cHDUN4OHh4a3yZmX7vKUgD3lPQts3WTUeHh7eKi9foNtWrS3SbIrx8PDwdnnf5ZUcu3cP0LPpwMPDw7vHmy2+s4W7bR2oC10nFx4eHl7Ja8vz+aDbwKJ9T/QHwMPDw7vG2y2AtZjzSOIo8cXDw8O7zGtLUO3Sn28DdQEMDw8P70O8PN7ND+KzY3e0neDh4eFd451HBsl05BvJWukLDw8P7wJv6z/62VDaMKIIcPHw8PD2eX8A2SvaTzRticYAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '心若有桃源，何处不是水云间';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '以梦为马，仗剑走天涯';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
