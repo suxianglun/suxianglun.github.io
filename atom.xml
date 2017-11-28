@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suxianglun.github.io/"/>
-  <updated>2017-11-06T08:05:17.000Z</updated>
+  <updated>2017-11-28T12:11:06.000Z</updated>
   <id>http://suxianglun.github.io/</id>
   
   <author>
@@ -14,6 +14,117 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android四大组件之Service</title>
+    <link href="http://suxianglun.github.io/2017/11/07/Android%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BService/"/>
+    <id>http://suxianglun.github.io/2017/11/07/Android四大组件之Service/</id>
+    <published>2017-11-07T14:53:12.000Z</published>
+    <updated>2017-11-28T12:11:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Android四大组件之Service（1）"><a href="#Android四大组件之Service（1）" class="headerlink" title="Android四大组件之Service（1）"></a>Android四大组件之Service（1）</h3><h4 id="1、Service概念、作用及特点"><a href="#1、Service概念、作用及特点" class="headerlink" title="1、Service概念、作用及特点"></a>1、Service概念、作用及特点</h4><p>先看一下源码里对Service的解释    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">* A Service is an application component representing either an application&apos;s desire</div><div class="line"> * to perform a longer-running operation while not interacting with the user</div><div class="line"> * or to supply functionality for other applications to use.  Each service</div><div class="line"> * class must have a corresponding</div><div class="line"> * &#123;@link android.R.styleable#AndroidManifestService &amp;lt;service&amp;gt;&#125;</div><div class="line"> * declaration in its package&apos;s &lt;code&gt;AndroidManifest.xml&lt;/code&gt;.  Services</div><div class="line"> * can be started with</div><div class="line"> * &#123;@link android.content.Context#startService Context.startService()&#125; and</div><div class="line"> * &#123;@link android.content.Context#bindService Context.bindService()&#125;.</div><div class="line"> * </div><div class="line"> * &lt;p&gt;Note that services, like other application objects, run in the main</div><div class="line"> * thread of their hosting process.  This means that, if your service is going</div><div class="line"> * to do any CPU intensive (such as MP3 playback) or blocking (such as</div><div class="line"> * networking) operations, it should spawn its own thread in which to do that</div><div class="line"> * work.  More information on this can be found in</div><div class="line"> * &lt;a href=&quot;&#123;@docRoot&#125;guide/topics/fundamentals/processes-and-threads.html&quot;&gt;Processes and</div><div class="line"> * Threads&lt;/a&gt;.  The &#123;@link IntentService&#125; class is available</div><div class="line"> * as a standard implementation of Service that has its own thread where it</div><div class="line"> * schedules its work to be done.&lt;/p&gt;</div></pre></td></tr></table></figure>
+<p>从上边看出以下信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">概念：服务为Android四大组件之一   </div><div class="line">作用：提供在后台需要长期运行的服务（如复杂计算、下载等等）</div><div class="line">运行地方：在主线程中</div><div class="line">注意事项：使用前必须在AndroidManifest.xml注册，如果要进行长期的运行需要自己的线程，即新建一个线程，也可以使用标准的IntentService。</div><div class="line">启动方式：startService()和bindService()</div><div class="line">特点：长生命周期的、没有用户界面、在后台运行</div></pre></td></tr></table></figure>
+<h4 id="2、Service分类、各自特点及应用场景"><a href="#2、Service分类、各自特点及应用场景" class="headerlink" title="2、Service分类、各自特点及应用场景"></a>2、Service分类、各自特点及应用场景</h4><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/944365-8855e3a5340bece5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Service分类" title="">
+                </div>
+                <div class="image-caption">Service分类</div>
+            </figure>
+<h4 id="3、Service与Thread的区别："><a href="#3、Service与Thread的区别：" class="headerlink" title="3、Service与Thread的区别："></a>3、Service与Thread的区别：</h4><p>应该说Service和Thread没有任何联系，唯一相同点就是执行异步操作，由于Service有后台的概念，很容易将其和Thread混为一谈。一般来说，会将Service和Thread联合着用，即在Service中再创建一个子线程（工作线程）去处理耗时操作逻辑.     </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@Override  </div><div class="line">public int onStartCommand(Intent intent, int flags, int startId) &#123;  </div><div class="line">//新建工作线程</div><div class="line">    new Thread(new Runnable() &#123;  </div><div class="line">        @Override  </div><div class="line">        public void run() &#123;  </div><div class="line">            // 开始执行后台任务  </div><div class="line">        &#125;  </div><div class="line">    &#125;).start();  </div><div class="line">    return super.onStartCommand(intent, flags, startId);  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>后台的定义：后台任务运行完全不依赖UI，即使Activity被销毁，或者程序被关闭，只要进程还在，后台任务就可以继续运行  </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/944365-384170261e06ecbb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h4 id="4、Service生命周期"><a href="#4、Service生命周期" class="headerlink" title="4、Service生命周期"></a>4、Service生命周期</h4><p>手动调用的方法：</p>
+<table>
+<thead>
+<tr>
+<th>手动调用的方法</th>
+<th>作用</th>
+<th>自动调用的内部方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>startService()</td>
+<td>启动服务</td>
+<td>onCreate()、onStartCommand()</td>
+</tr>
+<tr>
+<td>stopService()</td>
+<td>停止服务</td>
+<td>onDestroy()</td>
+</tr>
+<tr>
+<td>bindService()</td>
+<td>绑定服务</td>
+<td>onCreate()、onBind()</td>
+</tr>
+<tr>
+<td>unbindService()</td>
+<td>解绑服务</td>
+<td>onUnBind()、 onDestroy()</td>
+</tr>
+</tbody>
+</table>
+<p>内部自动调用的方法：</p>
+<table>
+<thead>
+<tr>
+<th>内部自动调用的方法</th>
+<th>作用</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onCreate()</td>
+<td>创建服务</td>
+<td>首次创建服务时，系统将调用此方法来执行一次性设置程序（在调用onStartCommand() 或 onBind() 之前）。如果服务已在运行，则不会调用此方法。</td>
+</tr>
+<tr>
+<td>onStartCommand()</td>
+<td>开始服务</td>
+<td>当另外一个组件（Activity）使用startService()启动服务的时候调用此方法。onStartCommmand()调用次数==启动次数，一旦执行此方法，服务即会启动并可在后台无限期运行。</td>
+</tr>
+<tr>
+<td>onBind()</td>
+<td>绑定服务</td>
+<td>当另一个组件通过bindService()绑定服务时，系统会调用此方法，</td>
+</tr>
+<tr>
+<td>onUnBind()</td>
+<td>解绑服务</td>
+<td>调用</td>
+</tr>
+<tr>
+<td>onDestroy()</td>
+<td>销毁服务</td>
+<td>当服务不再使用且将被销毁时，系统将调用此方法。服务应该实现此方法来清理所有资源，如线程、注册的侦听器、接收器等。 这是服务接收的最后一个调用。    </td>
+</tr>
+</tbody>
+</table>
+<h4 id="Service-两种形式"><a href="#Service-两种形式" class="headerlink" title="Service 两种形式"></a>Service 两种形式</h4><ul>
+<li><big><font color="blue">启动状态</font></big><br>当应用组件（例如Activity）通过startService（）启动服务后，Service就处于启动状态，就会一直运行下去，除非手动调用stopServiec()</li>
+<li><big><font color="blue">绑定状态</font></big><br>与启动服务不同的是绑定服务的生命周期通常只在为其他应用组件(如Activity)服务时处于活动状态，不会无限期在后台运行，也就是说宿主(如Activity)解除绑定后，绑定服务就会被销毁</li>
+</ul>
+<p>此文章参考以下出处：<br><a href="http://blog.csdn.net/javazejian/article/details/52709857" target="_blank" rel="external">http://blog.csdn.net/javazejian/article/details/52709857</a><br><a href="http://www.jianshu.com/p/d963c55c3ab9/" target="_blank" rel="external">http://www.jianshu.com/p/d963c55c3ab9/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Android四大组件之Service（1）&quot;&gt;&lt;a href=&quot;#Android四大组件之Service（1）&quot; class=&quot;headerlink&quot; title=&quot;Android四大组件之Service（1）&quot;&gt;&lt;/a&gt;Android四大组件之Service（
+    
+    </summary>
+    
+      <category term="Android" scheme="http://suxianglun.github.io/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://suxianglun.github.io/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>Android四大组件之Activity</title>
@@ -1023,156 +1134,6 @@ println(finalValue);
     
     
       <category term="Web" scheme="http://suxianglun.github.io/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何利用Hexo、GitHub pages从零开始创建个人博客</title>
-    <link href="http://suxianglun.github.io/2017/04/19/howCreateMyBlog/"/>
-    <id>http://suxianglun.github.io/2017/04/19/howCreateMyBlog/</id>
-    <published>2017-04-19T01:19:42.000Z</published>
-    <updated>2017-07-24T07:39:19.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
-<blockquote>
-<blockquote>
-<p>《竹里馆》–王维<br>独坐幽篁里，弹琴复长啸。<br>深林人不知，明月来相照。</p>
-</blockquote>
-</blockquote>
-<p>从搭建到成功以及本文的诞生，前后花了两天时间，真是一把辛酸泪，感觉还是挺费事的，中途一度想放弃，可还是咬牙坚持下来了，但看到结果后感觉一切的辛苦都是值得的。过程中一定要有耐心，毕竟需要用到的东西挺多的，比如：node.js、git、 github、hexo其中的知识。废话不多说了，详情如下：</p>
-<h3 id="一、系统环境配置："><a href="#一、系统环境配置：" class="headerlink" title="一、系统环境配置："></a>一、系统环境配置：</h3><p>要想利用Hexo、GitHub搭建个人博客，首先要安装Node.js、git：    </p>
-<h4 id="1、Node-js安装："><a href="#1、Node-js安装：" class="headerlink" title="1、Node.js安装："></a>1、Node.js安装：</h4><p><a href="http://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="external">下载Node.js</a>     </p>
-<h4 id="或者通过如下命令安装："><a href="#或者通过如下命令安装：" class="headerlink" title="或者通过如下命令安装："></a>或者通过如下命令安装：</h4><blockquote>
-<p>brew install node  #最新版的node.js的包中已经集成了npm包管理工具     </p>
-</blockquote>
-<h4 id="通过如下命令查看是否安装成功："><a href="#通过如下命令查看是否安装成功：" class="headerlink" title="通过如下命令查看是否安装成功："></a>通过如下命令查看是否安装成功：</h4><blockquote>
-<p>node -v<br>npm -v</p>
-</blockquote>
-<h4 id="2、Git安装及配置："><a href="#2、Git安装及配置：" class="headerlink" title="2、Git安装及配置："></a>2、Git安装及配置：</h4><p><a href="https://git-scm.com/download/" target="_blank" rel="external">下载Git</a>  </p>
-<h4 id="或者通过如下命令安装：-1"><a href="#或者通过如下命令安装：-1" class="headerlink" title="或者通过如下命令安装："></a>或者通过如下命令安装：</h4><blockquote>
-<p>brew install git          #Mac电脑使用brew安装<br>sudo apt-get install git  #Ubuntu系统使用这条命令安装</p>
-</blockquote>
-<p>配置详见另外一篇博客： <a href="https://git-scm.com/download/" target="_blank" rel="external">git安装与配置</a>        </p>
-<h4 id="3、Hexo安装："><a href="#3、Hexo安装：" class="headerlink" title="3、Hexo安装："></a>3、Hexo安装：</h4><blockquote>
-<p>$ npm install hexo -g  #-g表示全局安装, npm默认为当前项目安装</p>
-</blockquote>
-<h4 id="如遇错误，请使用一下安装："><a href="#如遇错误，请使用一下安装：" class="headerlink" title="如遇错误，请使用一下安装："></a>如遇错误，请使用一下安装：</h4><blockquote>
-<p>$ npm install hexo –no-optional</p>
-</blockquote>
-<h4 id="验证是否成功安装："><a href="#验证是否成功安装：" class="headerlink" title="验证是否成功安装："></a>验证是否成功安装：</h4><blockquote>
-<p>$ hexo -v</p>
-</blockquote>
-<p>目前我用到的环境如下 ，出现类似如下环境说明hexo安装成功     </p>
-<blockquote>
-<p>hexo-cli: 1.0.2<br>os: Darwin 16.4.0 darwin x64<br>http_parser: 2.7.0<br>node: 6.10.0<br>v8: 5.1.281.93<br>uv: 1.9.1<br>zlib: 1.2.8<br>ares: 1.10.1-DEV<br>icu: 58.2<br>modules: 48<br>openssl: 1.0.2k</p>
-</blockquote>
-<h4 id="创建博客的根目录并切换到更目录下："><a href="#创建博客的根目录并切换到更目录下：" class="headerlink" title="创建博客的根目录并切换到更目录下："></a>创建博客的根目录并切换到更目录下：</h4><blockquote>
-<p>$ mkdir myblog<br>$ cd myblog</p>
-</blockquote>
-<h4 id="初始化myblog文件夹使其成为Hexo博客："><a href="#初始化myblog文件夹使其成为Hexo博客：" class="headerlink" title="初始化myblog文件夹使其成为Hexo博客："></a>初始化myblog文件夹使其成为Hexo博客：</h4><blockquote>
-<p>$ hexo init</p>
-</blockquote>
-<h4 id="自动根据当前目录下文件-生成静态网页："><a href="#自动根据当前目录下文件-生成静态网页：" class="headerlink" title="自动根据当前目录下文件,生成静态网页："></a>自动根据当前目录下文件,生成静态网页：</h4><blockquote>
-<p>$ hexo generate  </p>
-</blockquote>
-<h4 id="运行本地服务："><a href="#运行本地服务：" class="headerlink" title="运行本地服务："></a>运行本地服务：</h4><blockquote>
-<p>$ hexo server         </p>
-</blockquote>
-<h4 id="有必要提下Hexo常用的几个命令："><a href="#有必要提下Hexo常用的几个命令：" class="headerlink" title="有必要提下Hexo常用的几个命令："></a>有必要提下Hexo常用的几个命令：</h4><blockquote>
-<p>$ hexo new “postName” #新建文章<br>$ hexo new page “pageName” #新建页面<br>$ hexo generate (或者hexo g) 生成静态文件，会在当前目录下生成一个新的叫做public的文件夹<br>$ hexo server (或者hexo s) 启动本地web服务，用于博客的预览<br>$ hexo deploy (或者hexo d) 部署播客到远端（比如github, coding等平台）</p>
-</blockquote>
-<h4 id="常用简写："><a href="#常用简写：" class="headerlink" title="常用简写："></a>常用简写：</h4><blockquote>
-<p>$ hexo n == hexo new<br>$ hexo g == hexo generate<br>$ hexo s == hexo server<br>$ hexo d == hexo deploy      </p>
-</blockquote>
-<h4 id="常用组合："><a href="#常用组合：" class="headerlink" title="常用组合："></a>常用组合：</h4><blockquote>
-<p>$ hexo d -g #生成部署<br>$ hexo s -g #生成预览       </p>
-</blockquote>
-<p>通过hexo g生成静态文件和hexo s启动本地web服务后，现在我们打开<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 就可以看到一篇内置的blog了。看到后是不是感觉很有成就感？反正我是这么认为的。</p>
-<h4 id="二、Hexo主题设置"><a href="#二、Hexo主题设置" class="headerlink" title="二、Hexo主题设置"></a>二、Hexo主题设置</h4><p>默认的主题是landscape，这里以主题yilia为例进行说明。<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo中文官网：下载主题、配置详解</a>    </p>
-<h5 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h5><blockquote>
-<p>$ hexo clean<br>$ git clone <a href="https://github.com/litten/hexo-theme-yilia.git" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia   </p>
-</blockquote>
-<h5 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h5><blockquote>
-<p>修改myblog目录下的_config.yml配置文件中的theme属性，将其设置为yilia。<br>并按照主题说明进行相关的配置，这点很重要，否则修改后的主题样式会有变化<br>例如：git clone <a href="https://github.com/GeekaholicLin/hexo-theme-ylion.git这个主题" target="_blank" rel="external">https://github.com/GeekaholicLin/hexo-theme-ylion.git这个主题</a><br>就需要在_config.yml配置文件添加如下内容：</p>
-<h3 id="search插件基于-https-github-com-PaicHyperionDev-hexo-gt-generator-search"><a href="#search插件基于-https-github-com-PaicHyperionDev-hexo-gt-generator-search" class="headerlink" title="search插件基于 https://github.com/PaicHyperionDev/hexo-&gt;generator-search"></a>search插件基于 <a href="https://github.com/PaicHyperionDev/hexo-&gt;generator-search" target="_blank" rel="external">https://github.com/PaicHyperionDev/hexo-&gt;generator-search</a></h3><h3 id="使用说明请参考该repo"><a href="#使用说明请参考该repo" class="headerlink" title="使用说明请参考该repo"></a>使用说明请参考该repo</h3><p>search:<br> path: search.xml<br> field: all</p>
-</blockquote>
-<h4 id="更新主题"><a href="#更新主题" class="headerlink" title="更新主题"></a>更新主题</h4><blockquote>
-<p>$ hexo g # 生成<br>$ hexo s # 启动本地web服务器</p>
-</blockquote>
-<h4 id="三、GitHub-Pages配置"><a href="#三、GitHub-Pages配置" class="headerlink" title="三、GitHub Pages配置"></a>三、GitHub Pages配置</h4><h4 id="1、注册、登录GitHub"><a href="#1、注册、登录GitHub" class="headerlink" title="1、注册、登录GitHub"></a>1、注册、登录GitHub</h4><p>github官网：<a href="https://github.com/" target="_blank" rel="external">https://github.com/</a><br><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://ww4.sinaimg.cn/large/006tKfTcgy1fch0a9kz7aj31kw0z7npd.jpg" alt="你值得拥有" title="">
-                </div>
-                <div class="image-caption">你值得拥有</div>
-            </figure>     </p>
-<h4 id="2、创建项目仓库"><a href="#2、创建项目仓库" class="headerlink" title="2、创建项目仓库"></a>2、创建项目仓库</h4><p>注册并登陆Github官网成功后，点击页面右上角的+，选择New repository。<br><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://7xs5l8.com1.z0.glb.clouddn.com/wangzhan20163281.png" alt="你值得拥有" title="">
-                </div>
-                <div class="image-caption">你值得拥有</div>
-            </figure></p>
-<h4 id="3、填写项目名"><a href="#3、填写项目名" class="headerlink" title="3、填写项目名"></a>3、填写项目名</h4><p>在Repository name中填写：<strong>Github账号名.github.io 必须这样填，否则会出错 例如我的账号为:allen,那么就必须填allen.github.io</strong><br><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://www.pchou.info/assets/img/build-github-blog-page-02-img0.png" alt="你值得拥有" title="">
-                </div>
-                <div class="image-caption">你值得拥有</div>
-            </figure>     </p>
-<h4 id="4、设置GitHub-pages"><a href="#4、设置GitHub-pages" class="headerlink" title="4、设置GitHub pages"></a>4、设置GitHub pages</h4><p>打开settings，有一个Github Pages 的设置，点击 source 中的本来的 None ，使其变成 master 分支，也就是作为部署github pages 的分支，然后点击 save。<br><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://images2015.cnblogs.com/blog/903320/201701/903320-20170115212404385-1979000093.png" alt="你值得拥有" title="">
-                </div>
-                <div class="image-caption">你值得拥有</div>
-            </figure>     </p>
-<h4 id="5、查看网址"><a href="#5、查看网址" class="headerlink" title="5、查看网址"></a>5、查看网址</h4><p>页面刷新之后，再看 github pages 设置框处，多了一行网址，就是你的 github pages 的网址了，点击进去就进入属于你自己的博客网址了。<br><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://images2015.cnblogs.com/blog/903320/201701/903320-20170115213630338-44375750.png" alt="你值得拥有" title="">
-                </div>
-                <div class="image-caption">你值得拥有</div>
-            </figure></p>
-<h3 id="四、部署到GitHub-pages"><a href="#四、部署到GitHub-pages" class="headerlink" title="四、部署到GitHub pages"></a>四、部署到GitHub pages</h3><h4 id="1、修改-config-yml"><a href="#1、修改-config-yml" class="headerlink" title="1、修改_config.yml"></a>1、修改_config.yml</h4><p>千万要注意冒号：后边要留有空格      </p>
-<p>基本设置      </p>
-<blockquote>
-<p>title: allen<br>subtitle: welcome to allen blog<br>description:<br>author: John Doe<br>language: zh-CN #语言<br>timezone:        #时区</p>
-<p>URL<br>If your site is put in a subdirectory, set url as ‘<a href="http://yoursite.com/child" target="_blank" rel="external">http://yoursite.com/child</a>‘ and root as ‘/child/‘    </p>
-<p>url: <a href="http://suxianglun.github.io">http://suxianglun.github.io</a>  #用于绑定域名, 其他的不需要配置，即为GitHub pages生成的那个网址<br>root: /<br>permalink: :year/:month/:day/:title/<br>permalink_defaults:</p>
-<p>Extensions<br>Plugins: <a href="https://hexo.io/plugins/" target="_blank" rel="external">https://hexo.io/plugins/</a><br>Themes: <a href="https://hexo.io/themes/" target="_blank" rel="external">https://hexo.io/themes/</a><br>theme: hexo-theme-landfarz   #主题设置</p>
-<p>Deployment<br>Docs: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">https://hexo.io/docs/deployment.html</a><br>deploy:   #部署, 发布在 GitHub 上面<br> type: git<br>  repo: git@github.com:suxianglun/suxianglun.github.io.git #GitHub 项目仓库<br>  branch: master</p>
-</blockquote>
-<h4 id="2、部署到GitHub-上"><a href="#2、部署到GitHub-上" class="headerlink" title="2、部署到GitHub 上"></a>2、部署到GitHub 上</h4><blockquote>
-<p>$ hexo clean #清除<br>$ hexo g #生成<br>$ hexo d #部署 # 可与hexo g合并为 hexo d -g</p>
-<p>$ hexo d 之后如果出现ERROR Deployer not found: Git,请键入如下命令</p>
-<p>$ npm install hexo-deployer-git –save </p>
-</blockquote>
-<p>部署之后去查看GitHub pages那个网址<a href="http://suxianglun.github.io，有可能会出现" target="_blank" rel="external">http://suxianglun.github.io，有可能会出现</a>:<br>Your site is having problems building: unable to build page. Please try again later. 或者<br>Your page is having problems building: page build failed<br>同时也会收到github发来的page build failure的邮件，但是邮件中显示的错误信息和settings页面上的一样, 就这句话, 什么都没有, 没有任何错误提示.我就卡在这一天，后来用了好长时间来解决了。我分析的主要原因如下：<br>1、Hexo未进行构建html,即未执行hexo g,这个过程需要一段时间，构建好html后myblog根目录下完整目录应该如下：     </p>
-<blockquote>
-<p>README.md    db.json        package.json    scaffolds<br>   themes<br>_config.yml    node_modules    public        source</p>
-</blockquote>
-<p>2、Hexo 配置不正确，请严格按照要求进行配置</p>
-<p>注意事项：<br>markdown标题标准写法写法需要在”#”和后面字符之间加一个空格<br>如果不加空格 有些引擎就解析不了    </p>
-<p>另外说一下我的个人博客地址 <a href="https://suxianglun.github.io/">https://suxianglun.github.io/</a> 欢迎来骚扰。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;《竹里馆》–王维&lt;br&gt;独坐幽篁里，弹琴复长啸。&lt;br&gt;深林人不知，明月来相照。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;从搭建到成功以及本文的诞生，前后花
-    
-    </summary>
-    
-      <category term="Hexo" scheme="http://suxianglun.github.io/categories/Hexo/"/>
-    
-    
-      <category term="Hexo" scheme="http://suxianglun.github.io/tags/Hexo/"/>
     
   </entry>
   

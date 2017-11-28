@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Android四大组件之Service | 苏湘伦的Blog | 求知若渴，虚怀若谷</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android">
+    <meta name="description" content="Android四大组件之Service（1）1、Service概念、作用及特点先看一下源码里对Service的解释     12345678910111213141516171819* A Service is an application component representing either an application&amp;apos;s desire * to perform a longe">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android四大组件之Service">
+<meta property="og:url" content="http://suxianglun.github.io/2017/11/07/Android四大组件之Service/index.html">
+<meta property="og:site_name" content="苏湘伦的Blog">
+<meta property="og:description" content="Android四大组件之Service（1）1、Service概念、作用及特点先看一下源码里对Service的解释     12345678910111213141516171819* A Service is an application component representing either an application&amp;apos;s desire * to perform a longe">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/944365-8855e3a5340bece5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/944365-384170261e06ecbb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-11-28T12:11:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android四大组件之Service">
+<meta name="twitter:description" content="Android四大组件之Service（1）1、Service概念、作用及特点先看一下源码里对Service的解释     12345678910111213141516171819* A Service is an application component representing either an application&amp;apos;s desire * to perform a longe">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/944365-8855e3a5340bece5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternate" type="application/atom+xml" title="苏湘伦的Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpeg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">苏湘伦</h5>
+          <a href="mailto:suxianglun@163.com" title="suxianglun@163.com" class="mail">suxianglun@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                首页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Android四大组件之Service</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Android四大组件之Service</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-07T14:53:12.000Z" itemprop="datePublished" class="page-time">
+  2017-11-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Android四大组件之Service（1）"><span class="post-toc-number">1.</span> <span class="post-toc-text">Android四大组件之Service（1）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、Service概念、作用及特点"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1、Service概念、作用及特点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、Service分类、各自特点及应用场景"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2、Service分类、各自特点及应用场景</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、Service与Thread的区别："><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3、Service与Thread的区别：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4、Service生命周期"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4、Service生命周期</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Service-两种形式"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">Service 两种形式</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Android四大组件之Service"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Android四大组件之Service</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-07 22:53:12" datetime="2017-11-07T14:53:12.000Z"  itemprop="datePublished">2017-11-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="Android四大组件之Service（1）"><a href="#Android四大组件之Service（1）" class="headerlink" title="Android四大组件之Service（1）"></a>Android四大组件之Service（1）</h3><h4 id="1、Service概念、作用及特点"><a href="#1、Service概念、作用及特点" class="headerlink" title="1、Service概念、作用及特点"></a>1、Service概念、作用及特点</h4><p>先看一下源码里对Service的解释    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">* A Service is an application component representing either an application&apos;s desire</div><div class="line"> * to perform a longer-running operation while not interacting with the user</div><div class="line"> * or to supply functionality for other applications to use.  Each service</div><div class="line"> * class must have a corresponding</div><div class="line"> * &#123;@link android.R.styleable#AndroidManifestService &amp;lt;service&amp;gt;&#125;</div><div class="line"> * declaration in its package&apos;s &lt;code&gt;AndroidManifest.xml&lt;/code&gt;.  Services</div><div class="line"> * can be started with</div><div class="line"> * &#123;@link android.content.Context#startService Context.startService()&#125; and</div><div class="line"> * &#123;@link android.content.Context#bindService Context.bindService()&#125;.</div><div class="line"> * </div><div class="line"> * &lt;p&gt;Note that services, like other application objects, run in the main</div><div class="line"> * thread of their hosting process.  This means that, if your service is going</div><div class="line"> * to do any CPU intensive (such as MP3 playback) or blocking (such as</div><div class="line"> * networking) operations, it should spawn its own thread in which to do that</div><div class="line"> * work.  More information on this can be found in</div><div class="line"> * &lt;a href=&quot;&#123;@docRoot&#125;guide/topics/fundamentals/processes-and-threads.html&quot;&gt;Processes and</div><div class="line"> * Threads&lt;/a&gt;.  The &#123;@link IntentService&#125; class is available</div><div class="line"> * as a standard implementation of Service that has its own thread where it</div><div class="line"> * schedules its work to be done.&lt;/p&gt;</div></pre></td></tr></table></figure>
+<p>从上边看出以下信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">概念：服务为Android四大组件之一   </div><div class="line">作用：提供在后台需要长期运行的服务（如复杂计算、下载等等）</div><div class="line">运行地方：在主线程中</div><div class="line">注意事项：使用前必须在AndroidManifest.xml注册，如果要进行长期的运行需要自己的线程，即新建一个线程，也可以使用标准的IntentService。</div><div class="line">启动方式：startService()和bindService()</div><div class="line">特点：长生命周期的、没有用户界面、在后台运行</div></pre></td></tr></table></figure>
+<h4 id="2、Service分类、各自特点及应用场景"><a href="#2、Service分类、各自特点及应用场景" class="headerlink" title="2、Service分类、各自特点及应用场景"></a>2、Service分类、各自特点及应用场景</h4><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/944365-8855e3a5340bece5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Service分类" title="">
+                </div>
+                <div class="image-caption">Service分类</div>
+            </figure>
+<h4 id="3、Service与Thread的区别："><a href="#3、Service与Thread的区别：" class="headerlink" title="3、Service与Thread的区别："></a>3、Service与Thread的区别：</h4><p>应该说Service和Thread没有任何联系，唯一相同点就是执行异步操作，由于Service有后台的概念，很容易将其和Thread混为一谈。一般来说，会将Service和Thread联合着用，即在Service中再创建一个子线程（工作线程）去处理耗时操作逻辑.     </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@Override  </div><div class="line">public int onStartCommand(Intent intent, int flags, int startId) &#123;  </div><div class="line">//新建工作线程</div><div class="line">    new Thread(new Runnable() &#123;  </div><div class="line">        @Override  </div><div class="line">        public void run() &#123;  </div><div class="line">            // 开始执行后台任务  </div><div class="line">        &#125;  </div><div class="line">    &#125;).start();  </div><div class="line">    return super.onStartCommand(intent, flags, startId);  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>后台的定义：后台任务运行完全不依赖UI，即使Activity被销毁，或者程序被关闭，只要进程还在，后台任务就可以继续运行  </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/944365-384170261e06ecbb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h4 id="4、Service生命周期"><a href="#4、Service生命周期" class="headerlink" title="4、Service生命周期"></a>4、Service生命周期</h4><p>手动调用的方法：</p>
+<table>
+<thead>
+<tr>
+<th>手动调用的方法</th>
+<th>作用</th>
+<th>自动调用的内部方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>startService()</td>
+<td>启动服务</td>
+<td>onCreate()、onStartCommand()</td>
+</tr>
+<tr>
+<td>stopService()</td>
+<td>停止服务</td>
+<td>onDestroy()</td>
+</tr>
+<tr>
+<td>bindService()</td>
+<td>绑定服务</td>
+<td>onCreate()、onBind()</td>
+</tr>
+<tr>
+<td>unbindService()</td>
+<td>解绑服务</td>
+<td>onUnBind()、 onDestroy()</td>
+</tr>
+</tbody>
+</table>
+<p>内部自动调用的方法：</p>
+<table>
+<thead>
+<tr>
+<th>内部自动调用的方法</th>
+<th>作用</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onCreate()</td>
+<td>创建服务</td>
+<td>首次创建服务时，系统将调用此方法来执行一次性设置程序（在调用onStartCommand() 或 onBind() 之前）。如果服务已在运行，则不会调用此方法。</td>
+</tr>
+<tr>
+<td>onStartCommand()</td>
+<td>开始服务</td>
+<td>当另外一个组件（Activity）使用startService()启动服务的时候调用此方法。onStartCommmand()调用次数==启动次数，一旦执行此方法，服务即会启动并可在后台无限期运行。</td>
+</tr>
+<tr>
+<td>onBind()</td>
+<td>绑定服务</td>
+<td>当另一个组件通过bindService()绑定服务时，系统会调用此方法，</td>
+</tr>
+<tr>
+<td>onUnBind()</td>
+<td>解绑服务</td>
+<td>调用</td>
+</tr>
+<tr>
+<td>onDestroy()</td>
+<td>销毁服务</td>
+<td>当服务不再使用且将被销毁时，系统将调用此方法。服务应该实现此方法来清理所有资源，如线程、注册的侦听器、接收器等。 这是服务接收的最后一个调用。    </td>
+</tr>
+</tbody>
+</table>
+<h4 id="Service-两种形式"><a href="#Service-两种形式" class="headerlink" title="Service 两种形式"></a>Service 两种形式</h4><ul>
+<li><big><font color="blue">启动状态</font></big><br>当应用组件（例如Activity）通过startService（）启动服务后，Service就处于启动状态，就会一直运行下去，除非手动调用stopServiec()</li>
+<li><big><font color="blue">绑定状态</font></big><br>与启动服务不同的是绑定服务的生命周期通常只在为其他应用组件(如Activity)服务时处于活动状态，不会无限期在后台运行，也就是说宿主(如Activity)解除绑定后，绑定服务就会被销毁</li>
+</ul>
+<p>此文章参考以下出处：<br><a href="http://blog.csdn.net/javazejian/article/details/52709857" target="_blank" rel="external">http://blog.csdn.net/javazejian/article/details/52709857</a><br><a href="http://www.jianshu.com/p/d963c55c3ab9/" target="_blank" rel="external">http://www.jianshu.com/p/d963c55c3ab9/</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-11-28T12:11:06.000Z" itemprop="dateUpdated">2017-11-28 20:11:06</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/11/07/Android四大组件之Service/" target="_blank" rel="external">http://suxianglun.github.io/2017/11/07/Android四大组件之Service/</a>
+        
+    </div>
+    <footer>
+        <a href="http://suxianglun.github.io">
+            <img src="/img/avatar.jpeg" alt="苏湘伦">
+            苏湘伦
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/11/07/Android四大组件之Service/&title=《Android四大组件之Service》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/11/07/Android四大组件之Service/&title=《Android四大组件之Service》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/11/07/Android四大组件之Service/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android四大组件之Service》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/11/07/Android四大组件之Service/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/11/07/Android四大组件之Service/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/11/03/Android四大组件之Activity  /" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Android四大组件之Activity</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="Android四大组件之Service" data-title="Android四大组件之Service" data-url="http://suxianglun.github.io/2017/11/07/Android四大组件之Service/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpeg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>苏湘伦 &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2017/11/07/Android四大组件之Service/&title=《Android四大组件之Service》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2017/11/07/Android四大组件之Service/&title=《Android四大组件之Service》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2017/11/07/Android四大组件之Service/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android四大组件之Service》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2017/11/07/Android四大组件之Service/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2017/11/07/Android四大组件之Service/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3a0U7kMAwFUP7/p1mJp11B22s7Hmal0ycEbSYnSI3nOh8f8fX5dd3/9e97Pr9d38dJnrp69vCFh4eH15p6PnQy3cnk7tn5nPHw8PC2efebwf0Ql0PHS5PMJFksPDw8vHfjJfhemZ48i4eHh/c/8h6K10GEkYyMh4eH9268JEpIPr5XiN/fky83Hh4e3mt4k/L3t35e7O/h4eHhDbrqkwJ6ctSgWtZfzhYPDw9vgddrRFVj3Go5Xj068LCgeHh4eAu8cjBajAPyl3j12YIFDw8P7xCvWi73CuV5u6sXCuPh4eFt8CZf+KukXsutWqDj4eHhbfPmH5C8xKvBRPXOcgMMDw8P7yhvHtdWy/Feg62Qr+Dh4eEt85IWfl7aVt/e+dIn2xIeHh7eBi8PI0ZB6hg5CjLw8PDwjvLmxXEeYSQF+ry4v/y/4eHh4S3w5h+WvNDPbhLRQHh4eHhHeZNGfnUSve0kn9UlHg8PD2+NN3mvViOJs1vOgwgPDw9vjZcDJt35fNvIN6SHOePh4eEd5eXtrvkUkwnNw5F/7sHDw8Nb4J2KXCeHqHoHBQrbEh4eHt4CLw8UJr/pLUoyQn5wAQ8PD2/OyxOL3l97R7Kqr348PDy81/OqYcGpuLYaeeTbAx4eHt42r9ra7wUW+VGDakx8eSceHh7eAq/auEoK8WpbK9k8evfg4eHhbfDysnh+aKAaJeQHv6KTEXh4eHgLvOTKh84D32pZX1h6PDw8vAVefuVhRB469Ore8jcGPDw8vAVetfDNjxQksF6GUDiggIeHh7fGSyKGSande+nnkS4eHh7ee/Kq9+SbQbKgzYIeDw8P7w14ScDaPCDVOr7wsBXh4eHhrfGSKVZD2N7PvXEuNxI8PDy8BV6vAVadRN6Z6rXiDh8dwMPDw/v52T+ojFS515Qc0AAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '心若有桃源，何处不是水云间';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '以梦为马，仗剑走天涯';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
