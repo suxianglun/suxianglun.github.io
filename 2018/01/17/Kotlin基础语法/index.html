@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Kotlin基础语法 | 苏湘伦的Blog | 求知若渴，虚怀若谷</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Kotlin">
+    <meta name="description" content="Kotlin基础语法1、包声明1234567package com.citic.combimport android.os.Bundleimport android.support.v7.app.AppCompatActivityimport android.view.Viewimport android.widget.Toastimport kotlinx.android.synthetic.m">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin基础语法">
+<meta property="og:url" content="http://suxianglun.github.io/2018/01/17/Kotlin基础语法/index.html">
+<meta property="og:site_name" content="苏湘伦的Blog">
+<meta property="og:description" content="Kotlin基础语法1、包声明1234567package com.citic.combimport android.os.Bundleimport android.support.v7.app.AppCompatActivityimport android.view.Viewimport android.widget.Toastimport kotlinx.android.synthetic.m">
+<meta property="og:updated_time" content="2018-01-22T09:37:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin基础语法">
+<meta name="twitter:description" content="Kotlin基础语法1、包声明1234567package com.citic.combimport android.os.Bundleimport android.support.v7.app.AppCompatActivityimport android.view.Viewimport android.widget.Toastimport kotlinx.android.synthetic.m">
+    
+        <link rel="alternate" type="application/atom+xml" title="苏湘伦的Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpeg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">苏湘伦</h5>
+          <a href="mailto:suxianglun@163.com" title="suxianglun@163.com" class="mail">suxianglun@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                首页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Kotlin基础语法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Kotlin基础语法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-16T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-01-17
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Kotlin/">Kotlin</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Kotlin基础语法"><span class="post-toc-number">1.</span> <span class="post-toc-text">Kotlin基础语法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、包声明"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1、包声明</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、变量定义"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2、变量定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、NULL检查机制："><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3、NULL检查机制：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4、类型检测及自动类型转换"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4、类型检测及自动类型转换</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5、函数定义"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">5、函数定义</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#可变长参数函数"><span class="post-toc-number">1.5.1.</span> <span class="post-toc-text">可变长参数函数</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#lambda-匿名函数"><span class="post-toc-number">1.5.2.</span> <span class="post-toc-text">lambda(匿名函数)</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6、注释"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">6、注释</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#7、字符串模板"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">7、字符串模板</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#8、区间"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">8、区间</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Kotlin基础语法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Kotlin基础语法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-17 00:00:00" datetime="2018-01-16T16:00:00.000Z"  itemprop="datePublished">2018-01-17</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Kotlin/">Kotlin</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="Kotlin基础语法"><a href="#Kotlin基础语法" class="headerlink" title="Kotlin基础语法"></a>Kotlin基础语法</h3><h4 id="1、包声明"><a href="#1、包声明" class="headerlink" title="1、包声明"></a>1、包声明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">package com.citic.comb</div><div class="line"></div><div class="line">import android.os.Bundle</div><div class="line">import android.support.v7.app.AppCompatActivity</div><div class="line">import android.view.View</div><div class="line">import android.widget.Toast</div><div class="line">import kotlinx.android.synthetic.main.activity_main.*</div></pre></td></tr></table></figure>
+<h4 id="2、变量定义"><a href="#2、变量定义" class="headerlink" title="2、变量定义"></a>2、变量定义</h4><p>可变变量定义：var 关键字</p>
+<blockquote>
+<p>var &lt;标识符&gt; : &lt;类型&gt; = &lt;初始化值&gt;</p>
+</blockquote>
+<p>不可变变量定义：val 关键字，只能赋值一次的变量(类似Java中final修饰的变量)</p>
+<blockquote>
+<p>val &lt;标识符&gt; : &lt;类型&gt; = &lt;初始化值&gt;</p>
+</blockquote>
+<p>栗子在下面👇</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">val str : String=&quot;你好&quot;</div><div class="line">var int : Int=2</div><div class="line">val b = 3 // 系统自动推断变量类型为Int</div><div class="line">var c :Int = 0</div></pre></td></tr></table></figure>
+<h4 id="3、NULL检查机制："><a href="#3、NULL检查机制：" class="headerlink" title="3、NULL检查机制："></a>3、NULL检查机制：</h4><p>当某个变量的值可以为 null 的时候，必须在声明处的类型后添加 ? 来标识该引用可为空。这也是kotlin的特性 。Kotlin的空安全设计对于声明可为空的参数，在使用时要进行空判断处理，有两种处理方式，字段后加!!像Java一样抛出空异常，另一种字段后加?可不做处理返回值为 null或配合?:做空判断处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//类型后面加?表示可为空</div><div class="line">var age: String? = &quot;23&quot; </div><div class="line"></div><div class="line">//抛出空指针异常</div><div class="line">val ages = age!!.toInt()</div><div class="line"></div><div class="line">//不做处理返回 null</div><div class="line">val ages1 = age?.toInt()</div><div class="line"></div><div class="line">//age为空返回-1</div><div class="line">val ages2 = age?.toInt() ?: -1</div></pre></td></tr></table></figure>
+<p>当一个引用可能为 null 值时, 对应的类型声明必须明确地标记为可为 null。<br>当 str 中的字符串内容不是一个整数时, 返回 null:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fun parseInt(str: String): Int? &#123;</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以下实例演示如何使用一个返回值可为 null 的函数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">  if (args.size &lt; 2) &#123;</div><div class="line">    print(&quot;Two integers expected&quot;)</div><div class="line">    return</div><div class="line">  &#125;</div><div class="line">  val x = parseInt(args[0])</div><div class="line">  val y = parseInt(args[1])</div><div class="line">  // 直接使用 `x * y` 会导致错误, 因为它们可能为 null.</div><div class="line">  if (x != null &amp;&amp; y != null) &#123;</div><div class="line">    // 在进行过 null 值检查之后, x 和 y 的类型会被自动转换为非 null 变量</div><div class="line">    print(x * y)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="4、类型检测及自动类型转换"><a href="#4、类型检测及自动类型转换" class="headerlink" title="4、类型检测及自动类型转换"></a>4、类型检测及自动类型转换</h4><p>我们可以使用 is 运算符检测一个表达式是否某类型的一个实例(类似于Java中的instanceof关键字)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">fun getStringLength(obj: Any): Int? &#123;</div><div class="line">  if (obj is String) &#123;</div><div class="line">    // 做过类型判断以后，obj会被系统自动转换为String类型</div><div class="line">    return obj.length </div><div class="line">  &#125;</div><div class="line"></div><div class="line">  //在这里还有一种方法，与Java中instanceof不同，使用!is</div><div class="line">  // if (obj !is String)&#123;</div><div class="line">  //   // XXX</div><div class="line">  // &#125;</div><div class="line"></div><div class="line">  // 这里的obj仍然是Any类型的引用</div><div class="line">  return null</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">fun getStringLength(obj: Any): Int? &#123;</div><div class="line">  if (obj !is String)</div><div class="line">    return null</div><div class="line">  // 在这个分支中, `obj` 的类型会被自动转换为 `String`</div><div class="line">  return obj.length</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>甚至还可以</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">fun getStringLength(obj: Any): Int? &#123;</div><div class="line">  // 在 `&amp;&amp;` 运算符的右侧, `obj` 的类型会被自动转换为 `String`</div><div class="line">  if (obj is String &amp;&amp; obj.length &gt; 0)</div><div class="line">    return obj.length</div><div class="line">  return null</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="5、函数定义"><a href="#5、函数定义" class="headerlink" title="5、函数定义"></a>5、函数定义</h4><p>函数定义使用关键字 fun，参数格式为：参数 : 类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fun sum(a: Int, b: Int): Int &#123;   // Int 参数，返回值 Int</div><div class="line">    return a + b</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>表达式作为函数体，返回类型自动推断：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fun sum(a: Int, b: Int) = a + b</div><div class="line"></div><div class="line">public fun sum(a: Int, b: Int): Int = a + b   // public 方法则必须明确写出返回类型</div></pre></td></tr></table></figure></p>
+<p>无返回值的函数(类似Java中的void)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">fun printSum(a: Int, b: Int): Unit &#123; </div><div class="line">    print(a + b)</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">// 如果是返回 Unit类型，则可以省略(对于public方法也是这样)：</div><div class="line">public fun printSum(a: Int, b: Int) &#123; </div><div class="line">    print(a + b)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h5 id="可变长参数函数"><a href="#可变长参数函数" class="headerlink" title="可变长参数函数"></a>可变长参数函数</h5><p>函数的变长参数可以用 vararg 关键字进行标识：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">fun vars(vararg v:Int)&#123;</div><div class="line">    for(vt in v)&#123;</div><div class="line">        print(vt)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 测试</div><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">    vars(1,2,3,4,5)  // 输出12345</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="lambda-匿名函数"><a href="#lambda-匿名函数" class="headerlink" title="lambda(匿名函数)"></a>lambda(匿名函数)</h5><p>lambda表达式使用实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 测试</div><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">    val sumLambda: (Int, Int) -&gt; Int = &#123;x,y -&gt; x+y&#125;</div><div class="line">    println(sumLambda(1,2))  // 输出 3</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="6、注释"><a href="#6、注释" class="headerlink" title="6、注释"></a>6、注释</h4><p>Kotlin 支持单行和多行注释，实例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 这是一个单行注释</div><div class="line"></div><div class="line">/* 这是一个多行的</div><div class="line">   块注释。 */</div></pre></td></tr></table></figure>
+<h4 id="7、字符串模板"><a href="#7、字符串模板" class="headerlink" title="7、字符串模板"></a>7、字符串模板</h4><p>$ 表示一个变量名或者变量值</p>
+<p>$varName 表示变量值</p>
+<p>${varName.fun()} 表示变量的方法返回值:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = 1</div><div class="line">// 模板中的简单名称：</div><div class="line">val s1 = &quot;a is $a&quot; </div><div class="line">print（s1）</div><div class="line"></div><div class="line">a = 2</div><div class="line">// 模板中的任意表达式：</div><div class="line">val s2 = &quot;$&#123;s1.replace(&quot;is&quot;, &quot;was&quot;)&#125;, but now is $a&quot;</div><div class="line">print（s2）</div></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<blockquote>
+<p>a is 1<br>a was 1 ,but now is 2</p>
+</blockquote>
+<h4 id="8、区间"><a href="#8、区间" class="headerlink" title="8、区间"></a>8、区间</h4><p>区间表达式由具有操作符形式 .. 的 rangeTo 函数辅以 in 和 !in 形成。</p>
+<p>区间是为任何可比较类型定义的，但对于整型原生类型，它有一个优化的实现。以下是使用区间的一些示例:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">for (i in 1..4) print(i) // 输出“1234”</div><div class="line"></div><div class="line">for (i in 4..1) print(i) // 什么都不输出</div><div class="line"></div><div class="line">if (i in 1..10) &#123; // 等同于 1 &lt;= i &amp;&amp; i &lt;= 10</div><div class="line">    println(i)</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 使用 step 指定步长</div><div class="line">for (i in 1..4 step 2) print(i) // 输出“13”</div><div class="line"></div><div class="line">for (i in 4 downTo 1 step 2) print(i) // 输出“42”</div><div class="line"></div><div class="line"></div><div class="line">// 使用 until 函数排除结束元素</div><div class="line">for (i in 1 until 10) &#123;   // i in [1, 10) 排除了 10</div><div class="line">     println(i)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>实例测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">    print(&quot;循环输出：&quot;)</div><div class="line">    for (i in 1..4) print(i) // 输出“1234”</div><div class="line">    println(&quot;\n----------------&quot;)</div><div class="line">    print(&quot;设置步长：&quot;)</div><div class="line">    for (i in 1..4 step 2) print(i) // 输出“13”</div><div class="line">    println(&quot;\n----------------&quot;)</div><div class="line">    print(&quot;使用 downTo：&quot;)</div><div class="line">    for (i in 4 downTo 1 step 2) print(i) // 输出“42”</div><div class="line">    println(&quot;\n----------------&quot;)</div><div class="line">    print(&quot;使用 until：&quot;)</div><div class="line">    // 使用 until 函数排除结束元素</div><div class="line">    for (i in 1 until 4) &#123;   // i in [1, 4) 排除了 4</div><div class="line">        print(i)</div><div class="line">    &#125;</div><div class="line">    println(&quot;\n----------------&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">循环输出：1234</div><div class="line">----------------</div><div class="line">设置步长：13</div><div class="line">----------------</div><div class="line">使用 downTo：42</div><div class="line">----------------</div><div class="line">使用 until：123</div><div class="line">----------------</div></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-01-22T09:37:37.000Z" itemprop="dateUpdated">2018-01-22 17:37:37</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/01/17/Kotlin基础语法/" target="_blank" rel="external">http://suxianglun.github.io/2018/01/17/Kotlin基础语法/</a>
+        
+    </div>
+    <footer>
+        <a href="http://suxianglun.github.io">
+            <img src="/img/avatar.jpeg" alt="苏湘伦">
+            苏湘伦
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kotlin/">Kotlin</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2018/01/17/Kotlin基础语法/&title=《Kotlin基础语法》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2018/01/17/Kotlin基础语法/&title=《Kotlin基础语法》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2018/01/17/Kotlin基础语法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Kotlin基础语法》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2018/01/17/Kotlin基础语法/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2018/01/17/Kotlin基础语法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/11/07/Android四大组件之Service/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Android四大组件之Service</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="Kotlin基础语法" data-title="Kotlin基础语法" data-url="http://suxianglun.github.io/2018/01/17/Kotlin基础语法/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpeg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>苏湘伦 &copy; 2017 - 2018</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2018/01/17/Kotlin基础语法/&title=《Kotlin基础语法》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2018/01/17/Kotlin基础语法/&title=《Kotlin基础语法》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2018/01/17/Kotlin基础语法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Kotlin基础语法》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2018/01/17/Kotlin基础语法/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2018/01/17/Kotlin基础语法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACK0lEQVR42u3awW6EMAxFUf7/p+l2pJb0PhtGirlZVUwhnCxM7Pg48Dg/xtWVz+vkaWSWm4cMGTK2ZZzL8XviK8wVqXOdvJsMGTLew1iHxTWsFg95WEchW4YMGTLA9J1tJQn0MmTIkEEYPDWtpbIyZMiQsWaQJJZv73g1jAf623JxGTJkbMjgKej3/37kfEOGDBlbMc7SeO5Fi+8jQ4aM0Yx0Yl4Uq7FJ6e3yXhkyZAxlpAeKtV/7YBRqZciQMZqRJrE8ub1364m+GDJkyBjH6GwB0+I+CdZp8JUhQ8YbGIG10TS2xvAC3OVdMmTIGM1IH7F+NGGkRbdgyWTIkDGawYtotdBJlqP2BBkyZLyNsQ6jfEpSyEtDbdC0IUOGjHGMfksET4DXYbcTP2XIkDGbUTwsbE9fW7J/NogyZMgYzUgTy9pBI7+eLoEMGTJmM2rNXrXAWiurIYwMGTJGM2rHjXcV2vgoNoXIkCFjBINv1GrNFpzaOUiQIUPGbAbZfqXTp4cEcT9IGpVlyJCxOaN2AJAmn0HQ7PSJyJAhYyij3zbBgzVfAn5ogZotZMiQsTnjDEdnc5mmvvw5MmTImM1I80R+c1qASw9QZciQ8TZG2phV28zxbSgPuMHXQ4YMGSMYaeDjm8i0uFYM/TJkyJCBi/WdwM2XQ4YMGTLSZJKU0vpPeOS7IUOGjK0YtUB5VwEubcX44z9lyJAxmsFf4ptHj+sFPWpDhgwZ+zF+AE0pb4WQGKkvAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '心若有桃源，何处不是水云间';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '以梦为马，仗剑走天涯';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

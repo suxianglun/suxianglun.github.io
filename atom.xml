@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suxianglun.github.io/"/>
-  <updated>2017-11-28T12:11:06.000Z</updated>
+  <updated>2018-01-22T09:37:37.000Z</updated>
   <id>http://suxianglun.github.io/</id>
   
   <author>
@@ -14,6 +14,76 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Kotlin基础语法</title>
+    <link href="http://suxianglun.github.io/2018/01/17/Kotlin%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"/>
+    <id>http://suxianglun.github.io/2018/01/17/Kotlin基础语法/</id>
+    <published>2018-01-16T16:00:00.000Z</published>
+    <updated>2018-01-22T09:37:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Kotlin基础语法"><a href="#Kotlin基础语法" class="headerlink" title="Kotlin基础语法"></a>Kotlin基础语法</h3><h4 id="1、包声明"><a href="#1、包声明" class="headerlink" title="1、包声明"></a>1、包声明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">package com.citic.comb</div><div class="line"></div><div class="line">import android.os.Bundle</div><div class="line">import android.support.v7.app.AppCompatActivity</div><div class="line">import android.view.View</div><div class="line">import android.widget.Toast</div><div class="line">import kotlinx.android.synthetic.main.activity_main.*</div></pre></td></tr></table></figure>
+<h4 id="2、变量定义"><a href="#2、变量定义" class="headerlink" title="2、变量定义"></a>2、变量定义</h4><p>可变变量定义：var 关键字</p>
+<blockquote>
+<p>var &lt;标识符&gt; : &lt;类型&gt; = &lt;初始化值&gt;</p>
+</blockquote>
+<p>不可变变量定义：val 关键字，只能赋值一次的变量(类似Java中final修饰的变量)</p>
+<blockquote>
+<p>val &lt;标识符&gt; : &lt;类型&gt; = &lt;初始化值&gt;</p>
+</blockquote>
+<p>栗子在下面👇</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">val str : String=&quot;你好&quot;</div><div class="line">var int : Int=2</div><div class="line">val b = 3 // 系统自动推断变量类型为Int</div><div class="line">var c :Int = 0</div></pre></td></tr></table></figure>
+<h4 id="3、NULL检查机制："><a href="#3、NULL检查机制：" class="headerlink" title="3、NULL检查机制："></a>3、NULL检查机制：</h4><p>当某个变量的值可以为 null 的时候，必须在声明处的类型后添加 ? 来标识该引用可为空。这也是kotlin的特性 。Kotlin的空安全设计对于声明可为空的参数，在使用时要进行空判断处理，有两种处理方式，字段后加!!像Java一样抛出空异常，另一种字段后加?可不做处理返回值为 null或配合?:做空判断处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//类型后面加?表示可为空</div><div class="line">var age: String? = &quot;23&quot; </div><div class="line"></div><div class="line">//抛出空指针异常</div><div class="line">val ages = age!!.toInt()</div><div class="line"></div><div class="line">//不做处理返回 null</div><div class="line">val ages1 = age?.toInt()</div><div class="line"></div><div class="line">//age为空返回-1</div><div class="line">val ages2 = age?.toInt() ?: -1</div></pre></td></tr></table></figure>
+<p>当一个引用可能为 null 值时, 对应的类型声明必须明确地标记为可为 null。<br>当 str 中的字符串内容不是一个整数时, 返回 null:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fun parseInt(str: String): Int? &#123;</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以下实例演示如何使用一个返回值可为 null 的函数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">  if (args.size &lt; 2) &#123;</div><div class="line">    print(&quot;Two integers expected&quot;)</div><div class="line">    return</div><div class="line">  &#125;</div><div class="line">  val x = parseInt(args[0])</div><div class="line">  val y = parseInt(args[1])</div><div class="line">  // 直接使用 `x * y` 会导致错误, 因为它们可能为 null.</div><div class="line">  if (x != null &amp;&amp; y != null) &#123;</div><div class="line">    // 在进行过 null 值检查之后, x 和 y 的类型会被自动转换为非 null 变量</div><div class="line">    print(x * y)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="4、类型检测及自动类型转换"><a href="#4、类型检测及自动类型转换" class="headerlink" title="4、类型检测及自动类型转换"></a>4、类型检测及自动类型转换</h4><p>我们可以使用 is 运算符检测一个表达式是否某类型的一个实例(类似于Java中的instanceof关键字)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">fun getStringLength(obj: Any): Int? &#123;</div><div class="line">  if (obj is String) &#123;</div><div class="line">    // 做过类型判断以后，obj会被系统自动转换为String类型</div><div class="line">    return obj.length </div><div class="line">  &#125;</div><div class="line"></div><div class="line">  //在这里还有一种方法，与Java中instanceof不同，使用!is</div><div class="line">  // if (obj !is String)&#123;</div><div class="line">  //   // XXX</div><div class="line">  // &#125;</div><div class="line"></div><div class="line">  // 这里的obj仍然是Any类型的引用</div><div class="line">  return null</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">fun getStringLength(obj: Any): Int? &#123;</div><div class="line">  if (obj !is String)</div><div class="line">    return null</div><div class="line">  // 在这个分支中, `obj` 的类型会被自动转换为 `String`</div><div class="line">  return obj.length</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>甚至还可以</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">fun getStringLength(obj: Any): Int? &#123;</div><div class="line">  // 在 `&amp;&amp;` 运算符的右侧, `obj` 的类型会被自动转换为 `String`</div><div class="line">  if (obj is String &amp;&amp; obj.length &gt; 0)</div><div class="line">    return obj.length</div><div class="line">  return null</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="5、函数定义"><a href="#5、函数定义" class="headerlink" title="5、函数定义"></a>5、函数定义</h4><p>函数定义使用关键字 fun，参数格式为：参数 : 类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fun sum(a: Int, b: Int): Int &#123;   // Int 参数，返回值 Int</div><div class="line">    return a + b</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>表达式作为函数体，返回类型自动推断：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fun sum(a: Int, b: Int) = a + b</div><div class="line"></div><div class="line">public fun sum(a: Int, b: Int): Int = a + b   // public 方法则必须明确写出返回类型</div></pre></td></tr></table></figure></p>
+<p>无返回值的函数(类似Java中的void)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">fun printSum(a: Int, b: Int): Unit &#123; </div><div class="line">    print(a + b)</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">// 如果是返回 Unit类型，则可以省略(对于public方法也是这样)：</div><div class="line">public fun printSum(a: Int, b: Int) &#123; </div><div class="line">    print(a + b)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h5 id="可变长参数函数"><a href="#可变长参数函数" class="headerlink" title="可变长参数函数"></a>可变长参数函数</h5><p>函数的变长参数可以用 vararg 关键字进行标识：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">fun vars(vararg v:Int)&#123;</div><div class="line">    for(vt in v)&#123;</div><div class="line">        print(vt)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 测试</div><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">    vars(1,2,3,4,5)  // 输出12345</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="lambda-匿名函数"><a href="#lambda-匿名函数" class="headerlink" title="lambda(匿名函数)"></a>lambda(匿名函数)</h5><p>lambda表达式使用实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 测试</div><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">    val sumLambda: (Int, Int) -&gt; Int = &#123;x,y -&gt; x+y&#125;</div><div class="line">    println(sumLambda(1,2))  // 输出 3</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="6、注释"><a href="#6、注释" class="headerlink" title="6、注释"></a>6、注释</h4><p>Kotlin 支持单行和多行注释，实例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 这是一个单行注释</div><div class="line"></div><div class="line">/* 这是一个多行的</div><div class="line">   块注释。 */</div></pre></td></tr></table></figure>
+<h4 id="7、字符串模板"><a href="#7、字符串模板" class="headerlink" title="7、字符串模板"></a>7、字符串模板</h4><p>$ 表示一个变量名或者变量值</p>
+<p>$varName 表示变量值</p>
+<p>${varName.fun()} 表示变量的方法返回值:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = 1</div><div class="line">// 模板中的简单名称：</div><div class="line">val s1 = &quot;a is $a&quot; </div><div class="line">print（s1）</div><div class="line"></div><div class="line">a = 2</div><div class="line">// 模板中的任意表达式：</div><div class="line">val s2 = &quot;$&#123;s1.replace(&quot;is&quot;, &quot;was&quot;)&#125;, but now is $a&quot;</div><div class="line">print（s2）</div></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<blockquote>
+<p>a is 1<br>a was 1 ,but now is 2</p>
+</blockquote>
+<h4 id="8、区间"><a href="#8、区间" class="headerlink" title="8、区间"></a>8、区间</h4><p>区间表达式由具有操作符形式 .. 的 rangeTo 函数辅以 in 和 !in 形成。</p>
+<p>区间是为任何可比较类型定义的，但对于整型原生类型，它有一个优化的实现。以下是使用区间的一些示例:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">for (i in 1..4) print(i) // 输出“1234”</div><div class="line"></div><div class="line">for (i in 4..1) print(i) // 什么都不输出</div><div class="line"></div><div class="line">if (i in 1..10) &#123; // 等同于 1 &lt;= i &amp;&amp; i &lt;= 10</div><div class="line">    println(i)</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 使用 step 指定步长</div><div class="line">for (i in 1..4 step 2) print(i) // 输出“13”</div><div class="line"></div><div class="line">for (i in 4 downTo 1 step 2) print(i) // 输出“42”</div><div class="line"></div><div class="line"></div><div class="line">// 使用 until 函数排除结束元素</div><div class="line">for (i in 1 until 10) &#123;   // i in [1, 10) 排除了 10</div><div class="line">     println(i)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>实例测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">    print(&quot;循环输出：&quot;)</div><div class="line">    for (i in 1..4) print(i) // 输出“1234”</div><div class="line">    println(&quot;\n----------------&quot;)</div><div class="line">    print(&quot;设置步长：&quot;)</div><div class="line">    for (i in 1..4 step 2) print(i) // 输出“13”</div><div class="line">    println(&quot;\n----------------&quot;)</div><div class="line">    print(&quot;使用 downTo：&quot;)</div><div class="line">    for (i in 4 downTo 1 step 2) print(i) // 输出“42”</div><div class="line">    println(&quot;\n----------------&quot;)</div><div class="line">    print(&quot;使用 until：&quot;)</div><div class="line">    // 使用 until 函数排除结束元素</div><div class="line">    for (i in 1 until 4) &#123;   // i in [1, 4) 排除了 4</div><div class="line">        print(i)</div><div class="line">    &#125;</div><div class="line">    println(&quot;\n----------------&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">循环输出：1234</div><div class="line">----------------</div><div class="line">设置步长：13</div><div class="line">----------------</div><div class="line">使用 downTo：42</div><div class="line">----------------</div><div class="line">使用 until：123</div><div class="line">----------------</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Kotlin基础语法&quot;&gt;&lt;a href=&quot;#Kotlin基础语法&quot; class=&quot;headerlink&quot; title=&quot;Kotlin基础语法&quot;&gt;&lt;/a&gt;Kotlin基础语法&lt;/h3&gt;&lt;h4 id=&quot;1、包声明&quot;&gt;&lt;a href=&quot;#1、包声明&quot; class=&quot;he
+    
+    </summary>
+    
+      <category term="Kotlin" scheme="http://suxianglun.github.io/categories/Kotlin/"/>
+    
+    
+      <category term="Kotlin" scheme="http://suxianglun.github.io/tags/Kotlin/"/>
+    
+  </entry>
   
   <entry>
     <title>Android四大组件之Service</title>
@@ -1082,58 +1152,6 @@ println(finalValue);
     
     
       <category term="Python" scheme="http://suxianglun.github.io/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>URI和URL含义及其理解</title>
-    <link href="http://suxianglun.github.io/2017/04/28/URL%E5%92%8CURI%E5%90%AB%E4%B9%89%E5%8F%8A%E7%90%86%E8%A7%A3/"/>
-    <id>http://suxianglun.github.io/2017/04/28/URL和URI含义及理解/</id>
-    <published>2017-04-28T08:14:03.000Z</published>
-    <updated>2017-07-24T07:32:06.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
-<blockquote>
-<blockquote>
-<p>   &lt;&lt;相思&gt;&gt;  –王维  </p>
-<p>红豆生南国，春来发几枝。<br>  愿君多采撷，此物最相思。</p>
-</blockquote>
-</blockquote>
-<h4 id="1、URI和URL含义："><a href="#1、URI和URL含义：" class="headerlink" title="1、URI和URL含义："></a>1、URI和URL含义：</h4><p>在理解URL之前先来看一下什么是URI    </p>
-<h5 id="1-1-什么是URI？"><a href="#1-1-什么是URI？" class="headerlink" title="1.1 什么是URI？"></a>1.1 什么是URI？</h5><p>简单点说：URI就是<strong>通用资源标志符</strong>，不理解是吧，我第一次听说也是不理解。<br>进一步说：网络上的一些资源（文档、图片、音频、视频、程序等）都是有一些通用资源标识（Universal Resource Identifier， URI）进行定位的。也就是说如果你想要在网络上找到特定的这些资源，只需知道他们的URI，就可以进行定位，从而找到他们。  </p>
-<p>通常情况下URI由三部分组成：       </p>
-<blockquote>
-<p><strong>1、访问资源的命名机制</strong><br><strong>2、存放资源的主机名</strong><br><strong>3、资源自身的名称，由路径表示</strong>    </p>
-</blockquote>
-<p>如下面的URI：<br><a href="http://www.jianshu.com/writer#/notebooks/9212154http://" target="_blank" rel="external">http://www.jianshu.com/writer#/notebooks/9212154http://</a><br>可以这样解读：    </p>
-<blockquote>
-<p>1、以http机制访问资源<br>2、存在以www.jianshu.com为名的主机上<br>3、资源路径为notebooks/9212154http://     </p>
-</blockquote>
-<h5 id="1-2什么是URL"><a href="#1-2什么是URL" class="headerlink" title="1.2什么是URL"></a>1.2什么是URL</h5><p>URL是URI的子集，它是Uniform Resource Locator的缩写，统一资源定位符”。<br>采用URL可以用一种统一的格式来描述各种信息资源，包括文件、服务器的地址和目录等。<br>URL的格式由三部分组成：    </p>
-<blockquote>
-<p>①第一部分是协议(或称为服务方式)。<br>②第二部分是存有该资源的主机IP地址(有时也包括端口号)。<br>③第三部分是主机资源的具体地址，如目录和文件名等。<br>第一部分和第二部分用“://”符号隔开，<br>第二部分和第三部分用“/”符号隔开。<br>第一部分和第二部分是不可缺少的，第三部分有时可以省略。   </p>
-</blockquote>
-<h3 id="2、URL和URI的区别"><a href="#2、URL和URI的区别" class="headerlink" title="2、URL和URI的区别"></a>2、URL和URI的区别</h3><blockquote>
-<p>URI的定义是：统一资源标识符；<br>URL的定义是：统一资源定位符。<br>URI属于URL更低层次的抽象，一种字符串文本标准。<br>换句话说，URI属于父类，而URL属于URI的子类。URL是URI的一个子集。<br>URI属于URL更低层次的抽象，一种字符串文本标准。<br>换句话说，URI属于父类，而URL属于URI的子类。URL是URI的一个子集。</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;   &amp;lt;&amp;lt;相思&amp;gt;&amp;gt;  –王维  &lt;/p&gt;
-&lt;p&gt;红豆生南国，春来发几枝。&lt;br&gt;  愿君多采撷，此物最相思。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockq
-    
-    </summary>
-    
-      <category term="Web" scheme="http://suxianglun.github.io/categories/Web/"/>
-    
-    
-      <category term="Web" scheme="http://suxianglun.github.io/tags/Web/"/>
     
   </entry>
   
