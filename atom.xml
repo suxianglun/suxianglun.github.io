@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suxianglun.github.io/"/>
-  <updated>2018-01-22T09:37:37.000Z</updated>
+  <updated>2018-01-30T03:34:22.000Z</updated>
   <id>http://suxianglun.github.io/</id>
   
   <author>
@@ -14,6 +14,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android使用gradle自动获取svn版本号</title>
+    <link href="http://suxianglun.github.io/2018/01/29/Android%E4%BD%BF%E7%94%A8gradle%E8%87%AA%E5%8A%A8%E8%8E%B7%E5%8F%96svn%E7%89%88%E6%9C%AC%E5%8F%B7/"/>
+    <id>http://suxianglun.github.io/2018/01/29/Android使用gradle自动获取svn版本号/</id>
+    <published>2018-01-28T16:00:00.000Z</published>
+    <updated>2018-01-30T03:34:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Android使用gradle自动获取svn版本号"><a href="#Android使用gradle自动获取svn版本号" class="headerlink" title="Android使用gradle自动获取svn版本号"></a>Android使用gradle自动获取svn版本号</h3><p>由于我们公司项目在内网开发版本控制使用的是svn,为了方便测试同学提bug,以及开发同学及时定位bug，需要自动获取svn版本号。亲测有效，</p>
+<h4 id="1、Project层下的-build-gradle-文件-引入svn插件"><a href="#1、Project层下的-build-gradle-文件-引入svn插件" class="headerlink" title="1、Project层下的  build.gradle  文件  引入svn插件"></a>1、Project层下的 <em> build.gradle </em> 文件  引入svn插件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">classpath group: &apos;org.tmatesoft.svnkit&apos;, name: &apos;svnkit&apos;, version: &apos;1.8.11&apos;</div></pre></td></tr></table></figure>
+<p>在我的项目中如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath &apos;com.android.tools.build:gradle:3.0.0&apos;</div><div class="line">        classpath group: &apos;org.tmatesoft.svnkit&apos;, name: &apos;svnkit&apos;, version: &apos;1.8.11&apos;</div><div class="line">        // NOTE: Do not place your application dependencies here; they belong</div><div class="line">        // in the individual module build.gradle files</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="2、Module层下的-build-gradle-文件加入以下两个步骤中内容："><a href="#2、Module层下的-build-gradle-文件加入以下两个步骤中内容：" class="headerlink" title="2、Module层下的  build.gradle  文件加入以下两个步骤中内容："></a>2、Module层下的 <strong> build.gradle </strong> 文件加入以下两个步骤中内容：</h4><h5 id="2-1、在文件第一行导包"><a href="#2-1、在文件第一行导包" class="headerlink" title="2.1、在文件第一行导包"></a>2.1、在文件第一行导包</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import org.tmatesoft.svn.core.wc.*</div></pre></td></tr></table></figure>
+<h5 id="2-2、定义函数"><a href="#2-2、定义函数" class="headerlink" title="2.2、定义函数"></a>2.2、定义函数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">def getSvnRevision() &#123;</div><div class="line">    ISVNOptions options = SVNWCUtil.createDefaultOptions(true);</div><div class="line">    SVNClientManager clientManager = SVNClientManager.newInstance(options);</div><div class="line">    SVNStatusClient statusClient = clientManager.getStatusClient();</div><div class="line">    SVNStatus status = statusClient.doStatus(projectDir, false);</div><div class="line">    SVNRevision revision = status.getCommittedRevision();</div><div class="line">    return revision.getNumber();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在我的项目中整体如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">import org.tmatesoft.svn.core.wc.*</div><div class="line"></div><div class="line">apply plugin: &apos;com.android.application&apos;</div><div class="line"></div><div class="line">//通过svnKit自动获取svn版本号</div><div class="line">def getSvnRevision() &#123;</div><div class="line">    ISVNOptions options = SVNWCUtil.createDefaultOptions(true)</div><div class="line">    SVNClientManager clientManager = SVNClientManager.newInstance(options)</div><div class="line">    SVNStatusClient statusClient = clientManager.getStatusClient()</div><div class="line">    SVNStatus status = statusClient.doStatus(projectDir, false)</div><div class="line">    SVNRevision revision = status.getCommittedRevision()</div><div class="line">    return revision.getNumber()</div><div class="line">&#125;</div><div class="line">android &#123;</div><div class="line">    compileSdkVersion 23</div><div class="line">    buildToolsVersion &apos;26.0.2&apos;</div><div class="line"></div><div class="line">    aaptOptions.cruncherEnabled = false</div><div class="line">    aaptOptions.useNewCruncher = false</div><div class="line">    lintOptions &#123;</div><div class="line">        abortOnError false</div><div class="line">    &#125;</div><div class="line">    defaultConfig &#123;</div><div class="line">        applicationId &quot;com.citicbank.comb&quot;</div><div class="line">        minSdkVersion 15</div><div class="line">        targetSdkVersion 16</div><div class="line">        versionCode  2</div><div class="line">        versionName &quot;$&#123;getSvnRevision()&#125;&quot; //调用方法获取svn版本号</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h4 id="3、java代码中获取svn版本号"><a href="#3、java代码中获取svn版本号" class="headerlink" title="3、java代码中获取svn版本号"></a>3、java代码中获取svn版本号</h4><p>主要是通过PackageManager获取PackageInfo,从而获取svn版本号，在需要svn版本号的地方，只需调用此方法即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public static String getVersionName(Context context) &#123;</div><div class="line">        PackageManager packageManager = context.getPackageManager();</div><div class="line">        PackageInfo packInfo = null;</div><div class="line">        try &#123;</div><div class="line">            packInfo = packageManager.getPackageInfo(context.getPackageName(), 0);</div><div class="line">        &#125; catch (PackageManager.NameNotFoundException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        String version = packInfo.versionName;</div><div class="line">        return version;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Android使用gradle自动获取svn版本号&quot;&gt;&lt;a href=&quot;#Android使用gradle自动获取svn版本号&quot; class=&quot;headerlink&quot; title=&quot;Android使用gradle自动获取svn版本号&quot;&gt;&lt;/a&gt;Android使用gr
+    
+    </summary>
+    
+      <category term="Android" scheme="http://suxianglun.github.io/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://suxianglun.github.io/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>Kotlin基础语法</title>
@@ -1050,101 +1082,6 @@ println(finalValue);
 &lt;/blockquote&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&quot;1-模块结构和布局&quot;&gt;
-    
-    </summary>
-    
-      <category term="Python" scheme="http://suxianglun.github.io/categories/Python/"/>
-    
-    
-      <category term="Python" scheme="http://suxianglun.github.io/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《Python核心编程》学习笔记01（Python起步）</title>
-    <link href="http://suxianglun.github.io/2017/05/04/python%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B001%EF%BC%88Python%E8%B5%B7%E6%AD%A5%EF%BC%89/"/>
-    <id>http://suxianglun.github.io/2017/05/04/python核心编程学习笔记01（Python起步）/</id>
-    <published>2017-05-04T05:52:13.000Z</published>
-    <updated>2017-07-25T06:34:07.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
-<blockquote>
-<blockquote>
-<p> 江雪<br>唐代：柳宗元<br>千山鸟飞绝，万径人踪灭。<br>孤舟蓑笠翁，独钓寒江雪。</p>
-</blockquote>
-</blockquote>
-<h3 id="1-程序输出print语句及“HelloWorld-”"><a href="#1-程序输出print语句及“HelloWorld-”" class="headerlink" title="1.程序输出print语句及“HelloWorld!”"></a>1.程序输出print语句及“HelloWorld!”</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; myString = &apos;Hello World!&apos; </div><div class="line">&gt;&gt;&gt; print myString</div><div class="line">  &apos;Hello World!&apos;</div><div class="line">&gt;&gt;&gt; myString</div><div class="line">  &apos;Hello World!&apos;</div></pre></td></tr></table></figure>
-<h4 id="1-1-和-在print中的使用"><a href="#1-1-和-在print中的使用" class="headerlink" title="1.1._ 和 %在print中的使用"></a>1.1._ 和 %在print中的使用</h4><p>下划线(_)在解释器中有特别的含义，表示最后一个表达式的值。所以上面的代码执行之后， 下划线变量会包含字符串:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; _</div><div class="line">Hello World!</div></pre></td></tr></table></figure>
-<p>Python的print语句，与字符串格式运算符( %)结合使用，可实现字符串替换功能。%s 表示由一个字符串来替换，而%d 表示由一个整数来替换，另外一个很常用的就是%f。它表示由一个浮点数来替换。 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; print ‘%s is number %d !’ % (&apos;python&apos;, 1)</div><div class="line">python is number 1!</div></pre></td></tr></table></figure>
-<h3 id="2-程序输入和内建函数raw-input"><a href="#2-程序输入和内建函数raw-input" class="headerlink" title="2.程序输入和内建函数raw_input()"></a>2.程序输入和内建函数raw_input()</h3><p>从用户那里得到数据输入的最容易的方法是使用 raw_input()内建函数。它读取标准输入，<br>并将读取到的数据赋值给指定的变量。     </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; user=raw_input(&apos;henter your name: &apos;)</div><div class="line">enter your name suxianglun</div></pre></td></tr></table></figure>
-<p>内建函数 int()将数值字符串转换成整数值，这样才可以对它进行数学运算         </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; num = raw_input(&apos;Now enter a number: &apos;)</div><div class="line">Now enter a number: 1024</div><div class="line">  &gt;&gt;&gt; print &apos;Doubling your number: %d&apos; % (int(num) * 2)</div><div class="line">  Doubling your number: 2048</div></pre></td></tr></table></figure>
-<h3 id="3-使用help-函数获取帮助信息"><a href="#3-使用help-函数获取帮助信息" class="headerlink" title="3.使用help()函数获取帮助信息"></a>3.使用help()函数获取帮助信息</h3><p>help()在交互式解释器中获取帮助信息,在学习 Python 的过程中，如果需要得到一个生疏函数的帮助，只需要对它调用内建函数help()。通过用函数名作为 help()的参数就能得到相应的帮助信息,查看结束退出使用 ：wq进行退出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; help(raw_input)</div><div class="line">Help on built-in function raw_input in module __builtin__:</div><div class="line">raw_input(...) raw_input([prompt]) -&gt; string</div></pre></td></tr></table></figure>
-<h3 id="4-列表解析"><a href="#4-列表解析" class="headerlink" title="4. 列表解析"></a>4. 列表解析</h3><p>表示可以在一行中使用for循环将所得到的的值放在列表中     </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; squared = [x ** 2 for x in range(4)]    </div><div class="line">   &gt;&gt;&gt; for i in squared:... print i0149</div></pre></td></tr></table></figure>
-<p>列表解析可以做更复杂的事情    </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;squared = [x ** 2 for x in range(8) if not x%2]</div><div class="line">&gt;&gt;&gt;for i in squared</div><div class="line">...print i</div><div class="line">0</div><div class="line">4</div><div class="line">16</div><div class="line">36</div></pre></td></tr></table></figure>
-<h3 id="5-实用的函数"><a href="#5-实用的函数" class="headerlink" title="5.实用的函数"></a>5.实用的函数</h3><table>
-<thead>
-<tr>
-<th>函数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>dir([obj])</td>
-<td>显示对象的属性，如果没有提供参数， 则显示全局变量的名字</td>
-</tr>
-<tr>
-<td>help([obj])</td>
-<td>以一种整齐美观的形式 显示对象的文档字符串， 如果没有提供任何参 数， 则会进入交互式帮助。   </td>
-</tr>
-<tr>
-<td>int(obj)</td>
-<td>将一个对象转换为整数    </td>
-</tr>
-<tr>
-<td>len(obj)</td>
-<td>返回对象的长度</td>
-</tr>
-<tr>
-<td>open(fn, mode)</td>
-<td>以 mode(‘r’ = 读， ‘w’= 写)方式打开一个文件名为 fn 的文件</td>
-</tr>
-<tr>
-<td>range([[start,]stop[,step])</td>
-<td>返回一个整数列表。起始值为 start, 结束值为 stop - 1; start 默认值为 0， step默认值为1。</td>
-</tr>
-<tr>
-<td>raw_input(str)</td>
-<td>等待用户输入一个字符串， 可以提供一个可选的参数 str 用作提示信 息。</td>
-</tr>
-<tr>
-<td>str(obj)</td>
-<td>将一个对象转换为字符串 </td>
-</tr>
-<tr>
-<td>type(obj)</td>
-<td>返回对象的类型(返回值本身是一个 type 对象!)</td>
-</tr>
-</tbody>
-</table>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt; 江雪&lt;br&gt;唐代：柳宗元&lt;br&gt;千山鸟飞绝，万径人踪灭。&lt;br&gt;孤舟蓑笠翁，独钓寒江雪。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;1-程序输出p
     
     </summary>
     
