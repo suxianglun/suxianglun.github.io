@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>HTTP和HTTPS之间的区别 | 苏湘伦的Blog | 求知若渴，虚怀若谷</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Web">
+    <meta name="description" content="HTTP和HTTPS之间的区别HTTP和HTTPS的定义HTTPHTTP:超文本传输协议，HTTP 使用请求/响应的过程，因此信息可在服务器间快速、轻松而且精确的进行传输，但它使用的是明文进行传输，不安全 HTTPSHTTPS:https使用的是具有安全性的SSL加密传输协议。HTTPS 在 HTTP 应用层的基础上使用安全套接字层作为子层。HTTPS = HTTP + SSL SSLSSL:安全">
+<meta name="keywords" content="Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP和HTTPS之间的区别">
+<meta property="og:url" content="http://suxianglun.github.io/2018/01/29/HTTP和HTTPS之间的区别/index.html">
+<meta property="og:site_name" content="苏湘伦的Blog">
+<meta property="og:description" content="HTTP和HTTPS之间的区别HTTP和HTTPS的定义HTTPHTTP:超文本传输协议，HTTP 使用请求/响应的过程，因此信息可在服务器间快速、轻松而且精确的进行传输，但它使用的是明文进行传输，不安全 HTTPSHTTPS:https使用的是具有安全性的SSL加密传输协议。HTTPS 在 HTTP 应用层的基础上使用安全套接字层作为子层。HTTPS = HTTP + SSL SSLSSL:安全">
+<meta property="og:updated_time" content="2018-03-07T07:53:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP和HTTPS之间的区别">
+<meta name="twitter:description" content="HTTP和HTTPS之间的区别HTTP和HTTPS的定义HTTPHTTP:超文本传输协议，HTTP 使用请求/响应的过程，因此信息可在服务器间快速、轻松而且精确的进行传输，但它使用的是明文进行传输，不安全 HTTPSHTTPS:https使用的是具有安全性的SSL加密传输协议。HTTPS 在 HTTP 应用层的基础上使用安全套接字层作为子层。HTTPS = HTTP + SSL SSLSSL:安全">
+    
+        <link rel="alternate" type="application/atom+xml" title="苏湘伦的Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpeg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">苏湘伦</h5>
+          <a href="mailto:suxianglun@163.com" title="suxianglun@163.com" class="mail">suxianglun@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                首页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/suxianglun" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">HTTP和HTTPS之间的区别</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">HTTP和HTTPS之间的区别</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-28T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-01-29
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Web/">Web</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HTTP和HTTPS之间的区别"><span class="post-toc-number">1.</span> <span class="post-toc-text">HTTP和HTTPS之间的区别</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTTP和HTTPS的定义"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">HTTP和HTTPS的定义</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#HTTP"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">HTTP</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#HTTPS"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">HTTPS</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#SSL"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">SSL</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTTP-和-HTTPS-的相同点"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">HTTP 和 HTTPS 的相同点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTTP-和-HTTPS-的不同之处"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">HTTP 和 HTTPS 的不同之处</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTTPS-如何工作"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">HTTPS 如何工作?</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#什么时候该使用-HTTPS"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">什么时候该使用 HTTPS?</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-HTTP和HTTPS之间的区别"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">HTTP和HTTPS之间的区别</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-29 00:00:00" datetime="2018-01-28T16:00:00.000Z"  itemprop="datePublished">2018-01-29</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Web/">Web</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="HTTP和HTTPS之间的区别"><a href="#HTTP和HTTPS之间的区别" class="headerlink" title="HTTP和HTTPS之间的区别"></a>HTTP和HTTPS之间的区别</h3><h4 id="HTTP和HTTPS的定义"><a href="#HTTP和HTTPS的定义" class="headerlink" title="HTTP和HTTPS的定义"></a>HTTP和HTTPS的定义</h4><h5 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h5><p>HTTP:超文本传输协议，HTTP 使用请求/响应的过程，因此信息可在服务器间快速、轻松而且精确的进行传输，但它使用的是明文进行传输，不安全</p>
+<h5 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h5><p>HTTPS:https使用的是具有安全性的SSL加密传输协议。HTTPS 在 HTTP 应用层的基础上使用安全套接字层作为子层。HTTPS = HTTP + SSL</p>
+<h5 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h5><p>SSL:安全套接字（Secure Socket Layer，SSL）协议是Web浏览器与Web服务器之间安全交换信息的协议。<br>SSL协议的三个特性</p>
+<p>Ø  保密：在握手协议中定义了会话密钥后，所有的消息都被加密。</p>
+<p>Ø  鉴别：可选的客户端认证，和强制的服务器端认证。</p>
+<p>Ø  完整性：传送的消息包括消息完整性检查（使用MAC）。</p>
+<h4 id="HTTP-和-HTTPS-的相同点"><a href="#HTTP-和-HTTPS-的相同点" class="headerlink" title="HTTP 和 HTTPS 的相同点"></a>HTTP 和 HTTPS 的相同点</h4><p>都是采用同一个基础的协议，作为 HTTP 或 HTTPS 客户端——浏览器，设立一个连接到 Web 服务器指定的端口。当服务器接收到请求，它会返回一个状态码以及消息，这个回应可能是请求信息、或者指示某个错误发送的错误信息。系统使用统一资源定位器 URI 模式，因此资源可以被唯一指定。</p>
+<h4 id="HTTP-和-HTTPS-的不同之处"><a href="#HTTP-和-HTTPS-的不同之处" class="headerlink" title="HTTP 和 HTTPS 的不同之处"></a>HTTP 和 HTTPS 的不同之处</h4><p>1、HTTP 的 URL 以 http:// 开头，而 HTTPS 的 URL 以 https:// 开头<br>2、HTTP 是不安全的，而 HTTPS 是安全的<br>3、HTTP 标准端口是 80 ，而 HTTPS 的标准端口是 443<br>4、在 OSI 网络模型中，HTTP 工作于应用层，而 HTTPS 工作在传输层<br>5、HTTP 无需加密，而 HTTPS 对传输的数据进行加密<br>6、HTTP 无需证书，而 HTTPS 需要认证证书</p>
+<h4 id="HTTPS-如何工作"><a href="#HTTPS-如何工作" class="headerlink" title="HTTPS 如何工作?"></a>HTTPS 如何工作?</h4><p>使用 HTTPS 连接时，服务器要求有公钥和签名的证书。</p>
+<p>当使用 https 连接，服务器响应初始连接，并提供它所支持的加密方法。作为回应，客户端选择一个连接方法，并且客户端和服务器端交换证书验证彼此身份。完成之后，在确保使用相同密钥的情况下传输加密信息，然后关闭连接。为了提供 https 连接支持，服务器必须有一个公钥证书，该证书包含经过证书机构认证的密钥信息，大部分证书都是通过第三方机构授权的，以保证证书是安全的。</p>
+<p>换句话说，HTTPS 跟 HTTP 一样，只不过增加了 SSL。</p>
+<p>HTTP 包含如下动作：</p>
+<p>浏览器打开一个 TCP 连接<br>浏览器发送 HTTP 请求到服务器端<br>服务器发送 HTTP 回应信息到浏览器<br>TCP 连接关闭</p>
+<p>SSL 包含如下动作：</p>
+<p>验证服务器端<br>允许客户端和服务器端选择加密算法和密码，确保双方都支持<br>验证客户端(可选)<br>使用公钥加密技术来生成共享加密数据<br>创建一个加密的 SSL 连接<br>基于该 SSL 连接传递 HTTP 请求</p>
+<h4 id="什么时候该使用-HTTPS"><a href="#什么时候该使用-HTTPS" class="headerlink" title="什么时候该使用 HTTPS?"></a>什么时候该使用 HTTPS?</h4><p>银行网站、支付网关、购物网站、登录页、电子邮件以及一些企业部门的网站应该使用 HTTPS</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-03-07T07:53:19.000Z" itemprop="dateUpdated">2018-03-07 15:53:19</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/01/29/HTTP和HTTPS之间的区别/" target="_blank" rel="external">http://suxianglun.github.io/2018/01/29/HTTP和HTTPS之间的区别/</a>
+        
+    </div>
+    <footer>
+        <a href="http://suxianglun.github.io">
+            <img src="/img/avatar.jpeg" alt="苏湘伦">
+            苏湘伦
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/">Web</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2018/01/29/HTTP和HTTPS之间的区别/&title=《HTTP和HTTPS之间的区别》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2018/01/29/HTTP和HTTPS之间的区别/&title=《HTTP和HTTPS之间的区别》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2018/01/29/HTTP和HTTPS之间的区别/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTP和HTTPS之间的区别》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2018/01/29/HTTP和HTTPS之间的区别/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2018/01/29/HTTP和HTTPS之间的区别/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/01/17/Kotlin基础语法/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Kotlin基础语法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/29/Android使用gradle自动获取svn版本号/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Android使用gradle自动获取svn版本号</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="HTTP和HTTPS之间的区别" data-title="HTTP和HTTPS之间的区别" data-url="http://suxianglun.github.io/2018/01/29/HTTP和HTTPS之间的区别/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpeg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>苏湘伦 &copy; 2017 - 2018</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://suxianglun.github.io/2018/01/29/HTTP和HTTPS之间的区别/&title=《HTTP和HTTPS之间的区别》 — 苏湘伦的Blog&pic=http://suxianglun.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://suxianglun.github.io/2018/01/29/HTTP和HTTPS之间的区别/&title=《HTTP和HTTPS之间的区别》 — 苏湘伦的Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://suxianglun.github.io/2018/01/29/HTTP和HTTPS之间的区别/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTP和HTTPS之间的区别》 — 苏湘伦的Blog&url=http://suxianglun.github.io/2018/01/29/HTTP和HTTPS之间的区别/&via=http://suxianglun.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://suxianglun.github.io/2018/01/29/HTTP和HTTPS之间的区别/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsklEQVR42u3aMXLDMAwEQP//00mbGUfKHUE6KlaVx6ElLgsBAfB6xdfX2/Xz+/fP77+6Wn+/5uo+my88PDy88davHpmsnLDz48t3goeHh3eOd/VGzdckgSR5Ss6L9oOHh4f3AN79hu7v2a7ZcNx4eHh4j+HlD8gT6LaQgYeHh/e/vKQYsZb4rqXIyX0211rw8PDwYt4knf2vz0f6e3h4eHjjrnrSDGtHBPKBgPv10W7x8PDwDvDakutkIKANPGvpMh4eHt5p3iQM3G+lfaHnB1oUnfHw8PCO8fKXeLutNpy0afdrLdrg4eHhHev75KFiLUUusv54zeX/Cnh4eHiHee1fJ2Gjfasn6/Hw8PDO8XYVYedF27a00R4WHh4e3i5eXjLIf5VvfS3hLnaFh4eHd4CXhIRk05MRhDwsLR4KHh4e3gHe5AWd8PKNtkdTBBI8PDy8U/WEDeMCSal3nri3z8XDw8PbxVtrYt0HknycdC3wFAUUPDw8vGO8/LW7Nl4wH9LKqVEBFw8PD2/MaxPc16Yrb7y1pYpfUmo8PDy8rbw6VS2LqkmDLU+ai9EEPDw8vGO8tWLBBNaOIKwVO/Dw8PBO8PKGU1tyTUoG7abbBB0PDw/vBO/+AbtCRV7yaA/6j/vj4eHhHeAlKel8021gaMscUfTDw8PD28prf7w2FJUXHbYNXeHh4eEd5uWPbF/NbcE330NExcPDw/s4r73dWoFj87hV0RnDw8PD63iTBtW8yLuW/eYNOTw8PLwTvPzKQ8Kutlb+GQ8PD+/zvLwpNX98UoxIvqk7e3h4eHgHeO2cUnsceWDYHNnw8PDwHslbGwVYa6fV5WA8PDy8B/Ama9aS4zYU4eHh4X2Glye+eSNqbThgUsgY1Vrw8PDwtvbck5sWL+ug9dV+Mype4OHh4aW8bwo7fYJHIw/qAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '心若有桃源，何处不是水云间';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '以梦为马，仗剑走天涯';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
