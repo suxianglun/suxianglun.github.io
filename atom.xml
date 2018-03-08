@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suxianglun.github.io/"/>
-  <updated>2018-03-07T07:53:19.000Z</updated>
+  <updated>2018-03-08T02:17:57.000Z</updated>
   <id>http://suxianglun.github.io/</id>
   
   <author>
@@ -14,6 +14,156 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java中Synchronized的用法</title>
+    <link href="http://suxianglun.github.io/2018/03/07/Java%E4%B8%ADSynchronized%E7%9A%84%E7%94%A8%E6%B3%95/"/>
+    <id>http://suxianglun.github.io/2018/03/07/Java中Synchronized的用法/</id>
+    <published>2018-03-06T16:00:00.000Z</published>
+    <updated>2018-03-08T02:17:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>原文 ：<a href="http://blog.csdn.net/luoweifu/article/details/46613015" target="_blank" rel="external">http://blog.csdn.net/luoweifu/article/details/46613015</a></p>
+<h3 id="Java中Synchronized的用法"><a href="#Java中Synchronized的用法" class="headerlink" title="Java中Synchronized的用法"></a>Java中Synchronized的用法</h3><p>synchronized是Java中的关键字，是一种同步锁。它修饰的对象有以下几种： </p>
+<ol>
+<li>修饰一个代码块，被修饰的代码块称为同步语句块，其作用的范围是大括号{}括起来的代码，作用的对象是调用这个代码块的对象； </li>
+<li>修饰一个方法，被修饰的方法称为同步方法，其作用的范围是整个方法，作用的对象是调用这个方法的对象； </li>
+<li>修改一个静态的方法，其作用的范围是整个静态方法，作用的对象是这个类的所有对象； </li>
+<li>修改一个类，其作用的范围是synchronized后面括号括起来的部分，作用主的对象是这个类的所有对象。</li>
+</ol>
+<p>-</p>
+<h4 id="修饰一个代码块"><a href="#修饰一个代码块" class="headerlink" title="修饰一个代码块"></a>修饰一个代码块</h4><p>一个线程访问一个对象中的synchronized(this)同步代码块时，其他试图访问该对象的线程将被阻塞。我们看下面一个例子：</p>
+<big><strong>Demo1:</strong></big>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 同步线程</div><div class="line"> */</div><div class="line">class SyncThread implements Runnable &#123;</div><div class="line">   private static int count;</div><div class="line"></div><div class="line">   public SyncThread() &#123;</div><div class="line">      count = 0;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   public  void run() &#123;</div><div class="line">      synchronized(this) &#123;</div><div class="line">         for (int i = 0; i &lt; 5; i++) &#123;</div><div class="line">            try &#123;</div><div class="line">               System.out.println(Thread.currentThread().getName() + &quot;:&quot; + (count++));</div><div class="line">               Thread.sleep(100);</div><div class="line">            &#125; catch (InterruptedException e) &#123;</div><div class="line">               e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">         &#125;</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   public int getCount() &#123;</div><div class="line">      return count;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>SyncThread的调用:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">SyncThread syncThread = new SyncThread();</div><div class="line">Thread thread1 = new Thread(syncThread, &quot;SyncThread1&quot;);</div><div class="line">Thread thread2 = new Thread(syncThread, &quot;SyncThread2&quot;);</div><div class="line">thread1.start();</div><div class="line">thread2.start();</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<blockquote>
+<p>SyncThread1:0<br>SyncThread1:1<br>SyncThread1:2<br>SyncThread1:3<br>SyncThread1:4<br>SyncThread2:5<br>SyncThread2:6<br>SyncThread2:7<br>SyncThread2:8<br>SyncThread2:9</p>
+</blockquote>
+<p>当两个并发线程(thread1和thread2)访问同一个对象(syncThread)中的synchronized代码块时，在同一时刻只能有一个线程得到执行，另一个线程受阻塞，必须等待当前线程执行完这个代码块以后才能执行该代码块。Thread1和thread2是互斥的，因为在执行synchronized代码块时会锁定当前的对象，只有执行完该代码块才能释放该对象锁，下一个线程才能执行并锁定该对象。<br>我们再把SyncThread的调用稍微改一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Thread thread1 = new Thread(new SyncThread(), &quot;SyncThread1&quot;);</div><div class="line">Thread thread2 = new Thread(new SyncThread(), &quot;SyncThread2&quot;);</div><div class="line">thread1.start();</div><div class="line">thread2.start();</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<blockquote>
+<p>SyncThread1:0<br>SyncThread2:1<br>SyncThread1:2<br>SyncThread2:3<br>SyncThread1:4<br>SyncThread2:5<br>SyncThread2:6<br>SyncThread1:7<br>SyncThread1:8<br>SyncThread2:9    </p>
+</blockquote>
+<p>不是说一个线程执行synchronized代码块时其它的线程受阻塞吗？为什么上面的例子中thread1和thread2同时在执行。这是因为synchronized只锁定对象，每个对象只有一个锁（lock）与之相关联，而上面的代码等同于下面这段代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">SyncThread syncThread1 = new SyncThread();</div><div class="line">SyncThread syncThread2 = new SyncThread();</div><div class="line">Thread thread1 = new Thread(syncThread1, &quot;SyncThread1&quot;);</div><div class="line">Thread thread2 = new Thread(syncThread2, &quot;SyncThread2&quot;);</div><div class="line">thread1.start();</div><div class="line">thread2.start();</div></pre></td></tr></table></figure>
+<p>这时创建了两个SyncThread的对象syncThread1和syncThread2，线程thread1执行的是syncThread1对象中的synchronized代码(run)，而线程thread2执行的是syncThread2对象中的synchronized代码(run)；我们知道synchronized锁定的是对象，这时会有两把锁分别锁定syncThread1对象和syncThread2对象，而这两把锁是互不干扰的，不形成互斥，所以两个线程可以同时执行。    </p>
+<p>-</p>
+<p>2.当一个线程访问对象的一个synchronized(this)同步代码块时，另一个线程仍然可以访问该对象中的非synchronized(this)同步代码块。  </p>
+<big> <strong>Demo2：多个线程访问synchronized和非synchronized代码块</strong> </big>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">class Counter implements Runnable&#123;</div><div class="line">   private int count;</div><div class="line"></div><div class="line">   public Counter() &#123;</div><div class="line">      count = 0;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   public void countAdd() &#123;</div><div class="line">      synchronized(this) &#123;</div><div class="line">         for (int i = 0; i &lt; 5; i ++) &#123;</div><div class="line">            try &#123;</div><div class="line">               System.out.println(Thread.currentThread().getName() + &quot;:&quot; + (count++));</div><div class="line">               Thread.sleep(100);</div><div class="line">            &#125; catch (InterruptedException e) &#123;</div><div class="line">               e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">         &#125;</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   //非synchronized代码块，未对count进行读写操作，所以可以不用synchronized</div><div class="line">   public void printCount() &#123;</div><div class="line">      for (int i = 0; i &lt; 5; i ++) &#123;</div><div class="line">         try &#123;</div><div class="line">            System.out.println(Thread.currentThread().getName() + &quot; count:&quot; + count);</div><div class="line">            Thread.sleep(100);</div><div class="line">         &#125; catch (InterruptedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">         &#125;</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   public void run() &#123;</div><div class="line">      String threadName = Thread.currentThread().getName();</div><div class="line">      if (threadName.equals(&quot;A&quot;)) &#123;</div><div class="line">         countAdd();</div><div class="line">      &#125; else if (threadName.equals(&quot;B&quot;)) &#123;</div><div class="line">         printCount();</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>调用代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Counter counter = new Counter();</div><div class="line">Thread thread1 = new Thread(counter, &quot;A&quot;);</div><div class="line">Thread thread2 = new Thread(counter, &quot;B&quot;);</div><div class="line">thread1.start();</div><div class="line">thread2.start();</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<blockquote>
+<p>A:0<br>B count:1<br>A:1<br>B count:2<br>A:2<br>B count:3<br>A:3<br>B count:4<br>A:4<br>B count:5   </p>
+</blockquote>
+<p>上面代码中countAdd是一个synchronized的，printCount是非synchronized的。从上面的结果中可以看出一个线程访问一个对象的synchronized代码块时，别的线程可以访问该对象的非synchronized代码块而不受阻塞。</p>
+<p>指定要给某个对象加锁</p>
+<big><strong>【Demo3】:指定要给某个对象加锁</strong></big>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 银行账户类</div><div class="line"> */</div><div class="line">class Account &#123;</div><div class="line">   String name;</div><div class="line">   float amount;</div><div class="line"></div><div class="line">   public Account(String name, float amount) &#123;</div><div class="line">      this.name = name;</div><div class="line">      this.amount = amount;</div><div class="line">   &#125;</div><div class="line">   //存钱</div><div class="line">   public  void deposit(float amt) &#123;</div><div class="line">      amount += amt;</div><div class="line">      try &#123;</div><div class="line">         Thread.sleep(100);</div><div class="line">      &#125; catch (InterruptedException e) &#123;</div><div class="line">         e.printStackTrace();</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line">   //取钱</div><div class="line">   public  void withdraw(float amt) &#123;</div><div class="line">      amount -= amt;</div><div class="line">      try &#123;</div><div class="line">         Thread.sleep(100);</div><div class="line">      &#125; catch (InterruptedException e) &#123;</div><div class="line">         e.printStackTrace();</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   public float getBalance() &#123;</div><div class="line">      return amount;</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 账户操作类</div><div class="line"> */</div><div class="line">class AccountOperator implements Runnable&#123;</div><div class="line">   private Account account;</div><div class="line">   public AccountOperator(Account account) &#123;</div><div class="line">      this.account = account;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   public void run() &#123;</div><div class="line">      synchronized (account) &#123;</div><div class="line">         account.deposit(500);</div><div class="line">         account.withdraw(500);</div><div class="line">         System.out.println(Thread.currentThread().getName() + &quot;:&quot; + account.getBalance());</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>调用代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Account account = new Account(&quot;zhang san&quot;, 10000.0f);</div><div class="line">AccountOperator accountOperator = new AccountOperator(account);</div><div class="line"></div><div class="line">final int THREAD_NUM = 5;</div><div class="line">Thread threads[] = new Thread[THREAD_NUM];</div><div class="line">for (int i = 0; i &lt; THREAD_NUM; i ++) &#123;</div><div class="line">   threads[i] = new Thread(accountOperator, &quot;Thread&quot; + i);</div><div class="line">   threads[i].start();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<blockquote>
+<p>Thread3:10000.0<br>Thread2:10000.0<br>Thread1:10000.0<br>Thread4:10000.0<br>Thread0:10000.0  </p>
+</blockquote>
+<p>在AccountOperator 类中的run方法里，我们用synchronized 给account对象加了锁。这时，当一个线程访问account对象时，其他试图访问account对象的线程将会阻塞，直到该线程访问account对象结束。也就是说谁拿到那个锁谁就可以运行它所控制的那段代码。<br>当有一个明确的对象作为锁时，就可以用类似下面这样的方式写程序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public void method3(SomeObject obj)</div><div class="line">&#123;</div><div class="line">   //obj 锁定的对象</div><div class="line">   synchronized(obj)</div><div class="line">   &#123;</div><div class="line">      // todo</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当没有明确的对象作为锁，只是想让一段代码同步时，可以创建一个特殊的对象来充当锁：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class Test implements Runnable</div><div class="line">&#123;</div><div class="line">   private byte[] lock = new byte[0];  // 特殊的instance变量</div><div class="line">   public void method()</div><div class="line">   &#123;</div><div class="line">      synchronized(lock) &#123;</div><div class="line">         // todo 同步代码块</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   public void run() &#123;</div><div class="line"></div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>说明：零长度的byte数组对象创建起来将比任何对象都经济――查看编译后的字节码：生成零长度的byte[]对象只需3条操作码，而Object lock = new Object()则需要7行操作码。</p>
+<h4 id="修饰一个方法"><a href="#修饰一个方法" class="headerlink" title="修饰一个方法"></a>修饰一个方法</h4><p>Synchronized修饰一个方法很简单，就是在方法的前面加synchronized，public synchronized void method(){//todo}; synchronized修饰方法和修饰一个代码块类似，只是作用范围不一样，修饰代码块是大括号括起来的范围，而修饰方法范围是整个函数。如将【Demo1】中的run方法改成如下的方式，实现的效果一样。</p>
+<big><strong>【Demo4】：synchronized修饰一个方法</strong></big>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public synchronized void run() &#123;</div><div class="line">   for (int i = 0; i &lt; 5; i ++) &#123;</div><div class="line">      try &#123;</div><div class="line">         System.out.println(Thread.currentThread().getName() + &quot;:&quot; + (count++));</div><div class="line">         Thread.sleep(100);</div><div class="line">      &#125; catch (InterruptedException e) &#123;</div><div class="line">         e.printStackTrace();</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Synchronized作用于整个方法的写法。 </p>
+<p>写法一：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public synchronized void method()</div><div class="line">&#123;</div><div class="line">   // todo</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>写法二：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public void method()</div><div class="line">&#123;</div><div class="line">   synchronized(this) &#123;</div><div class="line">      // todo</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>写法一修饰的是一个方法，写法二修饰的是一个代码块，但写法一与写法二是等价的，都是锁定了整个方法时的内容。</p>
+<p>在用synchronized修饰方法时要注意以下几点： </p>
+<ol>
+<li>synchronized关键字不能继承。<br>虽然可以使用synchronized来定义方法，但synchronized并不属于方法定义的一部分，因此，synchronized关键字不能被继承。如果在父类中的某个方法使用了synchronized关键字，而在子类中覆盖了这个方法，在子类中的这个方法默认情况下并不是同步的，而必须显式地在子类的这个方法中加上synchronized关键字才可以。当然，还可以在子类方法中调用父类中相应的方法，这样虽然子类中的方法不是同步的，但子类调用了父类的同步方法，因此，子类的方法也就相当于同步了。这两种方式的例子代码如下：<br>在子类方法中加上synchronized关键字</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class Parent &#123;</div><div class="line">   public synchronized void method() &#123; &#125;</div><div class="line">&#125;</div><div class="line">class Child extends Parent &#123;</div><div class="line">   public synchronized void method() &#123; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在子类方法中调用父类的同步方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class Parent &#123;</div><div class="line">   public synchronized void method() &#123;   &#125;</div><div class="line">&#125;</div><div class="line">class Child extends Parent &#123;</div><div class="line">   public void method() &#123; super.method();   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>1.在定义接口方法时不能使用synchronized关键字。<br>2.构造方法不能使用synchronized关键字，但可以使用synchronized代码块来进行同步。 </p>
+<p>-</p>
+<h4 id="修饰一个静态的方法"><a href="#修饰一个静态的方法" class="headerlink" title="修饰一个静态的方法"></a>修饰一个静态的方法</h4><p>Synchronized也可修饰一个静态方法，用法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public synchronized static void method() &#123;</div><div class="line">   // todo</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们知道静态方法是属于类的而不属于对象的。同样的，synchronized修饰的静态方法锁定的是这个类的所有对象。我们对Demo1进行一些修改如下：</p>
+<big><strong>【Demo5】：synchronized修饰静态方法</strong></big>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 同步线程</div><div class="line"> */</div><div class="line">class SyncThread implements Runnable &#123;</div><div class="line">   private static int count;</div><div class="line"></div><div class="line">   public SyncThread() &#123;</div><div class="line">      count = 0;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   public synchronized static void method() &#123;</div><div class="line">      for (int i = 0; i &lt; 5; i ++) &#123;</div><div class="line">         try &#123;</div><div class="line">            System.out.println(Thread.currentThread().getName() + &quot;:&quot; + (count++));</div><div class="line">            Thread.sleep(100);</div><div class="line">         &#125; catch (InterruptedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">         &#125;</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   public synchronized void run() &#123;</div><div class="line">      method();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>调用代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">SyncThread syncThread1 = new SyncThread();</div><div class="line">SyncThread syncThread2 = new SyncThread();</div><div class="line">Thread thread1 = new Thread(syncThread1, &quot;SyncThread1&quot;);</div><div class="line">Thread thread2 = new Thread(syncThread2, &quot;SyncThread2&quot;);</div><div class="line">thread1.start();</div><div class="line">thread2.start();</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<p>&gt;<br>SyncThread1:0<br>SyncThread1:1<br>SyncThread1:2<br>SyncThread1:3<br>SyncThread1:4<br>SyncThread2:5<br>SyncThread2:6<br>SyncThread2:7<br>SyncThread2:8<br>SyncThread2:9 </p>
+<p>syncThread1和syncThread2是SyncThread的两个对象，但在thread1和thread2并发执行时却保持了线程同步。这是因为run中调用了静态方法method，而静态方法是属于类的，所以syncThread1和syncThread2相当于用了同一把锁。这与Demo1是不同的。</p>
+<p>-</p>
+<h4 id="修饰一个类"><a href="#修饰一个类" class="headerlink" title="修饰一个类"></a>修饰一个类</h4><p>Synchronized还可作用于一个类，用法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">class ClassName &#123;</div><div class="line">   public void method() &#123;</div><div class="line">      synchronized(ClassName.class) &#123;</div><div class="line">         // todo</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们把Demo5再作一些修改。  </p>
+<big><strong>【Demo6】:修饰一个类</strong></big>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 同步线程</div><div class="line"> */</div><div class="line">class SyncThread implements Runnable &#123;</div><div class="line">   private static int count;</div><div class="line"></div><div class="line">   public SyncThread() &#123;</div><div class="line">      count = 0;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   public static void method() &#123;</div><div class="line">      synchronized(SyncThread.class) &#123;</div><div class="line">         for (int i = 0; i &lt; 5; i ++) &#123;</div><div class="line">            try &#123;</div><div class="line">               System.out.println(Thread.currentThread().getName() + &quot;:&quot; + (count++));</div><div class="line">               Thread.sleep(100);</div><div class="line">            &#125; catch (InterruptedException e) &#123;</div><div class="line">               e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">         &#125;</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   public synchronized void run() &#123;</div><div class="line">      method();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其效果和【Demo5】是一样的，synchronized作用于一个类T时，是给这个类T加锁，T的所有对象用的是同一把锁。</p>
+<p>-<br>总结：<br>A. 无论synchronized关键字加在方法上还是对象上，如果它作用的对象是非静态的，则它取得的锁是对象；如果synchronized作用的对象是一个静态方法或一个类，则它取得的锁是对类，该类所有的对象同一把锁。<br>B. 每个对象只有一个锁（lock）与之相关联，谁拿到这个锁谁就可以运行它所控制的那段代码。<br>C. 实现同步是要很大的系统开销作为代价的，甚至可能造成死锁，所以尽量避免无谓的同步控制。</p>
+<p>-</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原文 ：&lt;a href=&quot;http://blog.csdn.net/luoweifu/article/details/46613015&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/luoweifu/article
+    
+    </summary>
+    
+      <category term="Java" scheme="http://suxianglun.github.io/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://suxianglun.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android使用gradle自动获取svn版本号</title>
+    <link href="http://suxianglun.github.io/2018/01/29/Android%E4%BD%BF%E7%94%A8gradle%E8%87%AA%E5%8A%A8%E8%8E%B7%E5%8F%96svn%E7%89%88%E6%9C%AC%E5%8F%B7/"/>
+    <id>http://suxianglun.github.io/2018/01/29/Android使用gradle自动获取svn版本号/</id>
+    <published>2018-01-28T16:00:00.000Z</published>
+    <updated>2018-01-30T03:34:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Android使用gradle自动获取svn版本号"><a href="#Android使用gradle自动获取svn版本号" class="headerlink" title="Android使用gradle自动获取svn版本号"></a>Android使用gradle自动获取svn版本号</h3><p>由于我们公司项目在内网开发版本控制使用的是svn,为了方便测试同学提bug,以及开发同学及时定位bug，需要自动获取svn版本号。亲测有效，</p>
+<h4 id="1、Project层下的-build-gradle-文件-引入svn插件"><a href="#1、Project层下的-build-gradle-文件-引入svn插件" class="headerlink" title="1、Project层下的  build.gradle  文件  引入svn插件"></a>1、Project层下的 <em> build.gradle </em> 文件  引入svn插件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">classpath group: &apos;org.tmatesoft.svnkit&apos;, name: &apos;svnkit&apos;, version: &apos;1.8.11&apos;</div></pre></td></tr></table></figure>
+<p>在我的项目中如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath &apos;com.android.tools.build:gradle:3.0.0&apos;</div><div class="line">        classpath group: &apos;org.tmatesoft.svnkit&apos;, name: &apos;svnkit&apos;, version: &apos;1.8.11&apos;</div><div class="line">        // NOTE: Do not place your application dependencies here; they belong</div><div class="line">        // in the individual module build.gradle files</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="2、Module层下的-build-gradle-文件加入以下两个步骤中内容："><a href="#2、Module层下的-build-gradle-文件加入以下两个步骤中内容：" class="headerlink" title="2、Module层下的  build.gradle  文件加入以下两个步骤中内容："></a>2、Module层下的 <strong> build.gradle </strong> 文件加入以下两个步骤中内容：</h4><h5 id="2-1、在文件第一行导包"><a href="#2-1、在文件第一行导包" class="headerlink" title="2.1、在文件第一行导包"></a>2.1、在文件第一行导包</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import org.tmatesoft.svn.core.wc.*</div></pre></td></tr></table></figure>
+<h5 id="2-2、定义函数"><a href="#2-2、定义函数" class="headerlink" title="2.2、定义函数"></a>2.2、定义函数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">def getSvnRevision() &#123;</div><div class="line">    ISVNOptions options = SVNWCUtil.createDefaultOptions(true);</div><div class="line">    SVNClientManager clientManager = SVNClientManager.newInstance(options);</div><div class="line">    SVNStatusClient statusClient = clientManager.getStatusClient();</div><div class="line">    SVNStatus status = statusClient.doStatus(projectDir, false);</div><div class="line">    SVNRevision revision = status.getCommittedRevision();</div><div class="line">    return revision.getNumber();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在我的项目中整体如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">import org.tmatesoft.svn.core.wc.*</div><div class="line"></div><div class="line">apply plugin: &apos;com.android.application&apos;</div><div class="line"></div><div class="line">//通过svnKit自动获取svn版本号</div><div class="line">def getSvnRevision() &#123;</div><div class="line">    ISVNOptions options = SVNWCUtil.createDefaultOptions(true)</div><div class="line">    SVNClientManager clientManager = SVNClientManager.newInstance(options)</div><div class="line">    SVNStatusClient statusClient = clientManager.getStatusClient()</div><div class="line">    SVNStatus status = statusClient.doStatus(projectDir, false)</div><div class="line">    SVNRevision revision = status.getCommittedRevision()</div><div class="line">    return revision.getNumber()</div><div class="line">&#125;</div><div class="line">android &#123;</div><div class="line">    compileSdkVersion 23</div><div class="line">    buildToolsVersion &apos;26.0.2&apos;</div><div class="line"></div><div class="line">    aaptOptions.cruncherEnabled = false</div><div class="line">    aaptOptions.useNewCruncher = false</div><div class="line">    lintOptions &#123;</div><div class="line">        abortOnError false</div><div class="line">    &#125;</div><div class="line">    defaultConfig &#123;</div><div class="line">        applicationId &quot;com.citicbank.comb&quot;</div><div class="line">        minSdkVersion 15</div><div class="line">        targetSdkVersion 16</div><div class="line">        versionCode  2</div><div class="line">        versionName &quot;$&#123;getSvnRevision()&#125;&quot; //调用方法获取svn版本号</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h4 id="3、java代码中获取svn版本号"><a href="#3、java代码中获取svn版本号" class="headerlink" title="3、java代码中获取svn版本号"></a>3、java代码中获取svn版本号</h4><p>主要是通过PackageManager获取PackageInfo,从而获取svn版本号，在需要svn版本号的地方，只需调用此方法即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public static String getVersionName(Context context) &#123;</div><div class="line">        PackageManager packageManager = context.getPackageManager();</div><div class="line">        PackageInfo packInfo = null;</div><div class="line">        try &#123;</div><div class="line">            packInfo = packageManager.getPackageInfo(context.getPackageName(), 0);</div><div class="line">        &#125; catch (PackageManager.NameNotFoundException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        String version = packInfo.versionName;</div><div class="line">        return version;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Android使用gradle自动获取svn版本号&quot;&gt;&lt;a href=&quot;#Android使用gradle自动获取svn版本号&quot; class=&quot;headerlink&quot; title=&quot;Android使用gradle自动获取svn版本号&quot;&gt;&lt;/a&gt;Android使用gr
+    
+    </summary>
+    
+      <category term="Android" scheme="http://suxianglun.github.io/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://suxianglun.github.io/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>HTTP和HTTPS之间的区别</title>
@@ -50,38 +200,6 @@
     
     
       <category term="Web" scheme="http://suxianglun.github.io/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android使用gradle自动获取svn版本号</title>
-    <link href="http://suxianglun.github.io/2018/01/29/Android%E4%BD%BF%E7%94%A8gradle%E8%87%AA%E5%8A%A8%E8%8E%B7%E5%8F%96svn%E7%89%88%E6%9C%AC%E5%8F%B7/"/>
-    <id>http://suxianglun.github.io/2018/01/29/Android使用gradle自动获取svn版本号/</id>
-    <published>2018-01-28T16:00:00.000Z</published>
-    <updated>2018-01-30T03:34:22.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="Android使用gradle自动获取svn版本号"><a href="#Android使用gradle自动获取svn版本号" class="headerlink" title="Android使用gradle自动获取svn版本号"></a>Android使用gradle自动获取svn版本号</h3><p>由于我们公司项目在内网开发版本控制使用的是svn,为了方便测试同学提bug,以及开发同学及时定位bug，需要自动获取svn版本号。亲测有效，</p>
-<h4 id="1、Project层下的-build-gradle-文件-引入svn插件"><a href="#1、Project层下的-build-gradle-文件-引入svn插件" class="headerlink" title="1、Project层下的  build.gradle  文件  引入svn插件"></a>1、Project层下的 <em> build.gradle </em> 文件  引入svn插件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">classpath group: &apos;org.tmatesoft.svnkit&apos;, name: &apos;svnkit&apos;, version: &apos;1.8.11&apos;</div></pre></td></tr></table></figure>
-<p>在我的项目中如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath &apos;com.android.tools.build:gradle:3.0.0&apos;</div><div class="line">        classpath group: &apos;org.tmatesoft.svnkit&apos;, name: &apos;svnkit&apos;, version: &apos;1.8.11&apos;</div><div class="line">        // NOTE: Do not place your application dependencies here; they belong</div><div class="line">        // in the individual module build.gradle files</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="2、Module层下的-build-gradle-文件加入以下两个步骤中内容："><a href="#2、Module层下的-build-gradle-文件加入以下两个步骤中内容：" class="headerlink" title="2、Module层下的  build.gradle  文件加入以下两个步骤中内容："></a>2、Module层下的 <strong> build.gradle </strong> 文件加入以下两个步骤中内容：</h4><h5 id="2-1、在文件第一行导包"><a href="#2-1、在文件第一行导包" class="headerlink" title="2.1、在文件第一行导包"></a>2.1、在文件第一行导包</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import org.tmatesoft.svn.core.wc.*</div></pre></td></tr></table></figure>
-<h5 id="2-2、定义函数"><a href="#2-2、定义函数" class="headerlink" title="2.2、定义函数"></a>2.2、定义函数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">def getSvnRevision() &#123;</div><div class="line">    ISVNOptions options = SVNWCUtil.createDefaultOptions(true);</div><div class="line">    SVNClientManager clientManager = SVNClientManager.newInstance(options);</div><div class="line">    SVNStatusClient statusClient = clientManager.getStatusClient();</div><div class="line">    SVNStatus status = statusClient.doStatus(projectDir, false);</div><div class="line">    SVNRevision revision = status.getCommittedRevision();</div><div class="line">    return revision.getNumber();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在我的项目中整体如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">import org.tmatesoft.svn.core.wc.*</div><div class="line"></div><div class="line">apply plugin: &apos;com.android.application&apos;</div><div class="line"></div><div class="line">//通过svnKit自动获取svn版本号</div><div class="line">def getSvnRevision() &#123;</div><div class="line">    ISVNOptions options = SVNWCUtil.createDefaultOptions(true)</div><div class="line">    SVNClientManager clientManager = SVNClientManager.newInstance(options)</div><div class="line">    SVNStatusClient statusClient = clientManager.getStatusClient()</div><div class="line">    SVNStatus status = statusClient.doStatus(projectDir, false)</div><div class="line">    SVNRevision revision = status.getCommittedRevision()</div><div class="line">    return revision.getNumber()</div><div class="line">&#125;</div><div class="line">android &#123;</div><div class="line">    compileSdkVersion 23</div><div class="line">    buildToolsVersion &apos;26.0.2&apos;</div><div class="line"></div><div class="line">    aaptOptions.cruncherEnabled = false</div><div class="line">    aaptOptions.useNewCruncher = false</div><div class="line">    lintOptions &#123;</div><div class="line">        abortOnError false</div><div class="line">    &#125;</div><div class="line">    defaultConfig &#123;</div><div class="line">        applicationId &quot;com.citicbank.comb&quot;</div><div class="line">        minSdkVersion 15</div><div class="line">        targetSdkVersion 16</div><div class="line">        versionCode  2</div><div class="line">        versionName &quot;$&#123;getSvnRevision()&#125;&quot; //调用方法获取svn版本号</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<h4 id="3、java代码中获取svn版本号"><a href="#3、java代码中获取svn版本号" class="headerlink" title="3、java代码中获取svn版本号"></a>3、java代码中获取svn版本号</h4><p>主要是通过PackageManager获取PackageInfo,从而获取svn版本号，在需要svn版本号的地方，只需调用此方法即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public static String getVersionName(Context context) &#123;</div><div class="line">        PackageManager packageManager = context.getPackageManager();</div><div class="line">        PackageInfo packInfo = null;</div><div class="line">        try &#123;</div><div class="line">            packInfo = packageManager.getPackageInfo(context.getPackageName(), 0);</div><div class="line">        &#125; catch (PackageManager.NameNotFoundException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        String version = packInfo.versionName;</div><div class="line">        return version;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;Android使用gradle自动获取svn版本号&quot;&gt;&lt;a href=&quot;#Android使用gradle自动获取svn版本号&quot; class=&quot;headerlink&quot; title=&quot;Android使用gradle自动获取svn版本号&quot;&gt;&lt;/a&gt;Android使用gr
-    
-    </summary>
-    
-      <category term="Android" scheme="http://suxianglun.github.io/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://suxianglun.github.io/tags/Android/"/>
     
   </entry>
   
@@ -992,89 +1110,6 @@ println(finalValue);
     
     
       <category term="Java" scheme="http://suxianglun.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《Python核心编程》学习笔记03（Python对象）</title>
-    <link href="http://suxianglun.github.io/2017/05/05/Python%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B003%EF%BC%88Python%E5%AF%B9%E8%B1%A1%EF%BC%89/"/>
-    <id>http://suxianglun.github.io/2017/05/05/Python核心编程》学习笔记03（Python对象）/</id>
-    <published>2017-05-05T08:52:32.000Z</published>
-    <updated>2017-07-25T06:32:57.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>按照惯例先吟诗一首：</p>
-<blockquote>
-<blockquote>
-<p> 宿建德江<br>唐代：孟浩然<br>移舟泊烟渚，日暮客愁新。<br>野旷天低树，江清月近人。</p>
-</blockquote>
-</blockquote>
-<h3 id="1-标准类型内建函数"><a href="#1-标准类型内建函数" class="headerlink" title="1.标准类型内建函数"></a>1.标准类型内建函数</h3><h4 id="1-type"><a href="#1-type" class="headerlink" title="1.type()"></a>1.type()</h4><p>type()接受一个对象参数，返回该对象的类型。它的返回值是一个对象的类型。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; type(4)     # int type    </div><div class="line">&lt;type &apos;int&apos;&gt;</div></pre></td></tr></table></figure>
-<h4 id="2-cmp"><a href="#2-cmp" class="headerlink" title="2.cmp()"></a>2.cmp()</h4><p>内建函数cmp(obj1,obj2)用来比较两个对象obj1和obj2的大小，如果obj1比obj2小的话，返回负整数，如果obj1比obj2大的话，返回正整数，如果obj1等于obj2小的话，返回0，比较是在对象之间进行的，不管是标准类型对象还是用户自定 义对象。如果是用户自定义对象， cmp()会调用该类的特殊方法<strong>cmp</strong>()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a, b = -4, 12     </div><div class="line"></div><div class="line">&gt;&gt;&gt; cmp(a,b)     </div><div class="line">-1    </div><div class="line">&gt;&gt;&gt; cmp(b,a)  </div><div class="line">  1    </div><div class="line">&gt;&gt;&gt; b = -4    &gt;&gt;&gt; cmp(a,b)    0    &gt;&gt;&gt;    &gt;&gt;&gt; a, b = &apos;abc&apos;, &apos;xyz&apos;    &gt;&gt;&gt; cmp(a,b)    -23    &gt;&gt;&gt; cmp(b,a)    23    &gt;&gt;&gt; b = &apos;abc&apos;    &gt;&gt;&gt; cmp(a,b)    0</div></pre></td></tr></table></figure>
-<h4 id="3-str-和-repr-及-运算符"><a href="#3-str-和-repr-及-运算符" class="headerlink" title="3.str()和 repr() (及 `` 运算符)"></a>3.str()和 repr() (及 `` 运算符)</h4><p>str()函数得到的字符串可读性好， 而 repr()函数得到的字符 串通常可以用来重新获得该对象, 通常情况下 obj == eval(repr(obj)) 这个等式是成立的。事实上 repr() 和 “” 做的 是完全一样的事情，它们返回的是一个对象的“官方”字符串表示，但 str()则有所不同。str() 致力 于生成一个对象的可读性好的字符串表示，它的返回结果通常无法用于 eval()求值， 但很适 合用于 print 语句输出。</p>
-<h4 id="4-type-和-isinstance"><a href="#4-type-和-isinstance" class="headerlink" title="4.type() 和 isinstance()"></a>4.type() 和 isinstance()</h4><p>在Python中可以使用type()与isinstance()这两个函数判断对象类型，而isinstance()函数的使用上比type更加方便。区别就是 对于subclass之类的 type就不行了，所以,强烈建议不要使用type判断对象类型。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  class A:</div><div class="line">   pass</div><div class="line"></div><div class="line">class B(A):</div><div class="line">   pass</div><div class="line"></div><div class="line">isinstance(A(), A)  # returns True</div><div class="line">type(A()) == A      # returns True</div><div class="line">isinstance(B(), A)    # returns True</div><div class="line">type(B()) == A        # returns False</div></pre></td></tr></table></figure>
-<h3 id="2-标准类型分布"><a href="#2-标准类型分布" class="headerlink" title="2.标准类型分布"></a>2.标准类型分布</h3><table>
-<thead>
-<tr>
-<th>数据类型</th>
-<th style="text-align:right">存储模型</th>
-<th style="text-align:center">更新模型</th>
-<th style="text-align:center">访问模型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>数字</td>
-<td style="text-align:right">标量</td>
-<td style="text-align:center">不可变</td>
-<td style="text-align:center">直接访问</td>
-</tr>
-<tr>
-<td>字符串</td>
-<td style="text-align:right">标量</td>
-<td style="text-align:center">不可变</td>
-<td style="text-align:center">顺序访问</td>
-</tr>
-<tr>
-<td>列表</td>
-<td style="text-align:right">容器</td>
-<td style="text-align:center">可变</td>
-<td style="text-align:center">顺序访问</td>
-</tr>
-<tr>
-<td>元祖</td>
-<td style="text-align:right">容器</td>
-<td style="text-align:center">不可变</td>
-<td style="text-align:center">顺序访问</td>
-</tr>
-<tr>
-<td>字典</td>
-<td style="text-align:right">容器</td>
-<td style="text-align:center">可变</td>
-<td style="text-align:center">映射访问</td>
-</tr>
-</tbody>
-</table>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;按照惯例先吟诗一首：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt; 宿建德江&lt;br&gt;唐代：孟浩然&lt;br&gt;移舟泊烟渚，日暮客愁新。&lt;br&gt;野旷天低树，江清月近人。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;1-标准类
-    
-    </summary>
-    
-      <category term="Python" scheme="http://suxianglun.github.io/categories/Python/"/>
-    
-    
-      <category term="Python" scheme="http://suxianglun.github.io/tags/Python/"/>
     
   </entry>
   
